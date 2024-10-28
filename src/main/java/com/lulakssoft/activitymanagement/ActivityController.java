@@ -5,20 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
+import java.util.List;
+
 public class ActivityController {
-    private ObservableList<Activity> activityList = FXCollections.observableArrayList();
 
-    public void addActivity(Activity activity) {
-        activityList.add(activity);
+    public void addActivityToProject(Project project, Activity activity) {
+        project.addActivity(activity);
     }
 
-    public void removeActivity(Activity activity) {
-        activityList.remove(activity);
+    public void removeActivityFromProject(Project project, Activity activity) {
+        project.removeActivity(activity);
     }
 
-    public void populateListView(ListView<String> listView) {
-        for (Activity activity : activityList) {
-            listView.getItems().add(activity.getTitel());
-        }
+    public List<Activity> getAllActivities(Project project) {
+        return project.getActivityList();
     }
+
+    // Weitere Methoden wie Activity filtern, sortieren, etc., könnten hier hinzugefügt werden
 }

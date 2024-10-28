@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.lulakssoft.activitymanagement.MainViewController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.MainViewController">
 
     <VBox xmlns:fx="http://javafx.com/fxml">
-        <Label fx:id="titleLabel" text="My Activities"/>
-        <ListView fx:id="activityListView"/>
-        <Button fx:id="addButton" text="Add Activity"/>
+        <Label fx:id="titleLabel" text="My Activities" />
+        <ListView fx:id="activityListView" />
     </VBox>
+   <AnchorPane layoutX="300.0" layoutY="14.0" prefHeight="450.0" prefWidth="300.0">
+      <children>
+         <TextField fx:id="titleField" layoutX="75.0" layoutY="14.0" />
+           <Button fx:id="addButton" layoutX="113.0" layoutY="278.0" text="Add Activity" textAlignment="CENTER" />
+         <Button layoutX="102.0" layoutY="317.0" mnemonicParsing="false" text="Remove Activity" textAlignment="CENTER" />
+         <TextArea fx:id="descriptionArea" layoutX="53.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+   </AnchorPane>
 
 </AnchorPane>

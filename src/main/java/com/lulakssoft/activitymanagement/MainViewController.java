@@ -1,29 +1,40 @@
 package com.lulakssoft.activitymanagement;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+
+import java.time.LocalDate;
 
 public class MainViewController {
-    @FXML
-    private Label titleLabel;  // Zugriff auf das Label aus FXML
 
     @FXML
-    private ListView<String> activityListView;  // Zugriff auf die ListView aus FXML
+    private ListView<String> activityListView;
 
     @FXML
-    private Button addButton;  // Zugriff auf den Button aus FXML
+    private TextField titleField;
 
-    // Initialisierung und Event-Handler
+    @FXML
+    private TextArea descriptionArea;
+
+    @FXML
+    private Button addButton;
+
+    private Project currentProject = new Project("Default Project");
+
     @FXML
     private void initialize() {
-        titleLabel.setText("Activity Management System");  // Beispiel: Überschreiben des Texts
         addButton.setOnAction(e -> handleAddActivity());
     }
 
     private void handleAddActivity() {
-        // Code, der beim Klicken des "Add Task" Buttons ausgeführt wird
-        System.out.println("Activity added!");
+        String title = titleField.getText();
+        String description = descriptionArea.getText();
+        LocalDate dueDate = LocalDate.now().plusDays(7);  // Beispiel: Fälligkeitsdatum +7 Tage
+
+        Activity activity = new Activity(title, description, dueDate);
+        currentProject.addActivity(activity);
+        activityListView.getItems().add(activity.getTitle());
+        titleField.setText("");
+        descriptionArea.setText("");
     }
 }
