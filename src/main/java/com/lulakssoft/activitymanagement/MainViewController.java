@@ -19,17 +19,22 @@ public class MainViewController {
     @FXML
     private Button addButton;
 
+    @FXML
+    private DatePicker dueDatePicker;
+
     private Project currentProject = new Project("Default Project");
 
     @FXML
     private void initialize() {
+
         addButton.setOnAction(e -> handleAddActivity());
+        dueDatePicker.setValue(LocalDate.now().plusDays(7));
     }
 
     private void handleAddActivity() {
         String title = titleField.getText();
         String description = descriptionArea.getText();
-        LocalDate dueDate = LocalDate.now().plusDays(7);  // Beispiel: Fälligkeitsdatum +7 Tage
+        LocalDate dueDate = dueDatePicker.getValue();
 
         Activity activity = new Activity(title, description, dueDate);
         currentProject.addActivity(activity);
