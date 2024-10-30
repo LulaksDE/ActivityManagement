@@ -5,7 +5,7 @@
 
 - [X] Initiale Dateien anlegen
 - [X] Labels für relevante Felder erstellen
-- [ ] Bearbeitung von Aktivitäten implementieren
+- [X] Bearbeitung von Aktivitäten implementieren
 - [ ] Historie für erstellte/beendete Aktivitäten
 - [ ] Filter Aktivitäten
 - [ ] Suche für Aktivitäten implementieren
