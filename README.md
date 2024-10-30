@@ -4,7 +4,7 @@
 ### TODO:
 
 - [X] Initiale Dateien anlegen
-- [ ] Labels für relevante Felder erstellen
+- [X] Labels für relevante Felder erstellen
 - [ ] Bearbeitung von Aktivitäten implementieren
 - [ ] Historie für erstellte/beendete Aktivitäten
 - [ ] Filter Aktivitäten
@@ -16,10 +16,12 @@
 
 classDiagram
     class Activity {
+        -String id
         -String title
         -String description
         -LocalDate dueDate
         -boolean completed
+        +getId(): String
         +getTitle(): String
         +setTitle(String): void
         +getDescription(): String
@@ -57,13 +59,28 @@ classDiagram
     }
 
     class MainViewController {
-        -ListView~String~ activityListView
+        -ListView~Activity~ activityListView
         -TextField titleField
-        -TextField descriptionField
+        -Label activityIdLabel
+        -TextArea descriptionArea
         -Button addButton
+        -Button deleteButton
+        -Button updateButton
+        -DatePicker dueDatePicker
+        -CheckBox completedCheckBox
+        -ObservableList~Activity~ activityList
         -Project currentProject
+        -Activity currentActivity
         +initialize(): void
+        -handleActivitySelection(): void
         -handleAddActivity(): void
+        -handleUpdateActivity(): void
+        -handleDeleteActivity(): void
+    }
+
+    class MainView {
+        +start(Stage): void
+        +main(String[]): void
     }
 
     Project "1" --> "*" Activity : contains
@@ -72,6 +89,6 @@ classDiagram
     ActivityController ..> Project : manages
     MainViewController ..> ActivityController : uses
     MainViewController ..> Project : references
-
+    MainView ..> MainViewController : uses
 ```
 
