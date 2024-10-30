@@ -4,10 +4,11 @@
 ### TODO:
 
 - [X] Initiale Dateien anlegen
-- [ ] 
-- [ ]
-- [ ] 
-- [ ] 
+- [ ] Labels für relevante Felder erstellen
+- [ ] Bearbeitung von Aktivitäten implementieren
+- [ ] Historie für erstellte/beendete Aktivitäten
+- [ ] Filter Aktivitäten
+- [ ] Suche für Aktivitäten implementieren
 
 ## Projekt UML
 
