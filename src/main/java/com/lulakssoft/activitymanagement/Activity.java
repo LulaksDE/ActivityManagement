@@ -1,14 +1,17 @@
 package com.lulakssoft.activitymanagement;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Activity {
+    private final String id;  // ID der Aktivität
     private String title;  // Titel der Aktivität
     private String description;  // Beschreibung der Aktivität
     private LocalDate dueDate;  // Fälligkeitsdatum der Aktivität
     private boolean completed;  // Status der Aktivität (erledigt oder nicht)
 
-    public Activity(String title, String description, LocalDate dueDate) {
+    public Activity(String id, String title, String description, LocalDate dueDate, boolean completed) {
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -16,6 +19,8 @@ public class Activity {
     }
 
     // Getter und Setter
+    public String getId() { return id; }
+
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 

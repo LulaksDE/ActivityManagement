@@ -11,11 +11,15 @@
     </VBox>
    <AnchorPane layoutX="300.0" layoutY="14.0" prefHeight="450.0" prefWidth="300.0">
       <children>
-         <TextField fx:id="titleField" layoutX="75.0" layoutY="14.0" />
-           <Button fx:id="addButton" layoutX="113.0" layoutY="278.0" text="Add Activity" textAlignment="CENTER" />
-         <Button layoutX="102.0" layoutY="317.0" mnemonicParsing="false" text="Remove Activity" textAlignment="CENTER" />
-         <TextArea fx:id="descriptionArea" layoutX="53.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" />
-         <DatePicker fx:id="dueDatePicker" layoutX="66.0" layoutY="369.0" />
+         <TextField fx:id="titleField" layoutX="75.0" layoutY="30.0" promptText="Add title" />
+          <TextArea fx:id="descriptionArea" layoutX="53.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" promptText="Add description" />
+          <Button fx:id="addButton" layoutX="113.0" layoutY="278.0" text="Add Activity" textAlignment="CENTER" />
+          <Button fx:id="updateButton" layoutX="122.0" layoutY="319.0" mnemonicParsing="false" text="Update" />
+          <Button fx:id="deleteButton" layoutX="102.0" layoutY="357.0" mnemonicParsing="false" text="Remove Activity" textAlignment="CENTER" />
+         <DatePicker fx:id="dueDatePicker" layoutX="65.0" layoutY="393.0" />
+         <CheckBox fx:id="completedCheckBox" layoutX="17.0" layoutY="282.0" mnemonicParsing="false" text="Completed" />
+          <Label fx:id="idLabel" layoutY="427.0" text="Activity ID: " />
+          <Label fx:id="activityIdLabel" layoutX="61.0" layoutY="427.0" text="Label" />
       </children>
    </AnchorPane>
    <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="300.0">
