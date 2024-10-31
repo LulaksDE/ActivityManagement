@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ActivityListController">
+
+    <VBox layoutX="26.0" layoutY="12.0" xmlns:fx="http://javafx.com/fxml">
+        <Label fx:id="titleLabel" text="My Activities" />
+        <ListView fx:id="activityListView" />
+    </VBox>
+    <Button fx:id="addButton" layoutX="26.0" layoutY="460.0" text="Add Activity" textAlignment="CENTER" />
+    <Button fx:id="deleteButton" layoutX="172.0" layoutY="460.0" text="Remove Activity" textAlignment="CENTER" />
+</AnchorPane>

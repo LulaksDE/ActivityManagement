@@ -10,7 +10,7 @@ public class Activity {
     private LocalDate dueDate;  // Fälligkeitsdatum der Aktivität
     private boolean completed;  // Status der Aktivität (erledigt oder nicht)
 
-    public Activity(String id, String title, String description, LocalDate dueDate, boolean completed) {
+    public Activity(String title, String description, LocalDate dueDate, boolean completed) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
@@ -32,4 +32,15 @@ public class Activity {
 
     public boolean isCompleted() { return completed; }
     public void setCompleted(boolean completed) { this.completed = completed; }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", dueDate=" + dueDate +
+                ", completed=" + completed +
+                '}';
+    }
 }
