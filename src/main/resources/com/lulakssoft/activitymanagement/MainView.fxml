@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.lulakssoft.activitymanagement.MainView"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.MainView">
+   <children>
+      <ComboBox editable="true" layoutX="151.0" layoutY="173.0" prefHeight="26.0" prefWidth="297.0" promptText="Select Project" />
+      <Label layoutX="148.0" layoutY="43.0" text="Activity Management System" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="148.0" layoutY="223.0" mnemonicParsing="false" text="Create" />
+      <Button layoutX="274.0" layoutY="223.0" mnemonicParsing="false" text="Load" />
+      <Button layoutX="400.0" layoutY="223.0" mnemonicParsing="false" text="Delete" />
+   </children>
 </AnchorPane>
