@@ -79,7 +79,9 @@ public class ActivityListController {
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
-                currentProject.getActivityList().addAll(newActivities);
+                for (Activity activity : newActivities) {
+                    currentProject.addActivity(activity);
+                }
                 activityListView.getItems().addAll(newActivities);
             }
 

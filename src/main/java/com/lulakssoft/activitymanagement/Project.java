@@ -7,16 +7,17 @@ import java.util.List;
 public class Project {
     private String name;  // Name des Projekts
     private List<Activity> activityList;  // Liste der Aktivitäten im Projekt
+    private final User creator;  // Benutzer, der das Projekt erstellt hat
 
-    public Project(String name) {
+    public Project(String name, User creator) {
         this.name = name;
         this.activityList = new ArrayList<>();
-
+        this.creator = creator;
         // Füge eine Standardaktivität hinzu
-        activityList.add(new Activity("Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
-        activityList.add(new Activity("Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
-        activityList.add(new Activity("Activity 3", "Description 3", LocalDate.now().plusDays(21), false));
-        activityList.add(new Activity("Activity 4", "Description 4", LocalDate.now().plusDays(28), false));
+        activityList.add(new Activity(creator,"Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
+        activityList.add(new Activity(creator,"Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
+        activityList.add(new Activity(creator,"Activity 3", "Description 3", LocalDate.now().plusDays(21), false));
+        activityList.add(new Activity(creator,"Activity 4", "Description 4", LocalDate.now().plusDays(28), false));
     }
 
     public void addActivity(Activity activity) {

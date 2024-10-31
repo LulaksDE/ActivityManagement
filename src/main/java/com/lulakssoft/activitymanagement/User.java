@@ -1,24 +1,22 @@
 package com.lulakssoft.activitymanagement;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public abstract class User {
     private String username;  // Benutzername
     private List<Project> projectList;  // Liste der Projekte des Benutzers
+    private List<Activity> activityList;  // Liste der Aktivitäten des Benutzers
 
     public User(String username) {
         this.username = username;
         this.projectList = new ArrayList<>();
 
         // Füge ein Standardprojekt hinzu
-        projectList.add(new Project("Default Project"));
-        projectList.add(new Project("Project 1"));
-        projectList.add(new Project("Project 2"));
-    }
-
-    public static User getCurrentUser() {
-        return new User("Default User");
+        projectList.add(new Project("Default Project", this));
+        projectList.add(new Project("Project 1", this));
+        projectList.add(new Project("Project 2", this));
     }
 
     public void addProject(Project project) {
@@ -39,5 +37,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", projectList=" + projectList +
+                '}';
     }
 }

@@ -33,7 +33,7 @@ public class MainViewController {
     private void initialize() {
 
         // Lade die Projekte des Benutzers
-        projectList = User.getCurrentUser().getProjectList();
+        projectList = new Admin("admin").getProjectList();
 
         // Füge die Projekte zur ComboBox hinzu
 
