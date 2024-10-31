@@ -1,6 +1,8 @@
 package com.lulakssoft.activitymanagement;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Activity {
@@ -9,13 +11,15 @@ public class Activity {
     private String description;  // Beschreibung der Aktivität
     private LocalDate dueDate;  // Fälligkeitsdatum der Aktivität
     private boolean completed;  // Status der Aktivität (erledigt oder nicht)
+    private List<User> userList = new ArrayList<>();  // Liste der Benutzer, die an der Aktivität beteiligt sind
 
-    public Activity(String title, String description, LocalDate dueDate, boolean completed) {
+    public Activity(User creator, String title, String description, LocalDate dueDate, boolean completed) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = false;
+        this.userList.add(creator);
     }
 
     // Getter und Setter
@@ -32,6 +36,9 @@ public class Activity {
 
     public boolean isCompleted() { return completed; }
     public void setCompleted(boolean completed) { this.completed = completed; }
+
+    public List<User> getUserList() { return userList; }
+    public void setUserList(List<User> userList) { this.userList = userList; }
 
     @Override
     public String toString() {
