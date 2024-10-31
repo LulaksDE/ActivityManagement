@@ -5,16 +5,16 @@
 <?import javafx.scene.text.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.MainView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.MainViewController">
    <children>
-      <ComboBox editable="true" layoutX="151.0" layoutY="173.0" prefHeight="26.0" prefWidth="297.0" promptText="Select Project" />
+      <ComboBox fx:id="projectComboBox" editable="true" layoutX="151.0" layoutY="173.0" prefHeight="26.0" prefWidth="297.0" promptText="Select Project" />
       <Label layoutX="148.0" layoutY="43.0" text="Activity Management System" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="148.0" layoutY="223.0" mnemonicParsing="false" text="Create" />
-      <Button layoutX="274.0" layoutY="223.0" mnemonicParsing="false" text="Load" />
-      <Button layoutX="400.0" layoutY="223.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="createButton" layoutX="148.0" layoutY="223.0" mnemonicParsing="false" text="Create" />
+      <Button fx:id="loadButton" layoutX="274.0" layoutY="223.0" mnemonicParsing="false" text="Load" />
+      <Button fx:id="deleteButton" layoutX="400.0" layoutY="223.0" mnemonicParsing="false" text="Delete" />
    </children>
 </AnchorPane>

@@ -31,12 +31,13 @@ public class ActivityListController {
 
     private Activity selectedActivity;
 
-    private Project currentProject = new Project("Default Project");
-
-    private ObservableList<Activity> activityList = FXCollections.observableArrayList();  // Liste der Aktivitäten
+    private Project currentProject;
 
     @FXML
-    private void initialize() {
+    public void initialize(Project project) {
+        currentProject = project;
+        ObservableList<Activity> activityList = FXCollections.observableArrayList(project.getActivityList());
+        activityListView.setItems(activityList);
 
         // Setze den benutzerdefinierten Zell-Renderer für die Anzeige der Titel
         activityListView.setCellFactory(listView -> new ListCell<Activity>() {
@@ -50,15 +51,6 @@ public class ActivityListController {
                 }
             }
         });
-
-        if (activityList.isEmpty()) {
-            activityList.add(new Activity("Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
-            activityList.add(new Activity("Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
-            activityList.add(new Activity("Activity 3", "Description 3", LocalDate.now().plusDays(21), false));
-        }
-
-        // Weise die ObservableList dem ListView zu
-        activityListView.setItems(activityList);
 
         addButton.setOnAction(e -> handleAddActivity());
         deleteButton.setOnAction(e -> handleDeleteActivity());
@@ -79,7 +71,7 @@ public class ActivityListController {
             editorStage.initOwner(addButton.getScene().getWindow());
             editorStage.setScene(new Scene(root));
             ActivityEditorController controller = loader.getController();
-            controller.initialize(activityList);
+            controller.initialize(currentProject.getActivityList());
 
             // Zeige das Fenster an und warte, bis es geschlossen wird
             editorStage.showAndWait();
@@ -87,8 +79,8 @@ public class ActivityListController {
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
-                activityList.addAll(newActivities);
-                activityListView.refresh();
+                currentProject.getActivityList().addAll(newActivities);
+                activityListView.getItems().addAll(newActivities);
             }
 
         } catch (IOException e) {

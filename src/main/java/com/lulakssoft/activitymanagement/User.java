@@ -10,6 +10,15 @@ public class User {
     public User(String username) {
         this.username = username;
         this.projectList = new ArrayList<>();
+
+        // Füge ein Standardprojekt hinzu
+        projectList.add(new Project("Default Project"));
+        projectList.add(new Project("Project 1"));
+        projectList.add(new Project("Project 2"));
+    }
+
+    public static User getCurrentUser() {
+        return new User("Default User");
     }
 
     public void addProject(Project project) {
