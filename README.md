@@ -10,6 +10,16 @@
 - [ ] Filter Aktivitäten
 - [ ] Suche für Aktivitäten implementieren
 
+- [ ] Priorität
+- [ ] Status (inkl. Status Labels?)
+- [ ] Kanban-Board
+- [ ] Drag and drop in Kanban-Board
+- [ ] Kategorisierung der Projekte
+- [ ] Kommentare im Nachgang
+- [ ] Historie
+- [ ] Dark-Mode
+- [ ] Abbrechen Projekterstellung
+
 ## Projekt UML
 
 ``` mermaid
