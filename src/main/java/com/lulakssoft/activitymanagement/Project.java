@@ -1,5 +1,6 @@
 package com.lulakssoft.activitymanagement;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,12 @@ public class Project {
     public Project(String name) {
         this.name = name;
         this.activityList = new ArrayList<>();
+
+        // Füge eine Standardaktivität hinzu
+        activityList.add(new Activity("Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
+        activityList.add(new Activity("Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
+        activityList.add(new Activity("Activity 3", "Description 3", LocalDate.now().plusDays(21), false));
+        activityList.add(new Activity("Activity 4", "Description 4", LocalDate.now().plusDays(28), false));
     }
 
     public void addActivity(Activity activity) {
