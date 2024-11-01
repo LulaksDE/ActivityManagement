@@ -42,7 +42,6 @@ public class ActivityEditorController {
     void initialize(List<Activity> activities) {
 
         activityList = activities;
-
         addButton.setOnAction(e -> handleAddActivity());
         updateButton.setVisible(false);
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
