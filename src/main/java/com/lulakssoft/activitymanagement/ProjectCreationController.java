@@ -1,9 +1,19 @@
 package com.lulakssoft.activitymanagement;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.controlsfx.control.CheckComboBox;
+import org.controlsfx.control.CheckListView;
+import org.controlsfx.control.IndexedCheckModel;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectCreationController {
 
@@ -17,10 +27,7 @@ public class ProjectCreationController {
     private DatePicker dueDatePicker;
 
     @FXML
-    private CheckBox addPersonCheckBox;
-
-    @FXML
-    private TextField personName;
+    private ListView<User> userListView;
 
     @FXML
     private Button createButton;
@@ -33,18 +40,30 @@ public class ProjectCreationController {
     // Der aktuelle Benutzer, der das Projekt erstellt
     private User creator;
 
-    public ProjectCreationController(User creator) {
-        this.creator = creator;  // Der Benutzer, der das Projekt erstellt
-    }
 
-    public void initialize() {
+    public void initialize(List<User> userList, User creator) {
+
+        ObservableList<User> users = FXCollections.observableArrayList(userList);
+
+        userListView.setItems(users);
+
+        userListView.setCellFactory(listView -> new ListCell<User>() {
+            @Override
+            protected void updateItem(User nutzer, boolean empty) {
+                super.updateItem(nutzer, empty);
+                if (empty || nutzer == null) {
+                    setText(null);
+                } else {
+                    setText(nutzer.getUsername());  // Zeige nur den Titel der Aktivität an
+                }
+            }
+        });
+
+        this.creator = creator;
+
         createButton.setOnAction(e -> handleCreateProject());
         cancelButton.setOnAction(e -> closeWindow());
 
-        // personName wird nur aktiv, wenn addPersonCheckBox ausgewählt ist
-        addPersonCheckBox.selectedProperty().addListener((observable, oldValue, newValue) ->
-                personName.setDisable(!newValue)
-        );
     }
 
     private void handleCreateProject() {
@@ -68,12 +87,6 @@ public class ProjectCreationController {
                 dueDate,
                 false
         ));
-
-        // Zusätzlichen Benutzer hinzufügen, falls addPersonCheckBox aktiviert ist und ein Name angegeben wurde
-        if (addPersonCheckBox.isSelected() && !personName.getText().isEmpty()) {
-            User additionalUser = new StandardUser(personName.getText());
-            createdProject.getActivityList().get(0).getUserList().add(additionalUser);
-        }
 
         closeWindow();
     }
