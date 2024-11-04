@@ -1,18 +1,13 @@
 package com.lulakssoft.activitymanagement;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.CheckListView;
-import org.controlsfx.control.IndexedCheckModel;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectCreationController {
@@ -30,6 +25,18 @@ public class ProjectCreationController {
     private ListView<User> userListView;
 
     @FXML
+    private TableView<User> personTableView;
+
+    @FXML
+    private TableColumn<User, String> colPersonName;
+
+    @FXML
+    private TableColumn<User, String> colPersonPerms;
+
+    @FXML
+    private TableColumn<User, Void> colPersonAdded;
+
+    @FXML
     private Button createButton;
 
     @FXML
@@ -43,9 +50,10 @@ public class ProjectCreationController {
 
     public void initialize(List<User> userList, User creator) {
 
-        ObservableList<User> users = FXCollections.observableArrayList(userList);
+        ObservableList<User> availableUsers = FXCollections.observableArrayList(userList);
+        ObservableList<User> projectUsers = FXCollections.observableArrayList();
 
-        userListView.setItems(users);
+        userListView.setItems(projectUsers);
 
         userListView.setCellFactory(listView -> new ListCell<User>() {
             @Override
@@ -58,6 +66,34 @@ public class ProjectCreationController {
                 }
             }
         });
+
+        colPersonName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
+        colPersonPerms.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClass().getSimpleName()));
+
+        // Actions column
+        colPersonAdded.setCellFactory(param -> new TableCell<>() {
+            private final Button addButton = new Button("Add");
+
+            {
+                addButton.setOnAction(event -> {
+                    User user = getTableView().getItems().get(getIndex());
+                    availableUsers.remove(user); // Remove user from available
+                    projectUsers.add(user); // Add the user to the list
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(addButton);
+                }
+            }
+        });
+
+        personTableView.setItems(availableUsers);
 
         this.creator = creator;
 
