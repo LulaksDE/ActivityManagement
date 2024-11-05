@@ -60,19 +60,19 @@ public class ActivityListController {
                     Region spacer = new Region();
                     HBox.setHgrow(spacer, Priority.ALWAYS); // Allow the spacer to grow
 
-                    HBox content = new HBox(labelTitle,spacer);
-                    content.setAlignment(Pos.CENTER_LEFT); // Align the label to the left
+                    HBox labelBox = new HBox(labelTitle,spacer);
+                    labelBox.setAlignment(Pos.CENTER_LEFT); // Align the label to the left
 
-                    content.setOnMouseEntered(event -> {
-                        if (!content.getChildren().contains(iconLabel)) {
-                            content.getChildren().add(iconLabel);
+                    labelBox.setOnMouseEntered(event -> {
+                        if (!labelBox.getChildren().contains(iconLabel)) {
+                            labelBox.getChildren().add(iconLabel);
                         }
                     });
 
-                    content.setOnMouseExited(event -> {
-                            content.getChildren().remove(iconLabel);
+                    labelBox.setOnMouseExited(event -> {
+                            labelBox.getChildren().remove(iconLabel);
                     });
-                    setGraphic(content);
+                    setGraphic(labelBox);
 
                 }
             }
