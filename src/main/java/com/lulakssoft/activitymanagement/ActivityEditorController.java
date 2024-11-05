@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityEditorController {
@@ -34,14 +35,20 @@ public class ActivityEditorController {
     @FXML
     private CheckBox keepPropertiesCheckBox;
 
+    @FXML
+    private ChoiceBox<String> priorityChoiceBox; // Referenz zur ChoiceBox für Priorität
+
     private List<Activity> activityList;
 
-    private List<Activity> newActivities = FXCollections.observableArrayList();
+    private List<Activity> newActivities = new ArrayList<>(); // Korrigiert von FXCollections.observableArrayList()
 
     @FXML
     void initialize(List<Activity> activities) {
-
         activityList = activities;
+
+        // Priorität Optionen hinzufügen
+        priorityChoiceBox.getItems().addAll("Low", "Medium", "High"); // Hinzufügen von Auswahlmöglichkeiten
+
         addButton.setOnAction(e -> handleAddActivity());
         updateButton.setVisible(false);
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
@@ -68,6 +75,7 @@ public class ActivityEditorController {
         String description = descriptionArea.getText();
         LocalDate dueDate = dueDatePicker.getValue();
         boolean completed = completedCheckBox.isSelected();
+        String priority = priorityChoiceBox.getValue(); // Holen der ausgewählten Priorität
 
         if (title.isEmpty()) {
             titleField.setStyle("-fx-border-color: red");
@@ -77,7 +85,9 @@ public class ActivityEditorController {
             titleField.setStyle("");
         }
 
+        // Erstellen einer neuen Aktivität mit den Prioritätsinformationen
         Activity newActivity = new Activity(new Admin("admin"), title, description, dueDate, completed);
+        newActivity.setPriority(priority); // Setze die Priorität in der Aktivität
         newActivities.add(newActivity);
 
         if (!keepPropertiesCheckBox.isSelected()) {
@@ -86,6 +96,7 @@ public class ActivityEditorController {
             descriptionArea.setText("");
             completedCheckBox.setSelected(false);
             activityIdLabel.setText("");
+            priorityChoiceBox.setValue(null); // Setze die Auswahl auf null
         } else {
             titleField.setText(title);
             dueDatePicker.setValue(dueDate);
@@ -95,7 +106,6 @@ public class ActivityEditorController {
     }
 
     private void handleUpdateActivity(Activity activity) {
-
         if (titleField.getText().isEmpty()) {
             titleField.setStyle("-fx-border-color: red");
             titleField.requestFocus();
@@ -109,6 +119,7 @@ public class ActivityEditorController {
         activity.setDescription(descriptionArea.getText());
         activity.setDueDate(dueDatePicker.getValue());
         activity.setCompleted(completedCheckBox.isSelected());
+        activity.setPriority(priorityChoiceBox.getValue()); // Aktualisiere die Priorität
 
         System.out.println("Updated activity" + activity);
     }
