@@ -118,8 +118,8 @@ public class ProjectCreationController {
         // Aktivität zum Projekt hinzufügen
         createdProject.addActivity(new Activity(
                 creator,
-                title,
-                description,
+                title + " - Kickoff Meeting",
+                description + "\n Project Description",
                 dueDate,
                 false
         ));

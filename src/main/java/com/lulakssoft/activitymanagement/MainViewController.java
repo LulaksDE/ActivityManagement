@@ -87,9 +87,10 @@ public class MainViewController {
             ProjectCreationController controller = loader.getController();
             controller.initialize(userList, new Worker("arbeiter01"));
             creationStage.showAndWait();
+            Project newProject = controller.getCreatedProject();
 
             // Aktualisiere die Liste nach Erstellung eines neuen Projekts
-            updateProjectList();
+            updateProjectList(newProject);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,8 +146,9 @@ public class MainViewController {
         }
     }
 
-    private void updateProjectList() {
-        projectNames.clear();
-        projectList.forEach(project -> projectNames.add(project.getName()));
+    private void updateProjectList(Project newProject) {
+        // Füge das neue Projekt zur Liste hinzu
+        projectList.add(newProject);
+        projectNames.add(newProject.getName());
     }
 }
