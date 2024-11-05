@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.lulakssoft.activitymanagement.ProjectCreationController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="454.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ProjectCreationController">
+   <children>
+      <Button fx:id="createButton" layoutX="14.0" layoutY="415.0" mnemonicParsing="false" text="Create" />
+      <DatePicker fx:id="dueDatePicker" layoutX="66.0" layoutY="315.0" prefHeight="25.0" prefWidth="206.0" promptText="Due Date" />
+      <TextField fx:id="projectTitle" layoutX="26.0" layoutY="49.0" prefHeight="32.0" prefWidth="287.0" promptText="Project Title" />
+      <TextArea fx:id="projectDescription" layoutX="26.0" layoutY="95.0" prefHeight="198.0" prefWidth="287.0" promptText="Project Description" />
+      <Label fx:id="createProjectLabel" layoutX="26.0" layoutY="24.0" text="Create Project" />
+      <Button fx:id="cancelButton" layoutX="534.0" layoutY="415.0" mnemonicParsing="false" text="Cancel" />
+      <ListView fx:id="userListView" layoutX="353.0" layoutY="315.0" prefHeight="74.0" prefWidth="206.0" />
+      <Separator layoutX="321.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="0.0" />
+      <TableView fx:id="personTableView" layoutX="345.0" layoutY="49.0" prefHeight="200.0" prefWidth="221.0">
+        <columns>
+          <TableColumn fx:id="colPersonName" prefWidth="83.0" text="Name" />
+          <TableColumn fx:id="colPersonPerms" prefWidth="68.0" text="Permission" />
+          <TableColumn fx:id="colPersonAdded" prefWidth="77.60003662109375" text="Added" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

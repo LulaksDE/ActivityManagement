@@ -12,7 +12,6 @@ public abstract class User {
     public User(String username) {
         this.username = username;
         this.projectList = new ArrayList<>();
-
         // Füge ein Standardprojekt hinzu
         projectList.add(new Project("Default Project", this));
         projectList.add(new Project("Project 1", this));

@@ -4,13 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -41,13 +46,34 @@ public class ActivityListController {
 
         // Setze den benutzerdefinierten Zell-Renderer für die Anzeige der Titel
         activityListView.setCellFactory(listView -> new ListCell<Activity>() {
+            private final Label iconLabel = new Label("🔍"); // Icon for hover
+
             @Override
             protected void updateItem(Activity activity, boolean empty) {
                 super.updateItem(activity, empty);
                 if (empty || activity == null) {
-                    setText(null);
+                    setGraphic(null);
                 } else {
-                    setText(activity.getTitle());  // Zeige nur den Titel der Aktivität an
+
+                    Label labelTitle = new Label(activity.getTitle());
+
+                    Region spacer = new Region();
+                    HBox.setHgrow(spacer, Priority.ALWAYS); // Allow the spacer to grow
+
+                    HBox labelBox = new HBox(labelTitle,spacer);
+                    labelBox.setAlignment(Pos.CENTER_LEFT); // Align the label to the left
+
+                    labelBox.setOnMouseEntered(event -> {
+                        if (!labelBox.getChildren().contains(iconLabel)) {
+                            labelBox.getChildren().add(iconLabel);
+                        }
+                    });
+
+                    labelBox.setOnMouseExited(event -> {
+                            labelBox.getChildren().remove(iconLabel);
+                    });
+                    setGraphic(labelBox);
+
                 }
             }
         });

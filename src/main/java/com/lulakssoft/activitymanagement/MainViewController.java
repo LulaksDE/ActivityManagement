@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,6 +29,8 @@ public class MainViewController {
     private Button loadButton;
 
     private List<Project> projectList;
+
+    private List<User> userList = List.of(new Admin("admin01"),new Admin("admin02"),new Admin("admin03"),new Admin("admin04"), new Supporter("supporter02"), new Technician("technician01"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"));
 
     @FXML
     private void initialize() {
@@ -69,6 +72,8 @@ public class MainViewController {
             creationStage.setTitle("Projekt erstellen");
             creationStage.setScene(new Scene(root));
             creationStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            ProjectCreationController controller = loader.getController();
+            controller.initialize(userList, new Worker("arbeiter01"));
             creationStage.showAndWait();
 
             // Update the project list
