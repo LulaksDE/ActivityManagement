@@ -42,7 +42,7 @@ public abstract class User {
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", projectList=" + projectList +
+                ", projectList=" + projectList.toString() +
                 '}';
     }
 }

@@ -1,14 +1,16 @@
 package com.lulakssoft.activitymanagement;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.paint.Color;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -17,53 +19,86 @@ import java.util.List;
 public class MainViewController {
 
     @FXML
-    private ComboBox<String> projectComboBox;
+    private ComboBox<Project> projectComboBox;
+
+    @FXML
+    private TextField searchField; // Textfeld für die Suchfunktion
 
     @FXML
     private Button createButton;
-
     @FXML
     private Button deleteButton;
-
     @FXML
     private Button loadButton;
 
     private List<Project> projectList;
 
-    private List<User> userList = List.of(new Admin("admin01"),new Admin("admin02"),new Admin("admin03"),new Admin("admin04"), new Supporter("supporter02"), new Technician("technician01"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"), new Supporter("supporter02"));
+    private ObservableList<Project> observableList;
+
+    // userList mit Beispielwerten initialisieren
+    private List<User> userList = List.of(
+            new Admin("admin01"),
+            new Admin("admin02"),
+            new Admin("admin03"),
+            new Admin("admin04"),
+            new Supporter("supporter02"),
+            new Technician("technician01")
+    );
 
     @FXML
     private void initialize() {
-
         // Lade die Projekte des Benutzers
         projectList = new Admin("admin").getProjectList();
+        observableList = FXCollections.observableArrayList(projectList);
 
-        // Füge die Projekte zur ComboBox hinzu
-
-        projectList.forEach(project -> projectComboBox.getItems().add(project.getName()));
-
-        createButton.setOnAction(e -> {handleCreate();});
-
-        deleteButton.setOnAction(e -> {
-            handleDelete();
+        projectComboBox.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                if (empty || project == null) {
+                    setText(null);
+                } else {
+                    setText(project.getName());
+                }
+            }
         });
-        loadButton.setOnAction(e -> {
-            handleLoad();
+
+        projectComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                if (empty || project == null) {
+                    setText(null);
+                } else {
+                    setText(project.getName());
+                }
+            }
         });
+
+
+        // FilteredList für die Suche initialisieren
+        FilteredList<Project> filteredList = new FilteredList<>(observableList, p -> true);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(project -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return project.getName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        // Setze die gefilterte Liste als Datenquelle für die ComboBox
+        projectComboBox.setItems(filteredList);
+
+        // Aktionen für die Buttons festlegen
+        createButton.setOnAction(e -> handleCreate());
+        deleteButton.setOnAction(e -> handleDelete());
+        loadButton.setOnAction(e -> handleLoad());
     }
 
     private void handleCreate() {
-
-        for (Project project : projectList) {
-            if (project.getName().equals(projectComboBox.getValue())) {
-
-                System.out.println("Projekt bereits vorhanden");
-
-                // Projekt bereits vorhanden
-                return;
-            }
-        }
-
+        // Hier wird ein neues Projekt erstellt (ggf. Logik hinzufügen)
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectCreationScreen.fxml"));
             Parent root = loader.load();
@@ -71,50 +106,66 @@ public class MainViewController {
             Stage creationStage = new Stage();
             creationStage.setTitle("Projekt erstellen");
             creationStage.setScene(new Scene(root));
-            creationStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            creationStage.initModality(Modality.APPLICATION_MODAL);
+
+            // Übergabe der userList an den neuen Controller
             ProjectCreationController controller = loader.getController();
             controller.initialize(userList, new Worker("arbeiter01"));
             creationStage.showAndWait();
+            Project newProject = controller.getCreatedProject();
 
-            // Update the project list
-            projectComboBox.getItems().clear();
+            // Aktualisiere die Liste nach Erstellung eines neuen Projekts
+            if (newProject != null) updateProjectList(newProject);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void handleDelete() {
+        Project selectedProject = projectComboBox.getSelectionModel().getSelectedItem();
+        if (selectedProject == null) {
+            return;
+        }
 
-            if (projectComboBox.getSelectionModel().getSelectedIndex() == -1) {
-                return;
-            }
+        // Hier wird das Projekt gelöscht (ggf. Logik hinzufügen)
 
-            projectList.remove(projectComboBox.getSelectionModel().getSelectedIndex());
-            projectComboBox.getItems().remove(projectComboBox.getSelectionModel().getSelectedIndex());
+        projectList.remove(selectedProject);
+        observableList.remove(selectedProject);
+        projectComboBox.getSelectionModel().clearSelection();
     }
 
     private void handleLoad() {
-
-        if (projectComboBox.getSelectionModel().getSelectedIndex() == -1) {
+        Project selectedProject = projectComboBox.getSelectionModel().getSelectedItem();
+        if (selectedProject == null) {
             return;
         }
+
+        // Lade die Aktivität zu dem Projekt
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityList.fxml"));
             Parent root = loader.load();
 
             // Erstelle eine neue Stage (Fenster) für den Editor
             Stage activityListStage = new Stage();
-            activityListStage.setTitle("Add New Activities");
+            activityListStage.setTitle("Projekt bearbeiten");
             activityListStage.initModality(Modality.WINDOW_MODAL);
             activityListStage.initOwner(loadButton.getScene().getWindow());
             activityListStage.setScene(new Scene(root));
+
+            // Übergabe des ausgewählten Projekts an den neuen Controller
             ActivityListController controller = loader.getController();
-            controller.initialize(projectList.get(projectComboBox.getSelectionModel().getSelectedIndex()));
+            controller.initialize(selectedProject);
             activityListStage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private void updateProjectList(Project newProject) {
+        // Füge das neue Projekt zur Liste hinzu
+        projectList.add(newProject);
+        observableList.add(newProject);
 
+        System.out.println("Project created: " + newProject);
+    }
 }

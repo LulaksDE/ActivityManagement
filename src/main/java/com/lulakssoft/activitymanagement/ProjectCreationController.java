@@ -98,7 +98,7 @@ public class ProjectCreationController {
         this.creator = creator;
 
         createButton.setOnAction(e -> handleCreateProject());
-        cancelButton.setOnAction(e -> closeWindow());
+        cancelButton.setOnAction(e -> handleCancelation());
 
     }
 
@@ -118,12 +118,17 @@ public class ProjectCreationController {
         // Aktivität zum Projekt hinzufügen
         createdProject.addActivity(new Activity(
                 creator,
-                title,
-                description,
+                title + " - Kickoff Meeting",
+                description + "\n Project Description",
                 dueDate,
                 false
         ));
 
+        closeWindow();
+    }
+
+    private void handleCancelation() {
+        createdProject = null;
         closeWindow();
     }
 
