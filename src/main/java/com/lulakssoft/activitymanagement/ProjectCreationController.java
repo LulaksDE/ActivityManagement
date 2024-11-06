@@ -98,7 +98,7 @@ public class ProjectCreationController {
         this.creator = creator;
 
         createButton.setOnAction(e -> handleCreateProject());
-        cancelButton.setOnAction(e -> closeWindow());
+        cancelButton.setOnAction(e -> handleCancelation());
 
     }
 
@@ -124,6 +124,11 @@ public class ProjectCreationController {
                 false
         ));
 
+        closeWindow();
+    }
+
+    private void handleCancelation() {
+        createdProject = null;
         closeWindow();
     }
 

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,7 +19,7 @@ import java.util.List;
 public class MainViewController {
 
     @FXML
-    private ComboBox<String> projectComboBox;
+    private ComboBox<Project> projectComboBox;
 
     @FXML
     private TextField searchField; // Textfeld für die Suchfunktion
@@ -31,7 +32,8 @@ public class MainViewController {
     private Button loadButton;
 
     private List<Project> projectList;
-    private ObservableList<String> projectNames;
+
+    private ObservableList<Project> observableList;
 
     // userList mit Beispielwerten initialisieren
     private List<User> userList = List.of(
@@ -47,24 +49,47 @@ public class MainViewController {
     private void initialize() {
         // Lade die Projekte des Benutzers
         projectList = new Admin("admin").getProjectList();
+        observableList = FXCollections.observableArrayList(projectList);
 
-        // Erstelle eine ObservableList mit den Projekt-Namen
-        projectNames = FXCollections.observableArrayList();
-        projectList.forEach(project -> projectNames.add(project.getName()));
+        projectComboBox.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                if (empty || project == null) {
+                    setText(null);
+                } else {
+                    setText(project.getName());
+                }
+            }
+        });
 
-        // FilteredList für die Suche in der ComboBox
-        FilteredList<String> filteredProjects = new FilteredList<>(projectNames, p -> true);
-        projectComboBox.setItems(filteredProjects);
+        projectComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                if (empty || project == null) {
+                    setText(null);
+                } else {
+                    setText(project.getName());
+                }
+            }
+        });
 
-        // Filter-Funktion für das Suchfeld
-        searchField.textProperty().addListener((obs, oldText, newText) -> {
-            filteredProjects.setPredicate(project -> {
-                if (newText == null || newText.isEmpty()) {
+
+        // FilteredList für die Suche initialisieren
+        FilteredList<Project> filteredList = new FilteredList<>(observableList, p -> true);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(project -> {
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-                return project.toLowerCase().contains(newText.toLowerCase());
+                String lowerCaseFilter = newValue.toLowerCase();
+                return project.getName().toLowerCase().contains(lowerCaseFilter);
             });
         });
+
+        // Setze die gefilterte Liste als Datenquelle für die ComboBox
+        projectComboBox.setItems(filteredList);
 
         // Aktionen für die Buttons festlegen
         createButton.setOnAction(e -> handleCreate());
@@ -90,39 +115,29 @@ public class MainViewController {
             Project newProject = controller.getCreatedProject();
 
             // Aktualisiere die Liste nach Erstellung eines neuen Projekts
-            updateProjectList(newProject);
+            if (newProject != null) updateProjectList(newProject);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void handleDelete() {
-        String selectedProjectName = projectComboBox.getSelectionModel().getSelectedItem();
-        if (selectedProjectName == null) {
+        Project selectedProject = projectComboBox.getSelectionModel().getSelectedItem();
+        if (selectedProject == null) {
             return;
         }
 
-        // Entferne das Projekt aus projectList und projectNames
-        projectList.removeIf(project -> project.getName().equals(selectedProjectName));
-        projectNames.remove(selectedProjectName);
+        // Hier wird das Projekt gelöscht (ggf. Logik hinzufügen)
+
+        projectList.remove(selectedProject);
+        observableList.remove(selectedProject);
         projectComboBox.getSelectionModel().clearSelection();
-        searchField.clear();
     }
 
     private void handleLoad() {
-        String selectedProjectName = projectComboBox.getSelectionModel().getSelectedItem();
-        if (selectedProjectName == null) {
-            return;
-        }
-
-        // Hole das eigentliche Projekt-Objekt aus der projectList
-        Project selectedProject = projectList.stream()
-                .filter(project -> project.getName().equals(selectedProjectName))
-                .findFirst()
-                .orElse(null);
-
+        Project selectedProject = projectComboBox.getSelectionModel().getSelectedItem();
         if (selectedProject == null) {
-            return; // Projekt nicht gefunden, Abbruch
+            return;
         }
 
         // Lade die Aktivität zu dem Projekt
@@ -149,6 +164,8 @@ public class MainViewController {
     private void updateProjectList(Project newProject) {
         // Füge das neue Projekt zur Liste hinzu
         projectList.add(newProject);
-        projectNames.add(newProject.getName());
+        observableList.add(newProject);
+
+        System.out.println("Project created: " + newProject);
     }
 }
