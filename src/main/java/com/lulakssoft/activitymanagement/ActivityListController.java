@@ -2,15 +2,14 @@ package com.lulakssoft.activitymanagement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -18,35 +17,56 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class ActivityListController {
 
     @FXML
-    private ListView<Activity> activityListView;
+    private TextField searchField; // Suchfeld
 
     @FXML
-    private Button addButton;
+    private ListView<Activity> activityListView; // ListView für die Aktivitäten
 
     @FXML
-    private Button deleteButton;
+    private Button addButton; // Button zum Hinzufügen einer Aktivität
 
-    private Activity selectedActivity;
+    @FXML
+    private Button deleteButton; // Button zum Löschen einer Aktivität
 
-    private Project currentProject;
+    private ObservableList<Activity> activityList; // Liste der Aktivitäten
+
+    private Project currentProject; // Aktuelles Projekt
 
     @FXML
     public void initialize(Project project) {
         currentProject = project;
-        ObservableList<Activity> activityList = FXCollections.observableArrayList(project.getActivityList());
-        activityListView.setItems(activityList);
+        activityList = FXCollections.observableArrayList(project.getActivityList());
+
+        // Erstelle eine gefilterte Liste und setze sie in die ListView
+        FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
+        activityListView.setItems(filteredActivities);
+
+        // Filter-Listener für das Suchfeld
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredActivities.setPredicate(activity -> {
+                // Zeige alle Aktivitäten, wenn das Suchfeld leer ist
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+                // Überprüfe, ob der Titel der Aktivität das Suchwort enthält (unabhängig von Groß-/Kleinschreibung)
+                String lowerCaseFilter = newValue.toLowerCase();
+                return activity.getTitle().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
 
         // Setze den benutzerdefinierten Zell-Renderer für die Anzeige der Titel
         activityListView.setCellFactory(listView -> new ListCell<Activity>() {
-            private final Label iconLabel = new Label("🔍"); // Icon for hover
+            private final Label iconLabel = new Label("🔍");
 
             @Override
             protected void updateItem(Activity activity, boolean empty) {
@@ -54,14 +74,13 @@ public class ActivityListController {
                 if (empty || activity == null) {
                     setGraphic(null);
                 } else {
-
                     Label labelTitle = new Label(activity.getTitle());
 
                     Region spacer = new Region();
-                    HBox.setHgrow(spacer, Priority.ALWAYS); // Allow the spacer to grow
+                    HBox.setHgrow(spacer, Priority.ALWAYS);
 
-                    HBox labelBox = new HBox(labelTitle,spacer);
-                    labelBox.setAlignment(Pos.CENTER_LEFT); // Align the label to the left
+                    HBox labelBox = new HBox(labelTitle, spacer);
+                    labelBox.setAlignment(Pos.CENTER_LEFT);
 
                     labelBox.setOnMouseEntered(event -> {
                         if (!labelBox.getChildren().contains(iconLabel)) {
@@ -69,39 +88,56 @@ public class ActivityListController {
                         }
                     });
 
-                    labelBox.setOnMouseExited(event -> {
-                            labelBox.getChildren().remove(iconLabel);
-                    });
+                    labelBox.setOnMouseExited(event -> labelBox.getChildren().remove(iconLabel));
                     setGraphic(labelBox);
-
                 }
             }
         });
 
+        // Aktion für den Hinzufügen-Button
         addButton.setOnAction(e -> handleAddActivity());
-        deleteButton.setOnAction(e -> handleDeleteActivity());
-        activityListView.setOnMouseClicked(this::handleDoubleClick);
 
+        // Aktion für den Entfernen-Button
+        deleteButton.setOnAction(e -> handleDeleteActivity());
+
+        // Doppelklick-Handler für die ListView
+        activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
 
-    private void openEditor(){
+    private void handleAddActivity() {
+        openEditor();
+    }
+
+    private void handleDeleteActivity() {
+        Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
+        currentProject.removeActivity(selectedActivity);
+        activityListView.getItems().remove(selectedActivity);
+    }
+
+    private void handleDoubleClick(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+            Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
+            if (selectedActivity != null) {
+                openActivityEditor(selectedActivity);
+            }
+        }
+    }
+
+    private void openEditor() {
         try {
-            // Lade das ActivityEditor-FXML-Layout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
             Parent root = loader.load();
 
-            // Erstelle eine neue Stage (Fenster) für den Editor
             Stage editorStage = new Stage();
             editorStage.setTitle("Add New Activities");
             editorStage.initModality(Modality.WINDOW_MODAL);
             editorStage.initOwner(addButton.getScene().getWindow());
             editorStage.setScene(new Scene(root));
+
             ActivityEditorController controller = loader.getController();
             controller.initialize(currentProject.getActivityList());
 
-            // Zeige das Fenster an und warte, bis es geschlossen wird
             editorStage.showAndWait();
-
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
@@ -116,48 +152,25 @@ public class ActivityListController {
         }
     }
 
-    private void handleAddActivity() {
-        openEditor();
-    }
-
-    private void handleDoubleClick(MouseEvent event) {
-        if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-            Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
-            if (selectedActivity != null) {
-                openActivityEditor(selectedActivity);
-            }
-        }
-    }
-
     private void openActivityEditor(Activity selectedActivity) {
         try {
-            // Lade das ActivityEditor-FXML-Layout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
             Parent root = loader.load();
 
-            // Erstelle eine neue Stage (Fenster) für den Editor
             Stage editorStage = new Stage();
             editorStage.setTitle("Edit Activity");
             editorStage.initModality(Modality.WINDOW_MODAL);
             editorStage.initOwner(addButton.getScene().getWindow());
             editorStage.setScene(new Scene(root));
+
             ActivityEditorController controller = loader.getController();
             controller.initialize(selectedActivity);
 
-            // Zeige das Fenster an und warte, bis es geschlossen wird
             editorStage.showAndWait();
-
-            // Aktualisiere die Anzeige, wenn die Aktivität geändert wurde
             activityListView.refresh();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void handleDeleteActivity() {
-        Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
-        currentProject.removeActivity(selectedActivity);
-        activityListView.getItems().remove(selectedActivity);
     }
 }
