@@ -8,7 +8,7 @@
 - [X] Bearbeitung von Aktivitäten implementieren
 - [ ] Historie für erstellte/beendete Aktivitäten
 - [X] Projekt Filter
-- [ ] Filter Aktivitäten
+- [X] Filter Aktivitäten
 - [ ] Suche für Aktivitäten implementieren
 - [X] Priorität
 - [ ] Status (inkl. Status Labels?)
