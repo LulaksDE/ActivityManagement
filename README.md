@@ -8,8 +8,7 @@
 - [X] Bearbeitung von Aktivitäten implementieren
 - [ ] Historie für erstellte/beendete Aktivitäten
 - [X] Projekt Filter
-- [ ] Filter Aktivitäten
-- [ ] Suche für Aktivitäten implementieren
+- [X] Filter Aktivitäten
 - [X] Priorität
 - [ ] Status (inkl. Status Labels?)
 - [ ] Kanban-Board
