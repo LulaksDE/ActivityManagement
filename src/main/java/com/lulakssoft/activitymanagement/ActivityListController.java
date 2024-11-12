@@ -46,6 +46,7 @@ public class ActivityListController {
     public void initialize(Project project) {
         currentProject = project;
         activityList = FXCollections.observableArrayList(project.getActivityList());
+        activityListView.setItems(activityList);
 
         // Erstelle eine gefilterte Liste und setze sie in die ListView
         FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
@@ -54,11 +55,9 @@ public class ActivityListController {
         // Filter-Listener für das Suchfeld
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredActivities.setPredicate(activity -> {
-                // Zeige alle Aktivitäten, wenn das Suchfeld leer ist
                 if (newValue == null || newValue.trim().isEmpty()) {
                     return true;
                 }
-                // Überprüfe, ob der Titel der Aktivität das Suchwort enthält (unabhängig von Groß-/Kleinschreibung)
                 String lowerCaseFilter = newValue.toLowerCase();
                 return activity.getTitle().toLowerCase().contains(lowerCaseFilter);
             });
@@ -105,13 +104,19 @@ public class ActivityListController {
     }
 
     private void handleAddActivity() {
+        System.out.println("Opening Activity Editor for new activity.");
         openEditor();
+        activityListView.refresh();
     }
 
     private void handleDeleteActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
-        currentProject.removeActivity(selectedActivity);
-        activityListView.getItems().remove(selectedActivity);
+        if (selectedActivity != null) {
+            System.out.println("Deleting activity: " + selectedActivity.getTitle());
+            currentProject.removeActivity(selectedActivity);
+            activityList.remove(selectedActivity); // Entfernen aus der ObservableList
+            activityListView.refresh();
+        }
     }
 
     private void handleDoubleClick(MouseEvent event) {
@@ -142,9 +147,10 @@ public class ActivityListController {
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
                 for (Activity activity : newActivities) {
-                    currentProject.addActivity(activity);
+                    currentProject.addActivity(activity); // Zum Projekt hinzufügen
+                    activityList.add(activity);           // Zur ObservableList hinzufügen
                 }
-                activityListView.getItems().addAll(newActivities);
+                activityListView.refresh();
             }
 
         } catch (IOException e) {
