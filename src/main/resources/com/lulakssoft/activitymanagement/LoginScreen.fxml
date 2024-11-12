@@ -9,5 +9,6 @@
        <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="137.0" promptText="Password" />
        <Button fx:id="registerButton" layoutX="121.0" layoutY="203.0" mnemonicParsing="false" text="Register" />
        <Button fx:id="loginButton" layoutX="278.0" layoutY="203.0" mnemonicParsing="false" text="Login" />
+      <Label fx:id="loginInformationLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="268.0" prefHeight="18.0" prefWidth="424.0" text="Register or Login" textAlignment="CENTER" />
    </children>
 </AnchorPane>

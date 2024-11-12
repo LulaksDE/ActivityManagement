@@ -21,5 +21,6 @@
       <Button fx:id="createButton" layoutX="148.0" layoutY="223.0" mnemonicParsing="false" text="Create" />
       <Button fx:id="loadButton" layoutX="274.0" layoutY="223.0" mnemonicParsing="false" text="Load" />
       <Button fx:id="deleteButton" layoutX="400.0" layoutY="223.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Logout" />
    </children>
 </AnchorPane>

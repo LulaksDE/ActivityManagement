@@ -4,15 +4,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
+import static javafx.stage.Modality.APPLICATION_MODAL;
+
 public class LoginViewController {
 
+    @FXML
+    private Label loginInformationLabel;
     @FXML
     private TextField usernameField;
 
@@ -27,9 +36,12 @@ public class LoginViewController {
 
     private List<User> userList;
 
+    private Border defaultBorder;
+
     @FXML
     public void initialize(List<User> userList) {
         this.userList = userList;
+        defaultBorder = usernameField.getBorder();
 
         loginButton.setOnAction(event -> {
             handleLoginButton();
@@ -46,29 +58,45 @@ public class LoginViewController {
 
         for (User user : userList) {
             if (user.getUsername().equals(username) && decodePassword(user.getPassword()).equals(password)) {
-                System.out.println("Login successful");
                 createProjectView(user);
                 return;
             }
         }
-
-        System.out.println("Login failed");
+        changeLabelInformation("Login failed", Color.RED);
     }
 
     private void handleRegisterButton() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        if (username.isBlank() || password.isBlank()) {
+            changeLabelInformation("Please enter username and password", Color.RED);
+            if (username.isBlank()) {
+                usernameField.requestFocus();
+                usernameField.selectAll();
+                usernameField.borderProperty().set(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+            } else {
+                passwordField.requestFocus();
+                passwordField.borderProperty().set(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.DOTTED, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+            }
+            return;
+        } else {
+            usernameField.borderProperty().set(defaultBorder);
+            passwordField.borderProperty().set(defaultBorder);
+        }
+
         for (User user : userList) {
             if (user.getUsername().equals(username)) {
-                System.out.println("Username already exists");
+                changeLabelInformation("User with that name already exists", Color.RED);
+                usernameField.requestFocus();
+                usernameField.borderProperty().set(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
                 return;
             }
         }
 
         try {
             userList.add(new Admin(username, password));
-            System.out.println("User registered");
+            changeLabelInformation("User " + username + " created", Color.GREEN);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,12 +111,28 @@ public class LoginViewController {
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.setTitle("Project View");
+            stage.initModality(APPLICATION_MODAL);
             ProjectViewController controller = loader.getController();
             controller.initialize(userList, user);
             stage.showAndWait();
+
+            if (!controller.loggedIn) {
+                usernameField.clear();
+                passwordField.clear();
+                return;
+            }
+
+            // Schließe die Anwendung
+            Stage loginStage = (Stage) loginButton.getScene().getWindow();
+            loginStage.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void changeLabelInformation(String text, Color color) {
+        loginInformationLabel.setText(text);
+        loginInformationLabel.setTextFill(color);
     }
 
     private String decodePassword(String password) {

@@ -19,6 +19,8 @@ import java.util.List;
 public class ProjectViewController {
 
     @FXML
+    private Button logoutButton;
+    @FXML
     private ComboBox<Project> projectComboBox;
 
     @FXML
@@ -39,10 +41,13 @@ public class ProjectViewController {
 
     private User loggedInUser;
 
+    public boolean loggedIn = false;
+
     @FXML
     public void initialize(List<User> userList,User loggedInUser) {
 
         this.loggedInUser = loggedInUser;
+        loggedIn = true;
         this.userList = userList;
 
         // Lade die Projekte des Benutzers
@@ -93,6 +98,7 @@ public class ProjectViewController {
         createButton.setOnAction(e -> handleCreate());
         deleteButton.setOnAction(e -> handleDelete());
         loadButton.setOnAction(e -> handleLoad());
+        logoutButton.setOnAction(e -> handleLogout());
     }
 
     private void handleCreate() {
@@ -165,5 +171,12 @@ public class ProjectViewController {
         observableList.add(newProject);
 
         System.out.println("Project created: " + newProject);
+    }
+
+    private void handleLogout() {
+        // Hier wird der Benutzer ausgeloggt (ggf. Logik hinzufügen)
+        loggedIn = false;
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        stage.close();
     }
 }
