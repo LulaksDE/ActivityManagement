@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class MainViewController {
+public class ProjectViewController {
 
     @FXML
     private ComboBox<Project> projectComboBox;
@@ -35,20 +35,18 @@ public class MainViewController {
 
     private ObservableList<Project> observableList;
 
-    // userList mit Beispielwerten initialisieren
-    private List<User> userList = List.of(
-            new Admin("admin01"),
-            new Admin("admin02"),
-            new Admin("admin03"),
-            new Admin("admin04"),
-            new Supporter("supporter02"),
-            new Technician("technician01")
-    );
+    private List<User> userList;
+
+    private User loggedInUser;
 
     @FXML
-    private void initialize() {
+    public void initialize(List<User> userList,User loggedInUser) {
+
+        this.loggedInUser = loggedInUser;
+        this.userList = userList;
+
         // Lade die Projekte des Benutzers
-        projectList = new Admin("admin").getProjectList();
+        projectList = loggedInUser.getProjectList();
         observableList = FXCollections.observableArrayList(projectList);
 
         projectComboBox.setCellFactory(param -> new ListCell<>() {
@@ -110,7 +108,7 @@ public class MainViewController {
 
             // Übergabe der userList an den neuen Controller
             ProjectCreationController controller = loader.getController();
-            controller.initialize(userList, new Worker("arbeiter01"));
+            controller.initialize(userList, loggedInUser);
             creationStage.showAndWait();
             Project newProject = controller.getCreatedProject();
 

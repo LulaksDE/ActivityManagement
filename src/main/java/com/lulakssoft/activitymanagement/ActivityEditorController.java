@@ -89,7 +89,7 @@ public class ActivityEditorController {
             titleField.setStyle("");
         }
 
-        Activity newActivity = new Activity(new Admin("admin"), title, description, dueDate, completed);
+        Activity newActivity = new Activity(new Admin("admin", "admin"), title, description, dueDate, completed);
         newActivity.setPriority(priority);
         newActivities.add(newActivity);
 

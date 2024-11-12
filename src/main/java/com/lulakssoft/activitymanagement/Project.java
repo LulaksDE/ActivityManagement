@@ -8,8 +8,8 @@ import java.util.UUID;
 public class Project {
     private final String id;  // ID des Projekts
     private String name;  // Name des Projekts
-    private List<Activity> activityList;  // Liste der Aktivitäten im Projekt
-    private final User creator;  // Benutzer, der das Projekt erstellt hat
+    private final List<Activity> activityList;  // Liste der Aktivitäten im Projekt
+    private User creator;  // Benutzer, der das Projekt erstellt hat
 
     public Project(String name, User creator) {
         this.id = UUID.randomUUID().toString();
@@ -45,6 +45,14 @@ public class Project {
 
     public String getId() {
         return id;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     @Override
