@@ -22,25 +22,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityListController {
 
     @FXML
-    private TextField searchField; // Suchfeld
+    private TextField searchField;
 
     @FXML
-    private ListView<Activity> activityListView; // ListView für die Aktivitäten
+    private ListView<Activity> activityListView;
 
     @FXML
-    private Button addButton; // Button zum Hinzufügen einer Aktivität
+    private Button addButton;
 
     @FXML
-    private Button deleteButton; // Button zum Löschen einer Aktivität
+    private Button deleteButton;
 
-    private ObservableList<Activity> activityList; // Liste der Aktivitäten
+    @FXML
+    private Button historieButton; // Button für Historie-Ansicht
 
-    private Project currentProject; // Aktuelles Projekt
+    private ObservableList<Activity> activityList;
+
+    private Project currentProject;
+
+    // Liste für Historie-Logs
+    private final List<String> historyLogs = new ArrayList<>();
 
     @FXML
     public void initialize(Project project) {
@@ -48,22 +55,20 @@ public class ActivityListController {
         activityList = FXCollections.observableArrayList(project.getActivityList());
         activityListView.setItems(activityList);
 
-        // Erstelle eine gefilterte Liste und setze sie in die ListView
+        // Filter-Listener für das Suchfeld
         FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
         activityListView.setItems(filteredActivities);
 
-        // Filter-Listener für das Suchfeld
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredActivities.setPredicate(activity -> {
                 if (newValue == null || newValue.trim().isEmpty()) {
                     return true;
                 }
-                String lowerCaseFilter = newValue.toLowerCase();
-                return activity.getTitle().toLowerCase().contains(lowerCaseFilter);
+                return activity.getTitle().toLowerCase().contains(newValue.toLowerCase());
             });
         });
 
-        // Setze den benutzerdefinierten Zell-Renderer für die Anzeige der Titel
+        // Setze den benutzerdefinierten Zell-Renderer
         activityListView.setCellFactory(listView -> new ListCell<Activity>() {
             private final Label iconLabel = new Label("🔍");
 
@@ -74,37 +79,29 @@ public class ActivityListController {
                     setGraphic(null);
                 } else {
                     Label labelTitle = new Label(activity.getTitle());
-
                     Region spacer = new Region();
                     HBox.setHgrow(spacer, Priority.ALWAYS);
-
                     HBox labelBox = new HBox(labelTitle, spacer);
                     labelBox.setAlignment(Pos.CENTER_LEFT);
-
                     labelBox.setOnMouseEntered(event -> {
                         if (!labelBox.getChildren().contains(iconLabel)) {
                             labelBox.getChildren().add(iconLabel);
                         }
                     });
-
                     labelBox.setOnMouseExited(event -> labelBox.getChildren().remove(iconLabel));
                     setGraphic(labelBox);
                 }
             }
         });
 
-        // Aktion für den Hinzufügen-Button
         addButton.setOnAction(e -> handleAddActivity());
-
-        // Aktion für den Entfernen-Button
         deleteButton.setOnAction(e -> handleDeleteActivity());
+        historieButton.setOnAction(e -> openHistorieView());  // Historie-Button Aktion
 
-        // Doppelklick-Handler für die ListView
         activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
 
     private void handleAddActivity() {
-        System.out.println("Opening Activity Editor for new activity.");
         openEditor();
         activityListView.refresh();
     }
@@ -112,9 +109,9 @@ public class ActivityListController {
     private void handleDeleteActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
-            System.out.println("Deleting activity: " + selectedActivity.getTitle());
             currentProject.removeActivity(selectedActivity);
-            activityList.remove(selectedActivity); // Entfernen aus der ObservableList
+            activityList.remove(selectedActivity);
+            historyLogs.add("Deleted Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
             activityListView.refresh();
         }
     }
@@ -147,8 +144,9 @@ public class ActivityListController {
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
                 for (Activity activity : newActivities) {
-                    currentProject.addActivity(activity); // Zum Projekt hinzufügen
-                    activityList.add(activity);           // Zur ObservableList hinzufügen
+                    currentProject.addActivity(activity);
+                    activityList.add(activity);
+                    historyLogs.add("Added Activity: " + activity.getTitle()); // Hinzufügen zur Historie
                 }
                 activityListView.refresh();
             }
@@ -173,10 +171,33 @@ public class ActivityListController {
             controller.initialize(selectedActivity);
 
             editorStage.showAndWait();
+            historyLogs.add("Edited Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
             activityListView.refresh();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    private void openHistorieView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HistorieView.fxml"));
+            Parent root = loader.load();
+
+            Stage historieStage = new Stage();
+            historieStage.setTitle("Historie");
+            historieStage.initModality(Modality.WINDOW_MODAL);
+            historieStage.initOwner(historieButton.getScene().getWindow());
+            historieStage.setScene(new Scene(root));
+
+            HistorieViewController controller = loader.getController();
+            controller.setHistorieData(historyLogs); // Historie-Daten setzen
+
+            historieStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
