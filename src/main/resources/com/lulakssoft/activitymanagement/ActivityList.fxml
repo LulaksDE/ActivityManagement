@@ -3,12 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ActivityListController">
+<AnchorPane prefHeight="526.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ActivityListController">
+    <TextField fx:id="searchField" layoutX="27.0" layoutY="40.0" prefHeight="26.0" prefWidth="248.0" promptText="Search Activity" />
 
     <VBox layoutX="26.0" layoutY="12.0" xmlns:fx="http://javafx.com/fxml">
         <Label fx:id="titleLabel" text="My Activities" />
-        <ListView fx:id="activityListView" />
     </VBox>
-    <Button fx:id="addButton" layoutX="26.0" layoutY="460.0" text="Add Activity" textAlignment="CENTER" />
-    <Button fx:id="deleteButton" layoutX="172.0" layoutY="460.0" text="Remove Activity" textAlignment="CENTER" />
+    <Button fx:id="addButton" layoutX="26.0" layoutY="486.0" text="Add Activity" textAlignment="CENTER" />
+    <Button fx:id="deleteButton" layoutX="169.0" layoutY="486.0" text="Remove Activity" textAlignment="CENTER" />
+     <ListView fx:id="activityListView" layoutX="27.0" layoutY="74.0" prefHeight="401.0" prefWidth="248.0" />
+   <Button fx:id='historieButton' layoutX="222.0" layoutY="8.0" mnemonicParsing="false" text="Historie" />
 </AnchorPane>

@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import java.time.LocalDate;
 import java.util.List;
 
+
 public class ActivityEditorController {
 
     @FXML
@@ -35,11 +36,11 @@ public class ActivityEditorController {
     private CheckBox keepPropertiesCheckBox;
 
     @FXML
-    private ChoiceBox<String> priorityChoiceBox;  // Füge die ChoiceBox hier hinzu
+    private ChoiceBox<String> priorityChoiceBox;
 
     private List<Activity> activityList;
 
-    private List<Activity> newActivities = FXCollections.observableArrayList();
+    private ObservableList<Activity> newActivities = FXCollections.observableArrayList();
 
     @FXML
     void initialize(List<Activity> activities) {
@@ -66,7 +67,7 @@ public class ActivityEditorController {
 
         // Setze die Priorität in der ChoiceBox und initialisiere die Werte
         priorityChoiceBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
-        priorityChoiceBox.setValue(activity.getPriority());  // Hier setzen wir die Priorität
+        priorityChoiceBox.setValue(activity.getPriority());
 
         addButton.setVisible(false);
         updateButton.setOnAction(e -> handleUpdateActivity(activity));
@@ -78,7 +79,7 @@ public class ActivityEditorController {
         String description = descriptionArea.getText();
         LocalDate dueDate = dueDatePicker.getValue();
         boolean completed = completedCheckBox.isSelected();
-        String priority = priorityChoiceBox.getValue();  // Hole den Wert der PriorityChoiceBox
+        String priority = priorityChoiceBox.getValue();
 
         if (title.isEmpty()) {
             titleField.setStyle("-fx-border-color: red");
@@ -89,7 +90,7 @@ public class ActivityEditorController {
         }
 
         Activity newActivity = new Activity(new Admin("admin"), title, description, dueDate, completed);
-        newActivity.setPriority(priority);  // Setze die Priorität der neuen Aktivität
+        newActivity.setPriority(priority);
         newActivities.add(newActivity);
 
         if (!keepPropertiesCheckBox.isSelected()) {
@@ -98,7 +99,7 @@ public class ActivityEditorController {
             descriptionArea.setText("");
             completedCheckBox.setSelected(false);
             activityIdLabel.setText("");
-            priorityChoiceBox.setValue(null); // Zurücksetzen der ChoiceBox
+            priorityChoiceBox.setValue(null);
         } else {
             titleField.setText(title);
             dueDatePicker.setValue(dueDate);
@@ -121,15 +122,16 @@ public class ActivityEditorController {
         activity.setDescription(descriptionArea.getText());
         activity.setDueDate(dueDatePicker.getValue());
         activity.setCompleted(completedCheckBox.isSelected());
-        activity.setPriority(priorityChoiceBox.getValue());  // Hier setzen wir die Priorität
+        activity.setPriority(priorityChoiceBox.getValue());
 
         System.out.println("Updated activity: " + activity);
     }
 
-    public List<Activity> getNewActivities() {
+    public ObservableList<Activity> getNewActivities() {
         for (Activity activity : newActivities) {
             System.out.println("New activity: " + activity);
         }
         return newActivities;
     }
 }
+

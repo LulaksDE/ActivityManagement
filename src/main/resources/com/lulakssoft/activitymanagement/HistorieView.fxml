@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="421.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.HistorieViewController">
+   <children>
+      <ListView fx:id="historieListView" layoutX="39.0" layoutY="56.0" prefHeight="307.0" prefWidth="200.0" />
+      <Label fx:id="historieLabel" layoutX="39.0" layoutY="23.0" text="Historie" textAlignment="CENTER" />
+      <Button fx:id="clearButton" layoutX="187.0" layoutY="381.0" mnemonicParsing="false" text="Clear" />
+   </children>
+</AnchorPane>

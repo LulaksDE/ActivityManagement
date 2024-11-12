@@ -6,9 +6,10 @@
 - [X] Initiale Dateien anlegen
 - [X] Labels für relevante Felder erstellen
 - [X] Bearbeitung von Aktivitäten implementieren
-- [ ] Historie für erstellte/beendete Aktivitäten
+- [X] Historie für erstellte/beendete Aktivitäten
 - [X] Projekt Filter
 - [X] Filter Aktivitäten
+
 - [ ] Suche für Aktivitäten implementieren
 - [X] Priorität
 - [ ] Status (inkl. Status Labels?)
