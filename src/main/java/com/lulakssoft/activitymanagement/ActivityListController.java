@@ -47,7 +47,7 @@ public class ActivityListController {
     private Project currentProject;
 
     // Liste für Historie-Logs
-    private final List<String> historyLogs = new ArrayList<>();
+    private List<String> historyLogs = new ArrayList<>();
 
     @FXML
     public void initialize(Project project) {
@@ -189,11 +189,10 @@ public class ActivityListController {
             historieStage.initModality(Modality.WINDOW_MODAL);
             historieStage.initOwner(historieButton.getScene().getWindow());
             historieStage.setScene(new Scene(root));
-
             HistorieViewController controller = loader.getController();
-            controller.setHistorieData(historyLogs); // Historie-Daten setzen
+            controller.initialize(historyLogs);
 
-            historieStage.show();
+            historieStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
