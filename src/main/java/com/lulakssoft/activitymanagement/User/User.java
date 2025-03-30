@@ -1,6 +1,7 @@
-package com.lulakssoft.activitymanagement;
+package com.lulakssoft.activitymanagement.User;
 
-import java.time.LocalDate;
+import com.lulakssoft.activitymanagement.Project;
+
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -9,10 +10,14 @@ public abstract class User {
     private String username;  // Benutzername
     private String password;  // Passwort
     private final List<Project> projectList;  // Liste der Projekte des Benutzers
+    private final Privilages privilage;  // Added privilege field
 
-    public User(String username, String password) {
+
+    public User(String username, String password, Privilages privilage) {
         this.username = username;
         this.password = encodePassword(password);
+        this.privilage = privilage;
+
 
         this.projectList = new ArrayList<>();
         // Füge ein Standardprojekt hinzu
@@ -47,6 +52,23 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = encodePassword(password);
+    }
+
+    public Privilages getPrivilage() {
+        return privilage;
+    }
+
+    // Method to determine which projects are visible based on privilege
+    public List<Project> getVisibleProjects(List<Project> allProjects) {
+        switch (privilage) {
+            case ADMIN:
+                return new ArrayList<>(allProjects); // Admins see all projects
+            case SUPPORTER:
+                // Supporters see only assigned projects (implementation depends on Project class)
+                return projectList; // Placeholder - should be filtered by assignment
+            default:
+                return projectList; // Others see only their own projects
+        }
     }
 
     @Override

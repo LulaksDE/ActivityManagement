@@ -1,5 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.User.Admin;
+import com.lulakssoft.activitymanagement.User.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,10 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 

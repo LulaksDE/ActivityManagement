@@ -1,5 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.User.User;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

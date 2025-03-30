@@ -1,8 +1,10 @@
-package com.lulakssoft.activitymanagement;
+package com.lulakssoft.activitymanagement.User;
+
+import com.lulakssoft.activitymanagement.Project;
 
 public class Admin extends User{
     public Admin(String username, String password) {
-        super(username, password);
+        super(username, password, Privilages.ADMIN);
         this.addProject(new Project("Admin Project", this));
     }
 }
