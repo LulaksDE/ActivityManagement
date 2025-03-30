@@ -2,6 +2,7 @@ package com.lulakssoft.activitymanagement.controller;
 
 import com.lulakssoft.activitymanagement.Activity;
 import com.lulakssoft.activitymanagement.Project;
+import com.lulakssoft.activitymanagement.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -46,21 +47,35 @@ public class ActivityListController {
 
     private ObservableList<Activity> activityList;
 
+    private FilteredList<Activity> filteredActivities;
+
+
     private Project currentProject;
 
     // Liste für Historie-Logs
     private List<String> historyLogs = new ArrayList<>();
 
     @FXML
-    public void initialize(Project project) {
-        currentProject = project;
-        activityList = FXCollections.observableArrayList(project.getActivityList());
-        activityListView.setItems(activityList);
+    public void initialize() {
+        // Setup UI components and event handlers only
+        addButton.setOnAction(e -> handleAddActivity());
+        deleteButton.setOnAction(e -> handleDeleteActivity());
+        historieButton.setOnAction(e -> openHistorieView());
+        activityListView.setOnMouseClicked(this::handleDoubleClick);
 
-        // Filter-Listener für das Suchfeld
-        FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
+        // Set custom cell factory
+        setupListViewCellFactory();
+    }
+
+    public void initData(Project project) {
+        this.currentProject = project;
+        activityList = FXCollections.observableArrayList(project.getActivityList());
+
+        // Setup filtered list
+        filteredActivities = new FilteredList<>(activityList, p -> true);
         activityListView.setItems(filteredActivities);
 
+        // Setup search functionality
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredActivities.setPredicate(activity -> {
                 if (newValue == null || newValue.trim().isEmpty()) {
@@ -69,8 +84,9 @@ public class ActivityListController {
                 return activity.getTitle().toLowerCase().contains(newValue.toLowerCase());
             });
         });
+    }
 
-        // Setze den benutzerdefinierten Zell-Renderer
+    private void setupListViewCellFactory() {
         activityListView.setCellFactory(listView -> new ListCell<Activity>() {
             private final Label iconLabel = new Label("🔍");
 
@@ -95,17 +111,29 @@ public class ActivityListController {
                 }
             }
         });
-
-        addButton.setOnAction(e -> handleAddActivity());
-        deleteButton.setOnAction(e -> handleDeleteActivity());
-        historieButton.setOnAction(e -> openHistorieView());  // Historie-Button Aktion
-
-        activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
 
     private void handleAddActivity() {
-        openEditor();
-        activityListView.refresh();
+        try {
+            SceneManager sceneManager = SceneManager.getInstance();
+            ActivityEditorController controller = sceneManager.showDialog("ActivityEditor.fxml", "Add New Activities");
+
+            // Initialize the controller with data
+            controller.initialize(currentProject.getActivityList());
+
+            // Get new activities after dialog closes
+            List<Activity> newActivities = controller.getNewActivities();
+            if (newActivities != null) {
+                for (Activity activity : newActivities) {
+                    currentProject.addActivity(activity);
+                    activityList.add(activity);
+                    historyLogs.add("Added Activity: " + activity.getTitle());
+                }
+                activityListView.refresh();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleDeleteActivity() {
@@ -160,43 +188,27 @@ public class ActivityListController {
 
     private void openActivityEditor(Activity selectedActivity) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
-            Parent root = loader.load();
+            SceneManager sceneManager = SceneManager.getInstance();
+            ActivityEditorController controller = sceneManager.showDialog("ActivityEditor.fxml", "Edit Activity");
 
-            Stage editorStage = new Stage();
-            editorStage.setTitle("Edit Activity");
-            editorStage.initModality(Modality.WINDOW_MODAL);
-            editorStage.initOwner(addButton.getScene().getWindow());
-            editorStage.setScene(new Scene(root));
-
-            ActivityEditorController controller = loader.getController();
+            // Initialize controller with selected activity
             controller.initialize(selectedActivity);
 
-            editorStage.showAndWait();
-            historyLogs.add("Edited Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
+            historyLogs.add("Edited Activity: " + selectedActivity.getTitle());
             activityListView.refresh();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void openHistorieView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HistorieView.fxml"));
-            Parent root = loader.load();
+            SceneManager sceneManager = SceneManager.getInstance();
+            HistorieViewController controller = sceneManager.showDialog("resources/com/lulakssoft/activitymanagement/HistorieView.fxml", "Historie");
 
-            Stage historieStage = new Stage();
-            historieStage.setTitle("Historie");
-            historieStage.initModality(Modality.WINDOW_MODAL);
-            historieStage.initOwner(historieButton.getScene().getWindow());
-            historieStage.setScene(new Scene(root));
-            HistorieViewController controller = loader.getController();
+            // Initialize controller with history logs
             controller.initialize(historyLogs);
-
-            historieStage.showAndWait();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

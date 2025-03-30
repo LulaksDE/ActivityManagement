@@ -1,6 +1,7 @@
 package com.lulakssoft.activitymanagement.controller;
 
 import com.lulakssoft.activitymanagement.Project;
+import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -106,23 +107,12 @@ public class ProjectViewController {
         });
     }
 
-
-
     private void handleCreate() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectCreationScreen.fxml"));
-            Parent root = loader.load();
+            SceneManager sceneManager = SceneManager.getInstance();
+            ProjectCreationController controller = sceneManager.showDialog("ProjectCreationScreen.fxml", "Projekt erstellen");
 
-            Stage creationStage = new Stage();
-            creationStage.setTitle("Projekt erstellen");
-            creationStage.setScene(new Scene(root));
-            creationStage.initModality(Modality.APPLICATION_MODAL);
-
-            // Get controller reference but DON'T try to initialize it manually
-            ProjectCreationController controller = loader.getController();
-
-            // Show dialog and get result
-            creationStage.showAndWait();
+            // After dialog is closed, get the created project
             Project newProject = controller.getCreatedProject();
 
             // Update project list if needed
@@ -151,24 +141,17 @@ public class ProjectViewController {
             return;
         }
 
-        // Lade die Aktivität zu dem Projekt
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityList.fxml"));
-            Parent root = loader.load();
+            SceneManager sceneManager = SceneManager.getInstance();
+            ActivityListController controller = sceneManager.showDialog(
+                    "/com/lulakssoft/activitymanagement/ActivityList.fxml",
+                    "Projekt bearbeiten"
+            );
 
-            // Erstelle eine neue Stage (Fenster) für den Editor
-            Stage activityListStage = new Stage();
-            activityListStage.setTitle("Projekt bearbeiten");
-            activityListStage.initModality(Modality.WINDOW_MODAL);
-            activityListStage.initOwner(loadButton.getScene().getWindow());
-            activityListStage.setScene(new Scene(root));
-
-            // Übergabe des ausgewählten Projekts an den neuen Controller
-            ActivityListController controller = loader.getController();
-            controller.initialize(selectedProject);
-            activityListStage.showAndWait();
+            controller.initData(selectedProject);
         } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Failed to load ActivityList: " + e.getMessage());
         }
     }
 

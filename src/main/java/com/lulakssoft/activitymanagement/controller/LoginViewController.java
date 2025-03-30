@@ -2,6 +2,7 @@ package com.lulakssoft.activitymanagement.controller;
 
 import com.lulakssoft.activitymanagement.Admin;
 import com.lulakssoft.activitymanagement.AppContext;
+import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +61,23 @@ public class LoginViewController {
         for (User user : appContext.getUserList()) {
             if (user.getUsername().equals(username) && decodePassword(user.getPassword()).equals(password)) {
                 appContext.setCurrentUser(user);
-                createProjectView(user);
+
+                try {
+                    // Get the current stage
+                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
+
+                    // Use SceneManager to transition to main view, not as dialog
+                    SceneManager sceneManager = SceneManager.getInstance();
+                    sceneManager.setPrimaryStage(currentStage);
+
+                    // Load project view as main scene, not dialog
+                    ProjectViewController controller = sceneManager.loadScene("ProjectView.fxml", "Project Management");
+                    controller.initData(appContext.getUserList(), user);
+
+                    // Don't close the window here - we've replaced its scene
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return;
             }
         }
@@ -109,26 +126,21 @@ public class LoginViewController {
 
     private void createProjectView(User user) {
         try {
-            // Create a new window for the project view
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectView.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.setTitle("Project View");
-            stage.initModality(APPLICATION_MODAL);
+            // Use SceneManager instead of manual window creation
+            SceneManager sceneManager = SceneManager.getInstance();
+            ProjectViewController controller = sceneManager.showDialog("ProjectView.fxml", "Project View");
 
-            ProjectViewController controller = loader.getController();
+            // Still need to initialize the controller with data
             controller.initData(appContext.getUserList(), user);
 
-            stage.showAndWait();
-
+            // Handle logout logic
             if (!controller.loggedIn) {
                 usernameField.clear();
                 passwordField.clear();
                 return;
             }
 
-            // Close the application
+            // Close the login window
             Stage loginStage = (Stage) loginButton.getScene().getWindow();
             loginStage.close();
         } catch (Exception e) {
