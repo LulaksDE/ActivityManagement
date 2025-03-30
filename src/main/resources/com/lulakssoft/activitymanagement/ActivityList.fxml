@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="526.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ActivityListController">
+<AnchorPane prefHeight="526.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.controller.ActivityListController">
     <TextField fx:id="searchField" layoutX="27.0" layoutY="40.0" prefHeight="26.0" prefWidth="248.0" promptText="Search Activity" />
 
     <VBox layoutX="26.0" layoutY="12.0" xmlns:fx="http://javafx.com/fxml">

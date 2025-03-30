@@ -1,5 +1,7 @@
-package com.lulakssoft.activitymanagement;
+package com.lulakssoft.activitymanagement.controller;
 
+import com.lulakssoft.activitymanagement.Activity;
+import com.lulakssoft.activitymanagement.Admin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

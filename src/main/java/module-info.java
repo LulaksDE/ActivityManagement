@@ -8,4 +8,6 @@ module com.lulakssoft.activitymanagement {
 
     opens com.lulakssoft.activitymanagement to javafx.fxml;
     exports com.lulakssoft.activitymanagement;
+    exports com.lulakssoft.activitymanagement.controller;
+    opens com.lulakssoft.activitymanagement.controller to javafx.fxml;
 }

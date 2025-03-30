@@ -1,5 +1,7 @@
-package com.lulakssoft.activitymanagement;
+package com.lulakssoft.activitymanagement.controller;
 
+import com.lulakssoft.activitymanagement.Project;
+import com.lulakssoft.activitymanagement.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -44,25 +46,39 @@ public class ProjectViewController {
     public boolean loggedIn = false;
 
     @FXML
-    public void initialize(List<User> userList,User loggedInUser) {
+    public void initialize() {
+        // Initialize UI components only
+        setupComboBox();
 
+        // Setup button actions
+        createButton.setOnAction(e -> handleCreate());
+        deleteButton.setOnAction(e -> handleDelete());
+        loadButton.setOnAction(e -> handleLoad());
+        logoutButton.setOnAction(e -> handleLogout());
+    }
+
+    public void initData(List<User> userList, User loggedInUser) {
         this.loggedInUser = loggedInUser;
         loggedIn = true;
         this.userList = userList;
 
-        // Lade die Projekte des Benutzers
+        // Load user projects
         projectList = loggedInUser.getProjectList();
         observableList = FXCollections.observableArrayList(projectList);
 
+        // Setup filtered list for search
+        setupFilteredList();
+
+        // Set items to combo box
+        projectComboBox.setItems(filteredList);
+    }
+
+    private void setupComboBox() {
         projectComboBox.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Project project, boolean empty) {
                 super.updateItem(project, empty);
-                if (empty || project == null) {
-                    setText(null);
-                } else {
-                    setText(project.getName());
-                }
+                setText(empty || project == null ? null : project.getName());
             }
         });
 
@@ -70,17 +86,15 @@ public class ProjectViewController {
             @Override
             protected void updateItem(Project project, boolean empty) {
                 super.updateItem(project, empty);
-                if (empty || project == null) {
-                    setText(null);
-                } else {
-                    setText(project.getName());
-                }
+                setText(empty || project == null ? null : project.getName());
             }
         });
+    }
 
+    private FilteredList<Project> filteredList;
 
-        // FilteredList für die Suche initialisieren
-        FilteredList<Project> filteredList = new FilteredList<>(observableList, p -> true);
+    private void setupFilteredList() {
+        filteredList = new FilteredList<>(observableList, p -> true);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(project -> {
                 if (newValue == null || newValue.isEmpty()) {
@@ -90,19 +104,11 @@ public class ProjectViewController {
                 return project.getName().toLowerCase().contains(lowerCaseFilter);
             });
         });
-
-        // Setze die gefilterte Liste als Datenquelle für die ComboBox
-        projectComboBox.setItems(filteredList);
-
-        // Aktionen für die Buttons festlegen
-        createButton.setOnAction(e -> handleCreate());
-        deleteButton.setOnAction(e -> handleDelete());
-        loadButton.setOnAction(e -> handleLoad());
-        logoutButton.setOnAction(e -> handleLogout());
     }
 
+
+
     private void handleCreate() {
-        // Hier wird ein neues Projekt erstellt (ggf. Logik hinzufügen)
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectCreationScreen.fxml"));
             Parent root = loader.load();
@@ -112,13 +118,14 @@ public class ProjectViewController {
             creationStage.setScene(new Scene(root));
             creationStage.initModality(Modality.APPLICATION_MODAL);
 
-            // Übergabe der userList an den neuen Controller
+            // Get controller reference but DON'T try to initialize it manually
             ProjectCreationController controller = loader.getController();
-            controller.initialize(userList, loggedInUser);
+
+            // Show dialog and get result
             creationStage.showAndWait();
             Project newProject = controller.getCreatedProject();
 
-            // Aktualisiere die Liste nach Erstellung eines neuen Projekts
+            // Update project list if needed
             if (newProject != null) updateProjectList(newProject);
         } catch (Exception e) {
             e.printStackTrace();

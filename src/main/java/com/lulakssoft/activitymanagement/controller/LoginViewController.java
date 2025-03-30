@@ -1,5 +1,8 @@
-package com.lulakssoft.activitymanagement;
+package com.lulakssoft.activitymanagement.controller;
 
+import com.lulakssoft.activitymanagement.Admin;
+import com.lulakssoft.activitymanagement.AppContext;
+import com.lulakssoft.activitymanagement.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,10 +12,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
@@ -37,27 +38,28 @@ public class LoginViewController {
     private List<User> userList;
 
     private Border defaultBorder;
+    private final AppContext appContext = AppContext.getInstance();
+
 
     @FXML
-    public void initialize(List<User> userList) {
-        this.userList = userList;
+    public void initialize() {
         defaultBorder = usernameField.getBorder();
 
-        loginButton.setOnAction(event -> {
-            handleLoginButton();
-        });
+        loginButton.setOnAction(event -> handleLoginButton());
+        registerButton.setOnAction(event -> handleRegisterButton());
+    }
 
-        registerButton.setOnAction(event -> {
-            handleRegisterButton();
-        });
+    public void setUserList(List<User> userList) {
+        appContext.setUserList(userList);
     }
 
     private void handleLoginButton() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        for (User user : userList) {
+        for (User user : appContext.getUserList()) {
             if (user.getUsername().equals(username) && decodePassword(user.getPassword()).equals(password)) {
+                appContext.setCurrentUser(user);
                 createProjectView(user);
                 return;
             }
@@ -85,6 +87,7 @@ public class LoginViewController {
             passwordField.borderProperty().set(defaultBorder);
         }
 
+        List<User> userList = appContext.getUserList();
         for (User user : userList) {
             if (user.getUsername().equals(username)) {
                 changeLabelInformation("User with that name already exists", Color.RED);
@@ -95,7 +98,9 @@ public class LoginViewController {
         }
 
         try {
-            userList.add(new Admin(username, password));
+            User newUser = new Admin(username, password);
+            userList.add(newUser);
+            appContext.setUserList(userList);
             changeLabelInformation("User " + username + " created", Color.GREEN);
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,17 +108,18 @@ public class LoginViewController {
     }
 
     private void createProjectView(User user) {
-
         try {
-            // Erstelle ein neues Fenster für die Projektansicht
+            // Create a new window for the project view
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectView.fxml"));
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.setTitle("Project View");
             stage.initModality(APPLICATION_MODAL);
+
             ProjectViewController controller = loader.getController();
-            controller.initialize(userList, user);
+            controller.initData(appContext.getUserList(), user);
+
             stage.showAndWait();
 
             if (!controller.loggedIn) {
@@ -122,7 +128,7 @@ public class LoginViewController {
                 return;
             }
 
-            // Schließe die Anwendung
+            // Close the application
             Stage loginStage = (Stage) loginButton.getScene().getWindow();
             loginStage.close();
         } catch (Exception e) {
@@ -137,5 +143,4 @@ public class LoginViewController {
 
     private String decodePassword(String password) {
         return new String(Base64.getDecoder().decode(password));
-    }
-}
+    }}

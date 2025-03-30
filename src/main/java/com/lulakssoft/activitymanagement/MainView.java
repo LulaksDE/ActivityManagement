@@ -14,11 +14,18 @@ import java.util.List;
 
 public class MainView extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        List<User> userList = new ArrayList<>();
+        AppContext appContext;
+        SceneManager sceneManager;
+        // Setup managers
+        sceneManager = SceneManager.getInstance();
+        sceneManager.setPrimaryStage(primaryStage);
+        appContext = AppContext.getInstance();
 
-        // Erstelle Benutzer
+        // Create users
+        List<User> userList = new ArrayList<>();
         userList.add(new Admin("admin01", "admin"));
         userList.add(new Worker("employee01"));
         userList.add(new Worker("employee02"));
@@ -26,12 +33,11 @@ public class MainView extends Application {
         userList.add(new Supporter("support02"));
         userList.add(new Technician("technician01"));
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
-        Scene scene = new Scene(loader.load());
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Activity Management System");
-        LoginViewController controller = loader.getController();
-        controller.initialize(userList);
+        appContext.setUserList(userList);
+
+
+        // Load initial screen
+        sceneManager.loadScene("LoginScreen.fxml", "Activity Management System");
         primaryStage.show();
     }
 

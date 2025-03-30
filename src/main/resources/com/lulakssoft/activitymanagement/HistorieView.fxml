@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="421.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.HistorieViewController">
+<AnchorPane prefHeight="421.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.controller.HistorieViewController">
    <children>
       <ListView fx:id="historieListView" layoutX="39.0" layoutY="56.0" prefHeight="307.0" prefWidth="200.0" />
       <Label fx:id="historieLabel" layoutX="39.0" layoutY="23.0" text="Historie" textAlignment="CENTER" />
