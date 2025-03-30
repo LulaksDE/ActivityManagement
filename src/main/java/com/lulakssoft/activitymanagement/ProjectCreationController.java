@@ -69,8 +69,7 @@ public class ProjectCreationController {
         });
 
         colPersonName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
-        colPersonPerms.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClass().getSimpleName()));
-
+        colPersonPerms.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrivilage().toString()));
         // Actions column
         colPersonAdded.setCellFactory(param -> new TableCell<>() {
             private final Button addButton = new Button("Add");
