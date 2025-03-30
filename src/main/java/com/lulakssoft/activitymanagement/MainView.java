@@ -33,6 +33,8 @@ public class MainView extends Application {
         LoginViewController controller = loader.getController();
         controller.initialize(userList);
         primaryStage.show();
+
+        System.out.println("Application started");
     }
 
     public static void main(String[] args) {
