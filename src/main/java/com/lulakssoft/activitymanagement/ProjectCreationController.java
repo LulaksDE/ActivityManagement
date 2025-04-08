@@ -107,6 +107,7 @@ public class ProjectCreationController {
     }
 
     private void handleCreateProject() {
+        ProjectManager projectManager = ProjectManager.getInstance();
         String title = projectTitle.getText();
         String description = projectDescription.getText();
         LocalDate dueDate = dueDatePicker.getValue();
@@ -118,6 +119,7 @@ public class ProjectCreationController {
 
         // Projekt mit dem definierten Ersteller erstellen
         createdProject = new Project(title, creator, projectMemberListView.getItems());
+        projectManager.addProject(createdProject);
 
         // Aktivität zum Projekt hinzufügen
         createdProject.addActivity(new Activity(
