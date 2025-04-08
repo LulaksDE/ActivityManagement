@@ -1,6 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
 import com.lulakssoft.activitymanagement.User.User;
+import com.lulakssoft.activitymanagement.User.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -38,21 +39,20 @@ public class ProjectViewController {
 
     private ObservableList<Project> observableList;
 
-    private List<User> userList;
 
     private User loggedInUser;
 
     public boolean loggedIn = false;
 
     @FXML
-    public void initialize(List<User> userList,User loggedInUser) {
-
-        this.loggedInUser = loggedInUser;
+    public void initialize() {
+        UserManager userManager = UserManager.getInstance();
+        ProjectManager projectManager = ProjectManager.getInstance();
+        this.loggedInUser = userManager.getCurrentUser();
         loggedIn = true;
-        this.userList = userList;
 
         // Lade die Projekte des Benutzers
-        projectList = loggedInUser.getProjectList();
+        projectList = projectManager.getProjectsForUser(loggedInUser);
         observableList = FXCollections.observableArrayList(projectList);
 
         projectComboBox.setCellFactory(param -> new ListCell<>() {
@@ -110,9 +110,7 @@ public class ProjectViewController {
                   createButton.getScene().getWindow(),
                   SceneManager.PROJECT_CREATION,
                   "Create Project",
-                  ProjectCreationController::initialize,
-                    userList,
-                    loggedInUser
+                  ProjectCreationController::initialize
           );
             Project newProject = controller.getCreatedProject();
 

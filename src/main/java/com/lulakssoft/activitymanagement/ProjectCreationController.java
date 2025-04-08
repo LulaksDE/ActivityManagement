@@ -1,6 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
 import com.lulakssoft.activitymanagement.User.User;
+import com.lulakssoft.activitymanagement.User.UserManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +24,7 @@ public class ProjectCreationController {
     private DatePicker dueDatePicker;
 
     @FXML
-    private ListView<User> userListView;
+    private ListView<User> projectMemberListView;
 
     @FXML
     private TableView<User> personTableView;
@@ -49,14 +50,17 @@ public class ProjectCreationController {
     private User creator;
 
 
-    public void initialize(List<User> userList, User creator) {
+    public void initialize() {
+        UserManager userManager = UserManager.getInstance();
+        List<User> userList = userManager.getAllUsers();
+        User creator = userManager.getCurrentUser();
 
         ObservableList<User> availableUsers = FXCollections.observableArrayList(userList);
         ObservableList<User> projectUsers = FXCollections.observableArrayList();
 
-        userListView.setItems(projectUsers);
+        projectMemberListView.setItems(projectUsers);
 
-        userListView.setCellFactory(listView -> new ListCell<User>() {
+        projectMemberListView.setCellFactory(listView -> new ListCell<User>() {
             @Override
             protected void updateItem(User nutzer, boolean empty) {
                 super.updateItem(nutzer, empty);
@@ -113,13 +117,13 @@ public class ProjectCreationController {
         }
 
         // Projekt mit dem definierten Ersteller erstellen
-        createdProject = new Project(title, creator);
+        createdProject = new Project(title, creator, projectMemberListView.getItems());
 
         // Aktivität zum Projekt hinzufügen
         createdProject.addActivity(new Activity(
                 creator,
                 title + " - Kickoff Meeting",
-                description + "\n Project Description",
+                description + "\nProject Description",
                 dueDate,
                 false
         ));

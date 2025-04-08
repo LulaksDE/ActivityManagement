@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class SceneManager {
     private static SceneManager instance;
@@ -62,14 +63,12 @@ public class SceneManager {
         stage.setTitle(title);
     }
 
-    public <T, P1, P2> T openModalWindow(Window owner, String fxmlPath, String title,
-                                         BiConsumer<T, P1> initializer, P1 param1) throws IOException {
+    public <T> T openModalWindow(Window owner, String fxmlPath, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = loader.load();
         loaderCache.put(fxmlPath, loader);
 
         T controller = loader.getController();
-        initializer.accept(controller, param1);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -80,14 +79,14 @@ public class SceneManager {
         return controller;
     }
 
-    public <T, P1, P2> T openModalWindow(Window owner, String fxmlPath, String title,
-                                         TriConsumer<T, P1, P2> initializer, P1 param1, P2 param2) throws IOException {
+    public <T> T openModalWindow(Window owner, String fxmlPath, String title,
+                                 Consumer<T> initializer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = loader.load();
         loaderCache.put(fxmlPath, loader);
 
         T controller = loader.getController();
-        initializer.accept(controller, param1, param2);
+        initializer.accept(controller);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

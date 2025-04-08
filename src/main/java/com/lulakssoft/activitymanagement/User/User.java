@@ -9,7 +9,6 @@ import java.util.List;
 public abstract class User {
     private String username;  // Benutzername
     private String password;  // Passwort
-    private final List<Project> projectList;  // Liste der Projekte des Benutzers
     private final Privilages privilage;  // Added privilege field
 
 
@@ -17,25 +16,6 @@ public abstract class User {
         this.username = username;
         this.password = encodePassword(password);
         this.privilage = privilage;
-
-
-        this.projectList = new ArrayList<>();
-        // Füge ein Standardprojekt hinzu
-        projectList.add(new Project("Default Project", this));
-        projectList.add(new Project("Project 1", this));
-        projectList.add(new Project("Project 2", this));
-    }
-
-    public void addProject(Project project) {
-        projectList.add(project);
-    }
-
-    public void removeProject(Project project) {
-        projectList.remove(project);
-    }
-
-    public List<Project> getProjectList() {
-        return projectList;
     }
 
     public String getUsername() {
@@ -58,24 +38,12 @@ public abstract class User {
         return privilage;
     }
 
-    // Method to determine which projects are visible based on privilege
-    public List<Project> getVisibleProjects(List<Project> allProjects) {
-        switch (privilage) {
-            case ADMIN:
-                return new ArrayList<>(allProjects); // Admins see all projects
-            case SUPPORTER:
-                // Supporters see only assigned projects (implementation depends on Project class)
-                return projectList; // Placeholder - should be filtered by assignment
-            default:
-                return projectList; // Others see only their own projects
-        }
-    }
 
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", projectList=" + projectList.toString() +
+                ", privilage=" + privilage +
                 '}';
     }
 

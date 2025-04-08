@@ -11,7 +11,7 @@
       <TextArea fx:id="projectDescription" layoutX="26.0" layoutY="95.0" prefHeight="198.0" prefWidth="287.0" promptText="Project Description" />
       <Label fx:id="createProjectLabel" layoutX="26.0" layoutY="24.0" text="Create Project" />
       <Button fx:id="cancelButton" layoutX="534.0" layoutY="415.0" mnemonicParsing="false" text="Cancel" />
-      <ListView fx:id="userListView" layoutX="353.0" layoutY="315.0" prefHeight="74.0" prefWidth="206.0" />
+      <ListView fx:id="projectMemberListView" layoutX="353.0" layoutY="315.0" prefHeight="74.0" prefWidth="206.0" />
       <Separator layoutX="321.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="0.0" />
       <TableView fx:id="personTableView" layoutX="345.0" layoutY="49.0" prefHeight="200.0" prefWidth="221.0">
         <columns>

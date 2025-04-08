@@ -12,12 +12,14 @@ public class Project {
     private String name;  // Name des Projekts
     private final List<Activity> activityList;  // Liste der Aktivitäten im Projekt
     private User creator;  // Benutzer, der das Projekt erstellt hat
+    private List<User> userList = new ArrayList<>();  // Liste der Benutzer, die dem Projekt zugeordnet sind
 
-    public Project(String name, User creator) {
+    public Project(String name, User creator, List<User> userList) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.activityList = new ArrayList<>();
         this.creator = creator;
+        this.userList = userList;
         // Füge eine Standardaktivität hinzu
         activityList.add(new Activity(creator,"Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
         activityList.add(new Activity(creator,"Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
@@ -35,6 +37,10 @@ public class Project {
 
     public List<Activity> getActivityList() {
         return activityList;
+    }
+
+    public List<User> getMembers() {
+        return userList;
     }
 
     public String getName() {
@@ -62,6 +68,8 @@ public class Project {
         return "Project{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", creator=" + creator.getUsername() +
+                " userList=" + userList.toString() +
                 ", activityList=" + this.activityList.toString() +
                 '}';
     }

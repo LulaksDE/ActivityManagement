@@ -5,6 +5,5 @@ import com.lulakssoft.activitymanagement.Project;
 public class Supporter extends User{
     public Supporter(String username) {
         super(username, "admin", Privilages.SUPPORTER);
-        this.addProject(new Project("Supporter Project", this));
     }
 }
