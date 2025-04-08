@@ -107,13 +107,13 @@ public class LoginViewController {
         try {
             // Erstelle ein neues Fenster für die Projektansicht
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectView.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
+            SceneManager sceneManager = SceneManager.getInstance();
+            ProjectViewController controller = sceneManager.loadFXML(SceneManager.PROJECT_VIEW);
+            controller.initialize(userList, user);
+
+            stage.setScene(new Scene(sceneManager.getRoot(SceneManager.PROJECT_VIEW)));
             stage.setTitle("Project View");
             stage.initModality(APPLICATION_MODAL);
-            ProjectViewController controller = loader.getController();
-            controller.initialize(userList, user);
             stage.showAndWait();
 
             if (!controller.loggedIn) {

@@ -105,18 +105,15 @@ public class ProjectViewController {
     private void handleCreate() {
         // Hier wird ein neues Projekt erstellt (ggf. Logik hinzufügen)
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectCreationScreen.fxml"));
-            Parent root = loader.load();
-
-            Stage creationStage = new Stage();
-            creationStage.setTitle("Projekt erstellen");
-            creationStage.setScene(new Scene(root));
-            creationStage.initModality(Modality.APPLICATION_MODAL);
-
-            // Übergabe der userList an den neuen Controller
-            ProjectCreationController controller = loader.getController();
-            controller.initialize(userList, loggedInUser);
-            creationStage.showAndWait();
+          SceneManager sceneManager = SceneManager.getInstance();
+          ProjectCreationController controller = sceneManager.openModalWindow(
+                  createButton.getScene().getWindow(),
+                  SceneManager.PROJECT_CREATION,
+                  "Create Project",
+                  ProjectCreationController::initialize,
+                    userList,
+                    loggedInUser
+          );
             Project newProject = controller.getCreatedProject();
 
             // Aktualisiere die Liste nach Erstellung eines neuen Projekts

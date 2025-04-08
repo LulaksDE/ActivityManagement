@@ -23,11 +23,9 @@ public class MainView extends Application {
         userList.add(new Supporter("support02"));
         userList.add(new Technician("technician01"));
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
-        Scene scene = new Scene(loader.load());
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Activity Management System");
-        LoginViewController controller = loader.getController();
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.setMainScene(primaryStage, SceneManager.LOGIN_VIEW, "Activity Management System");
+        LoginViewController controller = sceneManager.getLoader(SceneManager.LOGIN_VIEW).getController();
         controller.initialize(userList);
         primaryStage.show();
     }
