@@ -8,24 +8,24 @@ import java.util.List;
 import java.util.UUID;
 
 public class Activity {
-    private final String id;  // ID der Aktivität
-    private String title;  // Titel der Aktivität
-    private String description;  // Beschreibung der Aktivität
-    private LocalDate dueDate;  // Fälligkeitsdatum der Aktivität
-    private boolean completed;  // Status der Aktivität (erledigt oder nicht)
-    private String priority;  // Priorität der Aktivität (neu hinzugefügt)
-    private List<User> userList = new ArrayList<>();  // Liste der Benutzer, die an der Aktivität beteiligt sind
+    private final String id;
+    private String title;
+    private String description;
+    private LocalDate dueDate;
+    private boolean completed;
+    private String priority;
+    private List<User> userList = new ArrayList<>();
 
     public Activity(User creator, String title, String description, LocalDate dueDate, boolean completed) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.completed = completed; // Es sollte hier den übergebenen Wert verwenden
+        this.completed = completed;
         this.userList.add(creator);
     }
 
-    // Getter und Setter
+    // Getter and Setter
     public String getId() { return id; }
 
     public String getTitle() { return title; }
@@ -54,7 +54,7 @@ public class Activity {
                 ", description='" + description + '\'' +
                 ", dueDate=" + dueDate +
                 ", completed=" + completed +
-                ", priority='" + priority + '\'' + // Fügen Sie die Priorität zur Ausgabe hinzu
+                ", priority='" + priority + '\'' + // Added priority to toString
                 '}';
     }
 }

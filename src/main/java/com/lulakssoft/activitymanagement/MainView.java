@@ -15,7 +15,7 @@ public class MainView extends Application {
     public void start(Stage primaryStage) throws Exception {
         List<User> userList = new ArrayList<>();
 
-        // Erstelle Benutzer
+        // Create some sample users
         userList.add(new Admin("admin01", "admin"));
         userList.add(new Worker("employee01"));
         userList.add(new Worker("employee02"));

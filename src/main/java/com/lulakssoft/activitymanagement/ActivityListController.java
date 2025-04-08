@@ -40,7 +40,7 @@ public class ActivityListController {
     private Button deleteButton;
 
     @FXML
-    private Button historieButton; // Button für Historie-Ansicht
+    private Button historyButton;
 
     private ObservableList<Activity> activityList;
 
@@ -96,7 +96,7 @@ public class ActivityListController {
 
         addButton.setOnAction(e -> handleAddActivity());
         deleteButton.setOnAction(e -> handleDeleteActivity());
-        historieButton.setOnAction(e -> openHistorieView());  // Historie-Button Aktion
+        historyButton.setOnAction(e -> openHistoryView());  // Historie-Button Aktion
 
         activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
@@ -179,17 +179,17 @@ public class ActivityListController {
         }
     }
 
-    private void openHistorieView() {
+    private void openHistoryView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HistorieView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HistoryView.fxml"));
             Parent root = loader.load();
 
             Stage historieStage = new Stage();
-            historieStage.setTitle("Historie");
+            historieStage.setTitle("History");
             historieStage.initModality(Modality.WINDOW_MODAL);
-            historieStage.initOwner(historieButton.getScene().getWindow());
+            historieStage.initOwner(historyButton.getScene().getWindow());
             historieStage.setScene(new Scene(root));
-            HistorieViewController controller = loader.getController();
+            HistoryViewController controller = loader.getController();
             controller.initialize(historyLogs);
 
             historieStage.showAndWait();
