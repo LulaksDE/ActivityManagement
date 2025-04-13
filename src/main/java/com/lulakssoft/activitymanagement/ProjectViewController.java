@@ -46,7 +46,7 @@ public class ProjectViewController {
 
     @FXML
     public void initialize() {
-        UserManager userManager = UserManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
         ProjectManager projectManager = ProjectManager.getInstance();
         this.loggedInUser = userManager.getCurrentUser();
         loggedIn = true;

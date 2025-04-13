@@ -14,7 +14,7 @@ public class ProjectManager {
 
     private ProjectManager() {
         // create some default projects
-        UserManager userManager = UserManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
         projects.add(new Project("Project A", userManager.getCurrentUser(), userManager.getAllUsers()));
         projects.add(new Project("Project B", userManager.getCurrentUser(), userManager.getAllUsers()));
         projects.add(new Project("Project C", userManager.getCurrentUser(), userManager.getAllUsers()));

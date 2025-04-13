@@ -1,30 +1,22 @@
 package com.lulakssoft.activitymanagement.User;
 
-import com.lulakssoft.activitymanagement.Project;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserManager {
-    private static UserManager instance;
+public enum UserManager {
+    INSTANCE;
+
     private final List<User> userList = new ArrayList<>();
     private User currentUser;
 
-    private UserManager() {
-        // Standard-Benutzer erstellen
+    UserManager() {
         userList.add(new Admin("admin01", "admin"));
         userList.add(new Worker("employee01"));
         userList.add(new Worker("employee02"));
         userList.add(new Supporter("support01"));
         userList.add(new Supporter("support02"));
         userList.add(new Technician("technician01"));
-    }
-
-    public static UserManager getInstance() {
-        if (instance == null) {
-            instance = new UserManager();
-        }
-        return instance;
     }
 
     public List<User> getAllUsers() {

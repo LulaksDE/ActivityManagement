@@ -55,7 +55,7 @@ public class LoginViewController {
     private void handleLoginButton() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        UserManager userManager = UserManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
 
         Optional<User> userOptional = userManager.findUserByUsername(username);
         if (userOptional.isPresent() && decodePassword(userOptional.get().getPassword()).equals(password)) {
@@ -69,7 +69,7 @@ public class LoginViewController {
     private void handleRegisterButton() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        UserManager userManager = UserManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
 
         if (username.isBlank() || password.isBlank()) {
             changeLabelInformation("Please enter username and password", Color.RED);
@@ -102,7 +102,7 @@ public class LoginViewController {
 
         // Erstelle einen neuen Benutzer und füge ihn zur Liste hinzu
         User newUser = new Admin(username, password);
-        userManager.addUser(newUser);
+        userManager.addUser(newUser); // Einzige Verwendung von addUser
         changeLabelInformation("User created", Color.GREEN);
     }
 

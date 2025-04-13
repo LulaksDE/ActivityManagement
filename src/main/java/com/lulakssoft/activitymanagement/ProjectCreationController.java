@@ -51,7 +51,7 @@ public class ProjectCreationController {
 
 
     public void initialize() {
-        UserManager userManager = UserManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
         List<User> userList = userManager.getAllUsers();
         User creator = userManager.getCurrentUser();
 

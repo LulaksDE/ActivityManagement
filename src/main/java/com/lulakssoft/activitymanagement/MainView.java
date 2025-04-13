@@ -13,8 +13,6 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // UserManager for managing users
-        UserManager.getInstance(); // Create all default users
 
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.setMainScene(primaryStage, SceneManager.LOGIN_VIEW, "Activity Management System");
