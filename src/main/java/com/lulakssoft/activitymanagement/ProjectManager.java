@@ -46,4 +46,12 @@ public class ProjectManager {
         return userProjects;
     }
 
+    public Project getCurrentProject() {
+        return currentProject;
+    }
+
+    public void setCurrentProject(Project currentProject) {
+        this.currentProject = currentProject;
+    }
+
 }

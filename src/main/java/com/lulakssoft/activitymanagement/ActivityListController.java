@@ -50,9 +50,10 @@ public class ActivityListController {
     private List<String> historyLogs = new ArrayList<>();
 
     @FXML
-    public void initialize(Project project) {
-        currentProject = project;
-        activityList = FXCollections.observableArrayList(project.getActivityList());
+    public void initialize() {
+        ProjectManager projectManager = ProjectManager.getInstance();
+        currentProject = projectManager.getCurrentProject();
+        activityList = FXCollections.observableArrayList(currentProject.getActivityList());
         activityListView.setItems(activityList);
 
         // Filter-Listener für das Suchfeld
@@ -127,75 +128,62 @@ public class ActivityListController {
 
     private void openEditor() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
-            Parent root = loader.load();
-
-            Stage editorStage = new Stage();
-            editorStage.setTitle("Add New Activities");
-            editorStage.initModality(Modality.WINDOW_MODAL);
-            editorStage.initOwner(addButton.getScene().getWindow());
-            editorStage.setScene(new Scene(root));
-
-            ActivityEditorController controller = loader.getController();
-            controller.initialize(currentProject.getActivityList());
-
-            editorStage.showAndWait();
+            SceneManager sceneManager = SceneManager.getInstance();
+            // initializing need more work, values are initialized too late outside openModalWindow
+            ActivityEditorController controller = sceneManager.openModalWindow(
+                    addButton.getScene().getWindow(),
+                    SceneManager.ACTIVITY_EDITOR,
+                    "Add New Activities",
+                    editorController -> editorController.initialize(currentProject.getActivityList())
+            ); // Activities should use managing class in the future
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
                 for (Activity activity : newActivities) {
                     currentProject.addActivity(activity);
                     activityList.add(activity);
-                    historyLogs.add("Added Activity: " + activity.getTitle()); // Hinzufügen zur Historie
+                    historyLogs.add("Added Activity: " + activity.getTitle());
                 }
                 activityListView.refresh();
             }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error when opening activity editor: " + e.getMessage());
         }
     }
 
     private void openActivityEditor(Activity selectedActivity) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
-            Parent root = loader.load();
+            SceneManager sceneManager = SceneManager.getInstance();
+            // initializing need more work, values are initialized too late outside openModalWindow
+            ActivityEditorController controller = sceneManager.openModalWindow(
+                    addButton.getScene().getWindow(),
+                    SceneManager.ACTIVITY_EDITOR,
+                    "Edit Activity",
+                    editorController -> editorController.initialize(selectedActivity)
+            ); // Activities should use managing class in the future
 
-            Stage editorStage = new Stage();
-            editorStage.setTitle("Edit Activity");
-            editorStage.initModality(Modality.WINDOW_MODAL);
-            editorStage.initOwner(addButton.getScene().getWindow());
-            editorStage.setScene(new Scene(root));
-
-            ActivityEditorController controller = loader.getController();
-            controller.initialize(selectedActivity);
-
-            editorStage.showAndWait();
-            historyLogs.add("Edited Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
+            historyLogs.add("Edited Activity: " + selectedActivity.getTitle());
             activityListView.refresh();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error when opening activity editor: " + e.getMessage());
         }
     }
 
     private void openHistoryView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HistoryView.fxml"));
-            Parent root = loader.load();
-
-            Stage historieStage = new Stage();
-            historieStage.setTitle("History");
-            historieStage.initModality(Modality.WINDOW_MODAL);
-            historieStage.initOwner(historyButton.getScene().getWindow());
-            historieStage.setScene(new Scene(root));
-            HistoryViewController controller = loader.getController();
-            controller.initialize(historyLogs);
-
-            historieStage.showAndWait();
-
-        } catch (IOException e) {
+            SceneManager sceneManager = SceneManager.getInstance();
+            // initializing need more work, values are initialized too late outside openModalWindow
+            HistoryViewController controller = sceneManager.openModalWindow(
+                    historyButton.getScene().getWindow(),
+                    SceneManager.HISTORY_VIEW,
+                    "Historie",
+                    historyController -> historyController.initialize(historyLogs)
+            ); // History should use managing class in the future
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error when opening history view: " + e.getMessage());
         }
     }
 }
