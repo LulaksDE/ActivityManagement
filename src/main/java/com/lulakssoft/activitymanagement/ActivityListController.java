@@ -1,31 +1,25 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.Notification.ActivityNotifier;
+import com.lulakssoft.activitymanagement.Notification.Toast;
+import com.lulakssoft.activitymanagement.Notification.UINotifier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.geometry.Pos;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.stage.Window;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityListController {
+public class ActivityListController implements UINotifier, ActivityNotifier {
 
     @FXML
     private TextField searchField;
@@ -110,9 +104,11 @@ public class ActivityListController {
     private void handleDeleteActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
+            // Notify the activity deletion
+            notifyActivityDeleted(selectedActivity);
+
             currentProject.removeActivity(selectedActivity);
             activityList.remove(selectedActivity);
-            historyLogs.add("Deleted Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
             activityListView.refresh();
         }
     }
@@ -129,20 +125,20 @@ public class ActivityListController {
     private void openEditor() {
         try {
             SceneManager sceneManager = SceneManager.getInstance();
-            // initializing need more work, values are initialized too late outside openModalWindow
             ActivityEditorController controller = sceneManager.openModalWindow(
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
                     "Add New Activities",
                     editorController -> editorController.initialize(currentProject.getActivityList())
-            ); // Activities should use managing class in the future
+            );
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
                 for (Activity activity : newActivities) {
                     currentProject.addActivity(activity);
                     activityList.add(activity);
-                    historyLogs.add("Added Activity: " + activity.getTitle());
+                    // Notify the activity creation
+                    notifyActivityCreated(activity);
                 }
                 activityListView.refresh();
             }
@@ -154,16 +150,27 @@ public class ActivityListController {
 
     private void openActivityEditor(Activity selectedActivity) {
         try {
+            // Save original values for comparison
+            String originalTitle = selectedActivity.getTitle();
+            String originalDescription = selectedActivity.getDescription();
+
             SceneManager sceneManager = SceneManager.getInstance();
-            // initializing need more work, values are initialized too late outside openModalWindow
             ActivityEditorController controller = sceneManager.openModalWindow(
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
                     "Edit Activity",
                     editorController -> editorController.initialize(selectedActivity)
-            ); // Activities should use managing class in the future
+            );
 
-            historyLogs.add("Edited Activity: " + selectedActivity.getTitle());
+            // Check if the activity was updated
+            boolean wasUpdated = !originalTitle.equals(selectedActivity.getTitle()) ||
+                    !originalDescription.equals(selectedActivity.getDescription());
+
+            if (wasUpdated) {
+                // Notify the activity update
+                notifyActivityUpdated(selectedActivity);
+            }
+
             activityListView.refresh();
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,6 +192,46 @@ public class ActivityListController {
             e.printStackTrace();
             System.err.println("Error when opening history view: " + e.getMessage());
         }
+    }
+
+    @Override
+    public void notifyActivityCreated(Activity activity) {
+        showPopupNotification(activity.getTitle(), activity.getDescription());
+        historyLogs.add("Created Activity: " + activity.getTitle());
+    }
+
+    @Override
+    public void notifyActivityUpdated(Activity activity) {
+        showBannerNotification(activity.getTitle() + " updated");
+        historyLogs.add("Updated Activity: " + activity.getTitle());
+    }
+
+    @Override
+    public void notifyActivityDeleted(Activity activity) {
+        showPopupNotification(activity.getTitle(), activity.getDescription());
+        historyLogs.add("Deleted Activity: " + activity.getTitle());
+    }
+
+    @Override
+    public void showPopupNotification(String message, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notification");
+        alert.setHeaderText("Activity Notification");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @Override
+    public void showBannerNotification(String message) {
+        // Show toast
+        Window currentWindow = activityListView.getScene().getWindow();
+        Toast toast = Toast.makeText(currentWindow, message, 3000);
+        toast.show();
+    }
+
+    @Override
+    public void sendNotification(String message, String receiver) {
+        showPopupNotification(message, receiver);
     }
 }
 
