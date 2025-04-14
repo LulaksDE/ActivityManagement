@@ -1,31 +1,25 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.Notification.ActivityNotifier;
+import com.lulakssoft.activitymanagement.Notification.Toast;
+import com.lulakssoft.activitymanagement.Notification.UINotifier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.geometry.Pos;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.stage.Window;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityListController {
+public class ActivityListController implements UINotifier, ActivityNotifier {
 
     @FXML
     private TextField searchField;
@@ -40,7 +34,7 @@ public class ActivityListController {
     private Button deleteButton;
 
     @FXML
-    private Button historieButton; // Button für Historie-Ansicht
+    private Button historyButton;
 
     private ObservableList<Activity> activityList;
 
@@ -50,9 +44,10 @@ public class ActivityListController {
     private List<String> historyLogs = new ArrayList<>();
 
     @FXML
-    public void initialize(Project project) {
-        currentProject = project;
-        activityList = FXCollections.observableArrayList(project.getActivityList());
+    public void initialize() {
+        ProjectManager projectManager = ProjectManager.getInstance();
+        currentProject = projectManager.getCurrentProject();
+        activityList = FXCollections.observableArrayList(currentProject.getActivityList());
         activityListView.setItems(activityList);
 
         // Filter-Listener für das Suchfeld
@@ -96,7 +91,7 @@ public class ActivityListController {
 
         addButton.setOnAction(e -> handleAddActivity());
         deleteButton.setOnAction(e -> handleDeleteActivity());
-        historieButton.setOnAction(e -> openHistorieView());  // Historie-Button Aktion
+        historyButton.setOnAction(e -> openHistoryView());  // Historie-Button Aktion
 
         activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
@@ -109,9 +104,11 @@ public class ActivityListController {
     private void handleDeleteActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
+            // Notify the activity deletion
+            notifyActivityDeleted(selectedActivity);
+
             currentProject.removeActivity(selectedActivity);
             activityList.remove(selectedActivity);
-            historyLogs.add("Deleted Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
             activityListView.refresh();
         }
     }
@@ -127,76 +124,114 @@ public class ActivityListController {
 
     private void openEditor() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
-            Parent root = loader.load();
-
-            Stage editorStage = new Stage();
-            editorStage.setTitle("Add New Activities");
-            editorStage.initModality(Modality.WINDOW_MODAL);
-            editorStage.initOwner(addButton.getScene().getWindow());
-            editorStage.setScene(new Scene(root));
-
-            ActivityEditorController controller = loader.getController();
-            controller.initialize(currentProject.getActivityList());
-
-            editorStage.showAndWait();
+            SceneManager sceneManager = SceneManager.getInstance();
+            ActivityEditorController controller = sceneManager.openModalWindow(
+                    addButton.getScene().getWindow(),
+                    SceneManager.ACTIVITY_EDITOR,
+                    "Add New Activities",
+                    editorController -> editorController.initialize(currentProject.getActivityList())
+            );
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
                 for (Activity activity : newActivities) {
                     currentProject.addActivity(activity);
                     activityList.add(activity);
-                    historyLogs.add("Added Activity: " + activity.getTitle()); // Hinzufügen zur Historie
+                    // Notify the activity creation
+                    notifyActivityCreated(activity);
                 }
                 activityListView.refresh();
             }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error when opening activity editor: " + e.getMessage());
         }
     }
 
     private void openActivityEditor(Activity selectedActivity) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ActivityEditor.fxml"));
-            Parent root = loader.load();
+            // Save original values for comparison
+            String originalTitle = selectedActivity.getTitle();
+            String originalDescription = selectedActivity.getDescription();
 
-            Stage editorStage = new Stage();
-            editorStage.setTitle("Edit Activity");
-            editorStage.initModality(Modality.WINDOW_MODAL);
-            editorStage.initOwner(addButton.getScene().getWindow());
-            editorStage.setScene(new Scene(root));
+            SceneManager sceneManager = SceneManager.getInstance();
+            ActivityEditorController controller = sceneManager.openModalWindow(
+                    addButton.getScene().getWindow(),
+                    SceneManager.ACTIVITY_EDITOR,
+                    "Edit Activity",
+                    editorController -> editorController.initialize(selectedActivity)
+            );
 
-            ActivityEditorController controller = loader.getController();
-            controller.initialize(selectedActivity);
+            // Check if the activity was updated
+            boolean wasUpdated = !originalTitle.equals(selectedActivity.getTitle()) ||
+                    !originalDescription.equals(selectedActivity.getDescription());
 
-            editorStage.showAndWait();
-            historyLogs.add("Edited Activity: " + selectedActivity.getTitle()); // Hinzufügen zur Historie
+            if (wasUpdated) {
+                // Notify the activity update
+                notifyActivityUpdated(selectedActivity);
+            }
+
             activityListView.refresh();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error when opening activity editor: " + e.getMessage());
         }
     }
 
-    private void openHistorieView() {
+    private void openHistoryView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HistorieView.fxml"));
-            Parent root = loader.load();
-
-            Stage historieStage = new Stage();
-            historieStage.setTitle("Historie");
-            historieStage.initModality(Modality.WINDOW_MODAL);
-            historieStage.initOwner(historieButton.getScene().getWindow());
-            historieStage.setScene(new Scene(root));
-            HistorieViewController controller = loader.getController();
-            controller.initialize(historyLogs);
-
-            historieStage.showAndWait();
-
-        } catch (IOException e) {
+            SceneManager sceneManager = SceneManager.getInstance();
+            // initializing need more work, values are initialized too late outside openModalWindow
+            HistoryViewController controller = sceneManager.openModalWindow(
+                    historyButton.getScene().getWindow(),
+                    SceneManager.HISTORY_VIEW,
+                    "Historie",
+                    historyController -> historyController.initialize(historyLogs)
+            ); // History should use managing class in the future
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error when opening history view: " + e.getMessage());
         }
+    }
+
+    @Override
+    public void notifyActivityCreated(Activity activity) {
+        showPopupNotification(activity.getTitle(), activity.getDescription());
+        historyLogs.add("Created Activity: " + activity.getTitle());
+    }
+
+    @Override
+    public void notifyActivityUpdated(Activity activity) {
+        showBannerNotification(activity.getTitle() + " updated");
+        historyLogs.add("Updated Activity: " + activity.getTitle());
+    }
+
+    @Override
+    public void notifyActivityDeleted(Activity activity) {
+        showPopupNotification(activity.getTitle(), activity.getDescription());
+        historyLogs.add("Deleted Activity: " + activity.getTitle());
+    }
+
+    @Override
+    public void showPopupNotification(String message, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notification");
+        alert.setHeaderText("Activity Notification");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @Override
+    public void showBannerNotification(String message) {
+        // Show toast
+        Window currentWindow = activityListView.getScene().getWindow();
+        Toast toast = Toast.makeText(currentWindow, message, 3000);
+        toast.show();
+    }
+
+    @Override
+    public void sendNotification(String message, String receiver) {
+        showPopupNotification(message, receiver);
     }
 }
 
