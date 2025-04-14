@@ -16,8 +16,8 @@ public class MainView extends Application {
 
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.setMainScene(primaryStage, SceneManager.LOGIN_VIEW, "Activity Management System");
-        FXMLController controller = sceneManager.getLoader(SceneManager.LOGIN_VIEW).getController();
-        controller.initializeLogin();
+        LoginViewController controller = sceneManager.getLoader(SceneManager.LOGIN_VIEW).getController();
+        controller.initialize();
         primaryStage.show();
     }
 
