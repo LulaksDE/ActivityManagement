@@ -1,4 +1,6 @@
-package com.lulakssoft.activitymanagement.User;
+package com.lulakssoft.activitymanagement.user;
+
+import com.lulakssoft.activitymanagement.user.role.RoleFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +13,12 @@ public enum UserManager {
     private User currentUser;
 
     UserManager() {
-        userList.add(new Admin("admin01", "admin"));
-        userList.add(new Worker("employee01"));
-        userList.add(new Worker("employee02"));
-        userList.add(new Supporter("support01"));
-        userList.add(new Supporter("support02"));
-        userList.add(new Technician("technician01"));
+        userList.add(new User("admin01", "admin", RoleFactory.getRole(Privilages.ADMIN)));
+        userList.add(new User("employee01", "admin", RoleFactory.getRole(Privilages.WORKER)));
+        userList.add(new User("employee02", "admin", RoleFactory.getRole(Privilages.WORKER)));
+        userList.add(new User("support01", "admin", RoleFactory.getRole(Privilages.SUPPORTER)));
+        userList.add(new User("support02", "admin", RoleFactory.getRole(Privilages.SUPPORTER)));
+        userList.add(new User("technician01", "admin", RoleFactory.getRole(Privilages.TECHNICIAN)));
     }
 
     public List<User> getAllUsers() {

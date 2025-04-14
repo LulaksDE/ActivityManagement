@@ -1,6 +1,6 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
+import com.lulakssoft.activitymanagement.user.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,14 +15,16 @@ public class Activity {
     private boolean completed;
     private String priority;
     private List<User> userList = new ArrayList<>();
+    private final User creator;
 
-    public Activity(User creator, String title, String description, LocalDate dueDate, boolean completed) {
+    public Activity(User creator, List<User> userList , String title, String description, LocalDate dueDate, boolean completed) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = completed;
-        this.userList.add(creator);
+        this.creator = creator;
+        this.userList = userList;
     }
 
     // Getter and Setter
@@ -42,6 +44,10 @@ public class Activity {
 
     public String getPriority() { return priority; } // Getter für Priorität
     public void setPriority(String priority) { this.priority = priority; } // Setter für Priorität
+
+    public User getCreator(){
+        return creator;
+    }
 
     public List<User> getUserList() { return userList; }
     public void setUserList(List<User> userList) { this.userList = userList; }

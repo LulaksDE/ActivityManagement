@@ -1,7 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
-import com.lulakssoft.activitymanagement.User.UserManager;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;

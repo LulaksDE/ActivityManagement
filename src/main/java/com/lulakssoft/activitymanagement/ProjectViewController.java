@@ -1,19 +1,15 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
-import com.lulakssoft.activitymanagement.User.UserManager;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.List;

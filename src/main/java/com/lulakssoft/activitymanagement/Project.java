@@ -1,6 +1,6 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
+import com.lulakssoft.activitymanagement.user.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,10 +21,10 @@ public class Project {
         this.creator = creator;
         this.userList = userList;
         // Füge eine Standardaktivität hinzu
-        activityList.add(new Activity(creator,"Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
-        activityList.add(new Activity(creator,"Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
-        activityList.add(new Activity(creator,"Activity 3", "Description 3", LocalDate.now().plusDays(21), false));
-        activityList.add(new Activity(creator,"Activity 4", "Description 4", LocalDate.now().plusDays(28), false));
+        activityList.add(new Activity(creator, userList,"Activity 1", "Description 1", LocalDate.now().plusDays(7), false));
+        activityList.add(new Activity(creator, userList,"Activity 2", "Description 2", LocalDate.now().plusDays(14), false));
+        activityList.add(new Activity(creator, userList,"Activity 3", "Description 3", LocalDate.now().plusDays(21), false));
+        activityList.add(new Activity(creator, userList,"Activity 4", "Description 4", LocalDate.now().plusDays(28), false));
     }
 
     public void addActivity(Activity activity) {

@@ -1,8 +1,12 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.Notification.ActivityNotifier;
-import com.lulakssoft.activitymanagement.Notification.Toast;
-import com.lulakssoft.activitymanagement.Notification.UINotifier;
+import com.lulakssoft.activitymanagement.notification.ActivityNotifier;
+import com.lulakssoft.activitymanagement.notification.Toast;
+import com.lulakssoft.activitymanagement.notification.UINotifier;
+import com.lulakssoft.activitymanagement.user.role.PermissionChecker;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
+import com.lulakssoft.activitymanagement.user.UserRole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -40,15 +44,19 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private Project currentProject;
 
-    // Liste für Historie-Logs
-    private List<String> historyLogs = new ArrayList<>();
+    private final List<String> historyLogs = new ArrayList<>();
 
     @FXML
     public void initialize() {
         ProjectManager projectManager = ProjectManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
         currentProject = projectManager.getCurrentProject();
         activityList = FXCollections.observableArrayList(currentProject.getActivityList());
         activityListView.setItems(activityList);
+
+        User currentUser = userManager.getCurrentUser();
+        PermissionChecker.configureUIComponent(historyButton, currentUser,
+                UserRole::canSeeHistory);
 
         // Filter-Listener für das Suchfeld
         FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
@@ -63,8 +71,8 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
             });
         });
 
-        // Setze den benutzerdefinierten Zell-Renderer
-        activityListView.setCellFactory(listView -> new ListCell<Activity>() {
+        // Custom cell factory for the ListView to show the activity title and icon
+        activityListView.setCellFactory(listView -> new ListCell<>() {
             private final Label iconLabel = new Label("🔍");
 
             @Override
@@ -91,7 +99,7 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
         addButton.setOnAction(e -> handleAddActivity());
         deleteButton.setOnAction(e -> handleDeleteActivity());
-        historyButton.setOnAction(e -> openHistoryView());  // Historie-Button Aktion
+        historyButton.setOnAction(e -> openHistoryView());
 
         activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
@@ -180,12 +188,19 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private void openHistoryView() {
         try {
+            User currentUser = UserManager.INSTANCE.getCurrentUser();
+            if (!PermissionChecker.checkPermission(currentUser.getRole(),
+                    UserRole::canSeeHistory)) {
+                showBannerNotification("Sie haben keine Berechtigung, die Historie zu sehen.");
+                return;
+            }
+
             SceneManager sceneManager = SceneManager.getInstance();
             // initializing need more work, values are initialized too late outside openModalWindow
             HistoryViewController controller = sceneManager.openModalWindow(
                     historyButton.getScene().getWindow(),
                     SceneManager.HISTORY_VIEW,
-                    "Historie",
+                    "History",
                     historyController -> historyController.initialize(historyLogs)
             ); // History should use managing class in the future
         } catch (Exception e) {

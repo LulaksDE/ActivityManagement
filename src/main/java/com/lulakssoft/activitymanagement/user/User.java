@@ -1,21 +1,16 @@
-package com.lulakssoft.activitymanagement.User;
+package com.lulakssoft.activitymanagement.user;
 
-import com.lulakssoft.activitymanagement.Project;
-
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
-public abstract class User {
-    private String username;  // Benutzername
-    private String password;  // Passwort
-    private final Privilages privilage;  // Added privilege field
+public class User {
+    private String username;
+    private String password;
+    private UserRole role;
 
-
-    public User(String username, String password, Privilages privilage) {
+    public User(String username, String password, UserRole role) {
         this.username = username;
         this.password = encodePassword(password);
-        this.privilage = privilage;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -34,16 +29,23 @@ public abstract class User {
         this.password = encodePassword(password);
     }
 
-    public Privilages getPrivilage() {
-        return privilage;
+    public UserRole getRole() {
+        return role;
     }
 
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public Privilages getPrivilage() {
+        return role.getPrivilege();
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", privilage=" + privilage +
+                ", role=" + role.getRoleName() +
                 '}';
     }
 

@@ -1,4 +1,4 @@
-package com.lulakssoft.activitymanagement.Notification;
+package com.lulakssoft.activitymanagement.notification;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

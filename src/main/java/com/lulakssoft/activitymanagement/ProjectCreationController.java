@@ -1,7 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
-import com.lulakssoft.activitymanagement.User.UserManager;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -124,6 +124,7 @@ public class ProjectCreationController {
         // Aktivität zum Projekt hinzufügen
         createdProject.addActivity(new Activity(
                 creator,
+                createdProject.getMembers(),
                 title + " - Kickoff Meeting",
                 description + "\nProject Description",
                 dueDate,

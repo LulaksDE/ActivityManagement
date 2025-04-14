@@ -1,4 +1,4 @@
-package com.lulakssoft.activitymanagement.Notification;
+package com.lulakssoft.activitymanagement.notification;
 
 public class EmailNotificationService implements EmailNotifier{
     @Override

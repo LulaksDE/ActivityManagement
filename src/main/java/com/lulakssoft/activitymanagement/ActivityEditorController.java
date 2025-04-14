@@ -1,14 +1,12 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.Admin;
-import com.lulakssoft.activitymanagement.User.UserManager;
+import com.lulakssoft.activitymanagement.user.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 
 public class ActivityEditorController {
@@ -68,12 +66,14 @@ public class ActivityEditorController {
         priorityChoiceBox.setValue(activity.getPriority());
 
         addButton.setVisible(false);
+        updateButton.setVisible(true);
         updateButton.setOnAction(e -> handleUpdateActivity(activity));
         keepPropertiesCheckBox.setVisible(false);
     }
 
     private void handleAddActivity() {
         UserManager userManager = UserManager.INSTANCE;
+        ProjectManager projectManager = ProjectManager.getInstance();
         String title = titleField.getText();
         String description = descriptionArea.getText();
         LocalDate dueDate = dueDatePicker.getValue();
@@ -88,7 +88,7 @@ public class ActivityEditorController {
             titleField.setStyle("");
         }
 
-        Activity newActivity = new Activity(userManager.getCurrentUser(), title, description, dueDate, completed);
+        Activity newActivity = new Activity(userManager.getCurrentUser(), projectManager.getCurrentProject().getMembers(), title, description, dueDate, completed);
         newActivity.setPriority(priority);
         newActivities.add(newActivity);
 

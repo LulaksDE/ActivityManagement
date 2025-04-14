@@ -1,4 +1,4 @@
-package com.lulakssoft.activitymanagement.User;
+package com.lulakssoft.activitymanagement.user;
 
 public enum Privilages {
     TECHNICIAN,

@@ -1,10 +1,10 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.Admin;
-import com.lulakssoft.activitymanagement.User.User;
-import com.lulakssoft.activitymanagement.User.UserManager;
+import com.lulakssoft.activitymanagement.user.Privilages;
+import com.lulakssoft.activitymanagement.user.role.RoleFactory;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Base64;
-import java.util.List;
 import java.util.Optional;
 
 import static javafx.stage.Modality.APPLICATION_MODAL;
@@ -43,13 +42,9 @@ public class LoginViewController {
     public void initialize() {
         defaultBorder = usernameField.getBorder();
 
-        loginButton.setOnAction(event -> {
-            handleLoginButton();
-        });
+        loginButton.setOnAction(event -> handleLoginButton());
 
-        registerButton.setOnAction(event -> {
-            handleRegisterButton();
-        });
+        registerButton.setOnAction(event -> handleRegisterButton());
     }
 
     private void handleLoginButton() {
@@ -100,9 +95,9 @@ public class LoginViewController {
             return;
         }
 
-        // Erstelle einen neuen Benutzer und füge ihn zur Liste hinzu
-        User newUser = new Admin(username, password);
-        userManager.addUser(newUser); // Einzige Verwendung von addUser
+        // Create a new user with the given username and password
+        User newUser = new User(username, password, RoleFactory.getRole(Privilages.ADMIN));
+        userManager.addUser(newUser);
         changeLabelInformation("User created", Color.GREEN);
     }
 
