@@ -129,7 +129,7 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
                     "Add New Activities",
-                    editorController -> editorController.initialize(currentProject.getActivityList())
+                    ActivityEditorController::initialize
             );
 
             List<Activity> newActivities = controller.getNewActivities();

@@ -1,6 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
 import com.lulakssoft.activitymanagement.User.Admin;
+import com.lulakssoft.activitymanagement.User.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,14 +40,10 @@ public class ActivityEditorController {
     @FXML
     private ChoiceBox<String> priorityChoiceBox;
 
-    private List<Activity> activityList;
-
     private ObservableList<Activity> newActivities = FXCollections.observableArrayList();
 
     @FXML
-    void initialize(List<Activity> activities) {
-        activityList = activities;
-
+    void initialize() {
         // Initialize the ChoiceBox with priority options
         priorityChoiceBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
 
@@ -76,6 +73,7 @@ public class ActivityEditorController {
     }
 
     private void handleAddActivity() {
+        UserManager userManager = UserManager.INSTANCE;
         String title = titleField.getText();
         String description = descriptionArea.getText();
         LocalDate dueDate = dueDatePicker.getValue();
@@ -90,7 +88,7 @@ public class ActivityEditorController {
             titleField.setStyle("");
         }
 
-        Activity newActivity = new Activity(new Admin("admin", "admin"), title, description, dueDate, completed);
+        Activity newActivity = new Activity(userManager.getCurrentUser(), title, description, dueDate, completed);
         newActivity.setPriority(priority);
         newActivities.add(newActivity);
 
@@ -106,6 +104,7 @@ public class ActivityEditorController {
             dueDatePicker.setValue(dueDate);
             descriptionArea.setText(description);
             completedCheckBox.setSelected(completed);
+            priorityChoiceBox.setValue(priority);
         }
     }
 
