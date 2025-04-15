@@ -2,25 +2,45 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="486.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ActivityEditorController">
+<AnchorPane prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ActivityEditorController">
+    <children>
+        <VBox spacing="15" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Activity ID:" />
+                <Label fx:id="activityIdLabel" text="ID" />
+            </HBox>
 
-    <AnchorPane prefHeight="486.0" prefWidth="302.0">
-        <children>
-            <TextField fx:id="titleField" layoutX="75.0" layoutY="66.0" promptText="Add title" />
-            <TextArea fx:id="descriptionArea" layoutX="53.0" layoutY="114.0" prefHeight="200.0" prefWidth="200.0" promptText="Add description" />
-            <Button fx:id="addButton" layoutX="64.0" layoutY="362.0" text="Add Activity" textAlignment="CENTER" />
-            <Button fx:id="updateButton" layoutX="190.0" layoutY="362.0" mnemonicParsing="false" text="Update" />
-            <DatePicker fx:id="dueDatePicker" layoutX="62.0" layoutY="399.0" />
-            <CheckBox fx:id="completedCheckBox" layoutX="196.0" layoutY="445.0" mnemonicParsing="false" text="Completed" />
-            <Label fx:id="idLabel" layoutX="14.0" layoutY="14.0" text="Activity ID: " />
-            <Label fx:id="activityIdLabel" layoutX="75.0" layoutY="14.0" text="Label" />
-            <CheckBox fx:id="keepPropertiesCheckBox" layoutX="26.0" layoutY="445.0" mnemonicParsing="false" text="Keep Properties" />
+            <Separator />
 
-            <!-- ChoiceBox für die Priorität -->
-            <ChoiceBox fx:id="priorityChoiceBox" layoutX="128.0" layoutY="323.0" prefHeight="26.0" prefWidth="120.0" />
-            <Label layoutX="66.0" layoutY="328.0" text="Priority:" />
-        </children>
-    </AnchorPane>
+            <Label text="Title:" />
+            <TextField fx:id="titleField" promptText="Enter activity title" />
 
+            <Label text="Description:" />
+            <TextArea fx:id="descriptionArea" prefHeight="150.0" promptText="Enter activity description" wrapText="true" />
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Priority:" />
+                <ChoiceBox fx:id="priorityChoiceBox" prefWidth="150.0" />
+            </HBox>
+
+            <Label text="Due Date:" />
+            <DatePicker fx:id="dueDatePicker" maxWidth="Infinity" />
+
+            <HBox spacing="15">
+                <CheckBox fx:id="completedCheckBox" text="Completed" />
+                <Region HBox.hgrow="ALWAYS" />
+                <CheckBox fx:id="keepPropertiesCheckBox" text="Keep Properties" />
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="addButton" text="Add Activity" prefWidth="120" />
+                <Button fx:id="updateButton" mnemonicParsing="false" text="Update" prefWidth="120" />
+            </HBox>
+        </VBox>
+    </children>
 </AnchorPane>

@@ -3,24 +3,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ProjectViewController">
+<AnchorPane prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ProjectViewController">
    <children>
-      <!-- Suchfeld für die Projektsuche -->
-      <TextField fx:id="searchField" layoutX="151.0" layoutY="140.0" prefHeight="26.0" prefWidth="297.0" promptText="Search projects..." />
+      <VBox spacing="20" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+         <Label text="Activity Management System" textAlignment="CENTER" alignment="CENTER" maxWidth="Infinity">
+            <font>
+               <Font name="System Bold" size="22.0" />
+            </font>
+         </Label>
 
-      <!-- ComboBox, die die gefilterten Projekte anzeigt -->
-      <ComboBox fx:id="projectComboBox" layoutX="151.0" layoutY="173.0" prefHeight="26.0" prefWidth="297.0" promptText="Select Project" />
+         <Separator />
 
-      <Label layoutX="148.0" layoutY="43.0" text="Activity Management System" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
+         <VBox spacing="10">
+            <Label text="Project Selection" style="-fx-font-weight: bold" />
+            <TextField fx:id="searchField" promptText="Search projects..." />
+            <ComboBox fx:id="projectComboBox" promptText="Select Project" maxWidth="Infinity" />
+         </VBox>
 
-      <Button fx:id="createButton" layoutX="148.0" layoutY="223.0" mnemonicParsing="false" text="Create" />
-      <Button fx:id="loadButton" layoutX="274.0" layoutY="223.0" mnemonicParsing="false" text="Load" />
-      <Button fx:id="deleteButton" layoutX="400.0" layoutY="223.0" mnemonicParsing="false" text="Delete" />
-      <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Logout" />
+         <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="createButton" mnemonicParsing="false" text="Create" prefWidth="100" />
+            <Button fx:id="loadButton" mnemonicParsing="false" text="Load" prefWidth="100" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" prefWidth="100" />
+         </HBox>
+
+         <Region VBox.vgrow="ALWAYS" />
+
+         <HBox spacing="15" alignment="BOTTOM_LEFT">
+            <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
+            <Button fx:id="manageUsersButton" mnemonicParsing="false" text="Manage Users" />
+         </HBox>
+      </VBox>
    </children>
 </AnchorPane>

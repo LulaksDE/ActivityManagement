@@ -23,6 +23,7 @@ public class SceneManager {
     public static final String ACTIVITY_LIST = "ActivityList.fxml";
     public static final String ACTIVITY_EDITOR = "ActivityEditor.fxml";
     public static final String HISTORY_VIEW = "HistoryView.fxml";
+    public static final String USER_MANAGEMENT = "UserManagement.fxml";
 
     private SceneManager() {}
 

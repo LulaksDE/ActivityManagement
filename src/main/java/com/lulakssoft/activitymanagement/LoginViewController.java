@@ -32,8 +32,7 @@ public class LoginViewController {
     @FXML
     private Button loginButton;
 
-    @FXML
-    private Button registerButton;
+
 
 
     private Border defaultBorder;
@@ -43,8 +42,6 @@ public class LoginViewController {
         defaultBorder = usernameField.getBorder();
 
         loginButton.setOnAction(event -> handleLoginButton());
-
-        registerButton.setOnAction(event -> handleRegisterButton());
     }
 
     private void handleLoginButton() {
@@ -59,46 +56,6 @@ public class LoginViewController {
             return;
         }
         changeLabelInformation("Login failed", Color.RED);
-    }
-
-    private void handleRegisterButton() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        UserManager userManager = UserManager.INSTANCE;
-
-        if (username.isBlank() || password.isBlank()) {
-            changeLabelInformation("Please enter username and password", Color.RED);
-            if (username.isBlank()) {
-                usernameField.requestFocus();
-                usernameField.selectAll();
-                usernameField.borderProperty().set(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-            } else {
-                passwordField.requestFocus();
-                passwordField.borderProperty().set(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.DOTTED, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-            }
-            return;
-        } else {
-            usernameField.borderProperty().set(defaultBorder);
-            passwordField.borderProperty().set(defaultBorder);
-        }
-
-        if (userManager.findUserByUsername(username).isPresent()) {
-            changeLabelInformation("Username already exists", Color.RED);
-            return;
-        }
-        if (username.length() < 3 || password.length() < 3) {
-            changeLabelInformation("Username and password must be at least 3 characters long", Color.RED);
-            return;
-        }
-        if (username.length() > 20 || password.length() > 20) {
-            changeLabelInformation("Username and password must be at most 20 characters long", Color.RED);
-            return;
-        }
-
-        // Create a new user with the given username and password
-        User newUser = new User(username, password, RoleFactory.getRole(Privilages.ADMIN));
-        userManager.addUser(newUser);
-        changeLabelInformation("User created", Color.GREEN);
     }
 
     private void createProjectView() {

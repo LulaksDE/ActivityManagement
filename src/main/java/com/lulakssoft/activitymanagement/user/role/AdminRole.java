@@ -21,7 +21,6 @@ public class AdminRole implements UserRole {
 
     @Override
     public boolean canEditProject(Project project, User currentUser) {
-        // Admins können alle Projekte bearbeiten
         return true;
     }
 
@@ -32,7 +31,6 @@ public class AdminRole implements UserRole {
 
     @Override
     public boolean canEditActivity(Activity activity, User currentUser) {
-        // Admins können alle Aktivitäten bearbeiten
         return true;
     }
 

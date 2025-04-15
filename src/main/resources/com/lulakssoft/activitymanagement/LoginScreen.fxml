@@ -2,13 +2,33 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.LoginViewController">
-   <children>
-       <TextField fx:id="usernameField" layoutX="151.0" layoutY="91.0" promptText="Username" />
-       <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="137.0" promptText="Password" />
-       <Button fx:id="registerButton" layoutX="121.0" layoutY="203.0" mnemonicParsing="false" text="Register" />
-       <Button fx:id="loginButton" layoutX="278.0" layoutY="203.0" mnemonicParsing="false" text="Login" />
-      <Label fx:id="loginInformationLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="268.0" prefHeight="18.0" prefWidth="424.0" text="Register or Login" textAlignment="CENTER" />
-   </children>
+<AnchorPane prefHeight="350.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.LoginViewController">
+    <children>
+        <VBox spacing="20" alignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0" AnchorPane.bottomAnchor="30.0">
+            <Label text="Activity Management System" alignment="CENTER" maxWidth="Infinity">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+
+            <Region prefHeight="20" />
+
+            <VBox spacing="15">
+                <Label text="Username:" />
+                <TextField fx:id="usernameField" promptText="Enter username" />
+
+                <Label text="Password:" />
+                <PasswordField fx:id="passwordField" promptText="Enter password" />
+            </VBox>
+
+            <Region prefHeight="20" />
+
+            <Button fx:id="loginButton" contentDisplay="CENTER" mnemonicParsing="false" text="Login" prefWidth="120" />
+
+            <Label fx:id="loginInformationLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="Infinity" text="Please log in" textAlignment="CENTER" />
+        </VBox>
+    </children>
 </AnchorPane>

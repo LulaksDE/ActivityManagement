@@ -2,23 +2,68 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="454.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ProjectCreationController">
-   <children>
-      <Button fx:id="createButton" layoutX="14.0" layoutY="415.0" mnemonicParsing="false" text="Create" />
-      <DatePicker fx:id="dueDatePicker" layoutX="66.0" layoutY="315.0" prefHeight="25.0" prefWidth="206.0" promptText="Due Date" />
-      <TextField fx:id="projectTitle" layoutX="26.0" layoutY="49.0" prefHeight="32.0" prefWidth="287.0" promptText="Project Title" />
-      <TextArea fx:id="projectDescription" layoutX="26.0" layoutY="95.0" prefHeight="198.0" prefWidth="287.0" promptText="Project Description" />
-      <Label fx:id="createProjectLabel" layoutX="26.0" layoutY="24.0" text="Create Project" />
-      <Button fx:id="cancelButton" layoutX="534.0" layoutY="415.0" mnemonicParsing="false" text="Cancel" />
-      <ListView fx:id="projectMemberListView" layoutX="353.0" layoutY="315.0" prefHeight="74.0" prefWidth="206.0" />
-      <Separator layoutX="321.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="0.0" />
-      <TableView fx:id="personTableView" layoutX="345.0" layoutY="49.0" prefHeight="200.0" prefWidth="221.0">
-        <columns>
-          <TableColumn fx:id="colPersonName" prefWidth="83.0" text="Name" />
-          <TableColumn fx:id="colPersonPerms" prefWidth="68.0" text="Permission" />
-          <TableColumn fx:id="colPersonAdded" prefWidth="77.60003662109375" text="Added" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.ProjectCreationController">
+    <children>
+        <SplitPane dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <VBox spacing="15">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+
+                    <Label fx:id="createProjectLabel" text="Create Project">
+                        <font>
+                            <Font name="System Bold" size="16.0" />
+                        </font>
+                    </Label>
+
+                    <Label text="Project Title:" />
+                    <TextField fx:id="projectTitle" promptText="Enter project title" />
+
+                    <Label text="Project Description:" />
+                    <TextArea fx:id="projectDescription" promptText="Enter project description" VBox.vgrow="ALWAYS" wrapText="true" />
+
+                    <Label text="Due Date:" />
+                    <DatePicker fx:id="dueDatePicker" promptText="Select due date" maxWidth="Infinity" />
+
+                    <Region VBox.vgrow="ALWAYS" minHeight="20" />
+
+                    <HBox spacing="15">
+                        <Button fx:id="createButton" mnemonicParsing="false" text="Create" prefWidth="100" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" prefWidth="100" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="15">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15" />
+                    </padding>
+
+                    <Label text="Project Team Members">
+                        <font>
+                            <Font name="System Bold" size="16.0" />
+                        </font>
+                    </Label>
+
+                    <TableView fx:id="personTableView" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colPersonName" prefWidth="100" text="Name" />
+                            <TableColumn fx:id="colPersonPerms" prefWidth="100" text="Permission" />
+                            <TableColumn fx:id="colPersonAdded" prefWidth="100" text="Added" />
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                    </TableView>
+
+                    <Label text="Selected Members:" />
+                    <ListView fx:id="projectMemberListView" prefHeight="100" />
+                </VBox>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
