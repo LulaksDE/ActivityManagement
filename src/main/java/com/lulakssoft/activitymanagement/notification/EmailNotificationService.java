@@ -5,13 +5,13 @@ public class EmailNotificationService implements EmailNotifier{
     public void sendNotification(String message, String receiver) {
         // Implementation for sending a notification
         System.out.println("Sending notification to " + receiver + ": " + message);
-        sendNotification(message, receiver);
+        // Implementation without recursion
     }
 
     @Override
     public void sendEmailNotification(String subject, String message, String receiverEmail) {
         // Implementation for sending an email notification
         System.out.println("Sending email to " + receiverEmail + ": " + subject + "\n" + message);
-        sendEmailNotification(subject, message, receiverEmail);
+        // Implementation without recursion
     }
 }
