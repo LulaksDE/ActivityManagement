@@ -44,8 +44,6 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private Project currentProject;
 
-    private final List<String> historyLogs = new ArrayList<>();
-
     @FXML
     public void initialize() {
         ProjectManager projectManager = ProjectManager.getInstance();
@@ -132,20 +130,22 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private void openEditor() {
         try {
+            // Keine Activity für Erstellung
+            ActivityManager.getInstance().clearCurrentEditingActivity();
+
             SceneManager sceneManager = SceneManager.getInstance();
             ActivityEditorController controller = sceneManager.openModalWindow(
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
-                    "Add New Activities",
-                    ActivityEditorController::initialize
+                    "Add New Activities"
             );
+            controller.initialize();
 
             List<Activity> newActivities = controller.getNewActivities();
             if (newActivities != null) {
                 for (Activity activity : newActivities) {
                     currentProject.addActivity(activity);
                     activityList.add(activity);
-                    // Notify the activity creation
                     notifyActivityCreated(activity);
                 }
                 activityListView.refresh();
@@ -158,24 +158,24 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private void openActivityEditor(Activity selectedActivity) {
         try {
-            // Save original values for comparison
             String originalTitle = selectedActivity.getTitle();
             String originalDescription = selectedActivity.getDescription();
+
+            ActivityManager.getInstance().setCurrentEditingActivity(selectedActivity);
 
             SceneManager sceneManager = SceneManager.getInstance();
             ActivityEditorController controller = sceneManager.openModalWindow(
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
-                    "Edit Activity",
-                    editorController -> editorController.initialize(selectedActivity)
+                    "Edit Activity"
             );
+            controller.initialize();
 
-            // Check if the activity was updated
+
             boolean wasUpdated = !originalTitle.equals(selectedActivity.getTitle()) ||
                     !originalDescription.equals(selectedActivity.getDescription());
 
             if (wasUpdated) {
-                // Notify the activity update
                 notifyActivityUpdated(selectedActivity);
             }
 
@@ -191,18 +191,17 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
             User currentUser = UserManager.INSTANCE.getCurrentUser();
             if (!PermissionChecker.checkPermission(currentUser.getRole(),
                     UserRole::canSeeHistory)) {
-                showBannerNotification("Sie haben keine Berechtigung, die Historie zu sehen.");
+                showBannerNotification("You don't have permissions to see the history.");
                 return;
             }
 
             SceneManager sceneManager = SceneManager.getInstance();
-            // initializing need more work, values are initialized too late outside openModalWindow
             HistoryViewController controller = sceneManager.openModalWindow(
                     historyButton.getScene().getWindow(),
                     SceneManager.HISTORY_VIEW,
-                    "History",
-                    historyController -> historyController.initialize(historyLogs)
-            ); // History should use managing class in the future
+                    "History View"
+            );
+            controller.initialize();
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error when opening history view: " + e.getMessage());
@@ -212,19 +211,19 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
     @Override
     public void notifyActivityCreated(Activity activity) {
         showPopupNotification(activity.getTitle(), activity.getDescription());
-        historyLogs.add("Created Activity: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Created Activity: " + activity.getTitle());
     }
 
     @Override
     public void notifyActivityUpdated(Activity activity) {
         showBannerNotification(activity.getTitle() + " updated");
-        historyLogs.add("Updated Activity: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Updated Activity: " + activity.getTitle());
     }
 
     @Override
     public void notifyActivityDeleted(Activity activity) {
         showPopupNotification(activity.getTitle(), activity.getDescription());
-        historyLogs.add("Deleted Activity: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Deleted Activity: " + activity.getTitle());
     }
 
     @Override
@@ -238,7 +237,6 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     @Override
     public void showBannerNotification(String message) {
-        // Show toast
         Window currentWindow = activityListView.getScene().getWindow();
         Toast toast = Toast.makeText(currentWindow, message, 3000);
         toast.show();
