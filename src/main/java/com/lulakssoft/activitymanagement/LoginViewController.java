@@ -1,7 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.user.Privilages;
-import com.lulakssoft.activitymanagement.user.role.RoleFactory;
+import com.lulakssoft.activitymanagement.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.user.User;
 import com.lulakssoft.activitymanagement.user.UserManager;
 import javafx.fxml.FXML;
@@ -48,12 +48,31 @@ public class LoginViewController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         UserManager userManager = UserManager.INSTANCE;
+        LoggerNotifier logger = LoggerFactory.getLogger();
+
+        logger.logInfo("Attempting to login user " + username + " with password " + password);
 
         Optional<User> userOptional = userManager.findUserByUsername(username);
-        if (userOptional.isPresent() && decodePassword(userOptional.get().getPassword()).equals(password)) {
-            userManager.setCurrentUser(userOptional.get());
-            createProjectView();
-            return;
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            String decodedPassword = decodePassword(user.getPassword());
+            logger.logInfo("Decoded password for user " + username + ": " + decodedPassword);
+
+            if (password.equals(decodedPassword)) {
+                logger.logInfo("Login successful for user: " + username);
+                userManager.setCurrentUser(user);
+                createProjectView();
+                return;
+            } else {
+                logger.logWarning("Login failed for user: " + username);
+                changeLabelInformation("Login failed", Color.RED);
+                usernameField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+                passwordField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+            }
+        } else {
+            logger.logWarning("User not found: " + username);
+            usernameField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
+            passwordField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
         }
         changeLabelInformation("Login failed", Color.RED);
     }

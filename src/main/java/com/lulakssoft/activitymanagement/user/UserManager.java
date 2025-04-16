@@ -1,42 +1,59 @@
 package com.lulakssoft.activitymanagement.user;
 
+import com.lulakssoft.activitymanagement.database.UserRepository;
+import com.lulakssoft.activitymanagement.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.user.role.RoleFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public enum UserManager {
     INSTANCE;
 
-    private final List<User> userList = new ArrayList<>();
+    private final UserRepository userRepository;
     private User currentUser;
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
 
     UserManager() {
-        userList.add(new User("admin01", "admin", RoleFactory.getRole(Privilages.ADMIN)));
-        userList.add(new User("employee01", "admin", RoleFactory.getRole(Privilages.WORKER)));
-        userList.add(new User("employee02", "admin", RoleFactory.getRole(Privilages.WORKER)));
-        userList.add(new User("support01", "admin", RoleFactory.getRole(Privilages.SUPPORTER)));
-        userList.add(new User("support02", "admin", RoleFactory.getRole(Privilages.SUPPORTER)));
-        userList.add(new User("technician01", "admin", RoleFactory.getRole(Privilages.TECHNICIAN)));
+        userRepository = new UserRepository();
+        try {
+            initializeDefaultUsers();
+            logger.logInfo("UserManager initialized successfully");
+        } catch (Exception e) {
+            logger.logError("Failed to initialize UserManager", e);
+        }
     }
 
+    private void initializeDefaultUsers() {
+        try {
+            List<User> existingUsers = userRepository.findAll();
+            if (existingUsers != null && existingUsers.isEmpty()) {
+                logger.logInfo("Creating default users");
+                userRepository.save(new User("admin01", "admin", RoleFactory.getRole(Privileges.ADMIN)));
+                userRepository.save(new User("employee01", "admin", RoleFactory.getRole(Privileges.WORKER)));
+                // Other users...
+            }
+        } catch (Exception e) {
+            logger.logError("Error initializing default users", e);
+        }
+    }
+
+
     public List<User> getAllUsers() {
-        return userList;
+        return userRepository.findAll();
     }
 
     public void addUser(User user) {
-        userList.add(user);
+        userRepository.save(user);
     }
 
     public void removeUser(User user) {
-        userList.remove(user);
+        userRepository.delete(user);
     }
 
     public Optional<User> findUserByUsername(String username) {
-        return userList.stream()
-                .filter(user -> user.getUsername().equals(username))
-                .findFirst();
+        return userRepository.findByUsername(username);
     }
 
     public User getCurrentUser() {
@@ -45,6 +62,10 @@ public enum UserManager {
 
     public void setCurrentUser(User user) {
         this.currentUser = user;
+    }
+
+    public Optional<User> findUserById(String id) {
+        return userRepository.findById(id);
     }
 
     public void logout() {

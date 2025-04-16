@@ -2,15 +2,15 @@ package com.lulakssoft.activitymanagement.user.role;
 
 import com.lulakssoft.activitymanagement.Activity;
 import com.lulakssoft.activitymanagement.Project;
-import com.lulakssoft.activitymanagement.user.Privilages;
+import com.lulakssoft.activitymanagement.user.Privileges;
 import com.lulakssoft.activitymanagement.user.User;
 import com.lulakssoft.activitymanagement.user.UserRole;
 
 public class WorkerRole implements UserRole {
 
     @Override
-    public Privilages getPrivilege() {
-        return Privilages.WORKER;
+    public Privileges getPrivilege() {
+        return Privileges.WORKER;
     }
 
     @Override

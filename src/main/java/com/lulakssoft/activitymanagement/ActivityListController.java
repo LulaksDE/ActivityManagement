@@ -1,8 +1,6 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.notification.ActivityNotifier;
-import com.lulakssoft.activitymanagement.notification.Toast;
-import com.lulakssoft.activitymanagement.notification.UINotifier;
+import com.lulakssoft.activitymanagement.notification.*;
 import com.lulakssoft.activitymanagement.user.role.PermissionChecker;
 import com.lulakssoft.activitymanagement.user.User;
 import com.lulakssoft.activitymanagement.user.UserManager;
@@ -43,6 +41,9 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
     private ObservableList<Activity> activityList;
 
     private Project currentProject;
+
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
+
 
     @FXML
     public void initialize() {
@@ -110,11 +111,13 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
     private void handleDeleteActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
-            // Notify the activity deletion
             notifyActivityDeleted(selectedActivity);
 
             currentProject.removeActivity(selectedActivity);
             activityList.remove(selectedActivity);
+
+            ActivityManager.getInstance().deleteActivity(selectedActivity);
+
             activityListView.refresh();
         }
     }
@@ -130,7 +133,6 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private void openEditor() {
         try {
-            // Keine Activity für Erstellung
             ActivityManager.getInstance().clearCurrentEditingActivity();
 
             SceneManager sceneManager = SceneManager.getInstance();
@@ -211,18 +213,21 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
     @Override
     public void notifyActivityCreated(Activity activity) {
         showPopupNotification(activity.getTitle(), activity.getDescription());
+        logger.logInfo("Activity created: " + activity.getTitle());
         HistoryManager.getInstance().addLogEntry("Created Activity: " + activity.getTitle());
     }
 
     @Override
     public void notifyActivityUpdated(Activity activity) {
         showBannerNotification(activity.getTitle() + " updated");
+        logger.logInfo("Activity updated: " + activity.getTitle());
         HistoryManager.getInstance().addLogEntry("Updated Activity: " + activity.getTitle());
     }
 
     @Override
     public void notifyActivityDeleted(Activity activity) {
         showPopupNotification(activity.getTitle(), activity.getDescription());
+        logger.logInfo("Activity deleted: " + activity.getTitle());
         HistoryManager.getInstance().addLogEntry("Deleted Activity: " + activity.getTitle());
     }
 

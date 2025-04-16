@@ -1,16 +1,27 @@
 package com.lulakssoft.activitymanagement.user;
 
 import java.util.Base64;
+import java.util.UUID;
 
 public class User {
+    private String id;
     private String username;
     private String password;
     private UserRole role;
 
     public User(String username, String password, UserRole role) {
+        this.id = UUID.randomUUID().toString();
         this.username = username;
         this.password = encodePassword(password);
         this.role = role;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -37,13 +48,14 @@ public class User {
         this.role = role;
     }
 
-    public Privilages getPrivilage() {
+    public Privileges getPrivilage() {
         return role.getPrivilege();
     }
 
     @Override
     public String toString() {
         return "User{" +
+                "id='" + id + '\'' +
                 "username='" + username + '\'' +
                 ", role=" + role.getRoleName() +
                 '}';

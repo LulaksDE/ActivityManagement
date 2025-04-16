@@ -1,6 +1,6 @@
 package com.lulakssoft.activitymanagement.user;
 
-public enum Privilages {
+public enum Privileges {
     TECHNICIAN,
     SUPPORTER,
     ADMIN,

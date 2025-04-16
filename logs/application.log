@@ -1,0 +1,239 @@
+18:38:21.292 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+18:38:27.114 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+18:38:27.377 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+18:38:27.379 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+18:38:27.385 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+18:38:27.391 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+18:38:27.426 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+18:38:27.426 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+18:38:27.431 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Decoded password for user admin01: YWRtaW4=
+18:38:27.431 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Login failed for user: admin01
+18:38:30.383 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+18:38:30.383 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+18:38:30.383 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+18:38:30.393 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+18:38:30.394 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+18:38:30.408 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+18:40:26.476 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+18:40:37.845 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+18:40:38.979 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error when initializing database
+com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Datenbank wird wahrscheinlich bereits benutzt: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Mögliche Lösungen: alle Verbindungen schliessen; Server Modus verwenden
+Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:584)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:571)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
+	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
+	at com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:21)
+	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.keyReleased(ButtonBehavior.java:163)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene.processKeyEvent(Scene.java:2194)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2715)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:218)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:150)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$1(GlassViewEventHandler.java:250)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:249)
+	at javafx.graphics/com.sun.glass.ui.View.handleKeyEvent(View.java:542)
+	at javafx.graphics/com.sun.glass.ui.View.notifyKey(View.java:966)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Datenbank wird wahrscheinlich bereits benutzt: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Mögliche Lösungen: alle Verbindungen schliessen; Server Modus verwenden
+Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	... 54 common frames omitted
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 66 common frames omitted
+18:40:38.988 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - DataSource was close. New initialization.
+18:40:38.988 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+18:40:40.003 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error initializing default users
+com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Datenbank wird wahrscheinlich bereits benutzt: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Mögliche Lösungen: alle Verbindungen schliessen; Server Modus verwenden
+Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:584)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:571)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
+	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
+	at com.lulakssoft.activitymanagement.database.DatabaseConnection.getConnection(DatabaseConnection.java:48)
+	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.keyReleased(ButtonBehavior.java:163)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene.processKeyEvent(Scene.java:2194)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2715)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:218)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:150)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$1(GlassViewEventHandler.java:250)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:249)
+	at javafx.graphics/com.sun.glass.ui.View.handleKeyEvent(View.java:542)
+	at javafx.graphics/com.sun.glass.ui.View.notifyKey(View.java:966)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Datenbank wird wahrscheinlich bereits benutzt: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Mögliche Lösungen: alle Verbindungen schliessen; Server Modus verwenden
+Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	... 54 common frames omitted
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 66 common frames omitted
+18:40:40.004 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+18:40:40.004 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+18:40:40.004 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - DataSource was close. New initialization.
+18:40:40.005 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+18:40:46.351 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+18:40:46.363 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+18:40:57.095 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+18:41:02.594 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+18:41:02.836 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+18:41:02.837 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+18:41:02.866 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+18:41:02.871 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+18:41:02.877 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Creating default users
+18:41:02.903 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - User 94f63a77-c585-4c48-9c4f-71439d2f3f5b saved
+18:41:02.904 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - User efee1490-e5f1-438c-962c-eef3ade596e5 saved
+18:41:02.904 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+18:41:02.904 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+18:41:02.905 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Decoded password for user admin01: YWRtaW4=
+18:41:02.905 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Login failed for user: admin01
+18:41:13.017 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+18:41:13.017 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+18:41:13.017 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+18:41:13.025 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+18:41:13.025 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+18:41:13.046 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+19:14:29.218 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+19:14:35.043 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+19:14:35.309 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+19:14:35.310 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+19:14:35.316 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+19:14:35.322 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+19:14:35.356 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+19:14:35.356 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+19:14:35.361 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Decoded password for user admin01: YWRtaW4=
+19:14:35.361 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Login failed for user: admin01
+19:14:46.470 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password YWRtaW4=
+19:14:46.471 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Decoded password for user admin01: YWRtaW4=
+19:14:46.471 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+19:14:48.098 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+19:14:48.098 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+19:14:48.098 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+19:14:48.105 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+19:14:48.105 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed

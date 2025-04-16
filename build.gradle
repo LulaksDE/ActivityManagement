@@ -41,6 +41,14 @@ dependencies {
     }
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
 
+    implementation 'com.h2database:h2:2.2.224'
+    implementation 'org.hibernate:hibernate-core:6.4.4.Final'
+    implementation 'com.zaxxer:HikariCP:5.1.0'
+
+    implementation 'org.slf4j:slf4j-api:2.0.16'
+    implementation 'ch.qos.logback:logback-classic:1.5.11'
+
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

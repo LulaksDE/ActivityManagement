@@ -12,7 +12,7 @@ public interface UserRole {
      * Returns the privilege level of the role.
      * @return The privilege level as Privilages enum.
      */
-    Privilages getPrivilege();
+    Privileges getPrivilege();
 
     /**
      * Checks if the role is authorized to create a project.

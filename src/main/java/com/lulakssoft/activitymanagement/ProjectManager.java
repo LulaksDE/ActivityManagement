@@ -1,5 +1,6 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.database.ProjectRepository;
 import com.lulakssoft.activitymanagement.user.User;
 import com.lulakssoft.activitymanagement.user.UserManager;
 
@@ -9,16 +10,26 @@ import java.util.List;
 // Managing class for different projects
 public class ProjectManager {
     private static ProjectManager instance;
-    private final List<Project> projects = new ArrayList<>();
+    private final ProjectRepository projectRepository;
     private Project currentProject;
 
     private ProjectManager() {
-        // create some default projects
-        UserManager userManager = UserManager.INSTANCE;
-        projects.add(new Project("Project A", userManager.getCurrentUser(), userManager.getAllUsers()));
-        projects.add(new Project("Project B", userManager.getCurrentUser(), userManager.getAllUsers()));
-        projects.add(new Project("Project C", userManager.getCurrentUser(), userManager.getAllUsers()));
-        projects.add(new Project("Project D", userManager.getCurrentUser(), userManager.getAllUsers()));
+        projectRepository = new ProjectRepository();
+        initializeDefaultProjects();
+    }
+
+    private void initializeDefaultProjects() {
+        // Nur wenn die Tabelle leer ist
+        if (projectRepository.findAll().isEmpty()) {
+            UserManager userManager = UserManager.INSTANCE;
+            User currentUser = userManager.getCurrentUser();
+            if (currentUser != null) {
+                List<User> allUsers = userManager.getAllUsers();
+                projectRepository.save(new Project("Project A", currentUser, allUsers));
+                projectRepository.save(new Project("Project B", currentUser, allUsers));
+                projectRepository.save(new Project("Project C", currentUser, allUsers));
+            }
+        }
     }
 
     public static ProjectManager getInstance() {
@@ -29,21 +40,15 @@ public class ProjectManager {
     }
 
     public List<Project> getProjects() {
-        return projects;
+        return projectRepository.findAll();
     }
 
     public void addProject(Project project) {
-        projects.add(project);
+        projectRepository.save(project);
     }
 
     public List<Project> getProjectsForUser(User user) {
-        List<Project> userProjects = new ArrayList<>();
-        for (Project project : projects) {
-            if (project.getMembers().contains(user)) {
-                userProjects.add(project);
-            }
-        }
-        return userProjects;
+        return projectRepository.findProjectsByUser(user.getId());
     }
 
     public Project getCurrentProject() {
@@ -53,5 +58,4 @@ public class ProjectManager {
     public void setCurrentProject(Project currentProject) {
         this.currentProject = currentProject;
     }
-
 }

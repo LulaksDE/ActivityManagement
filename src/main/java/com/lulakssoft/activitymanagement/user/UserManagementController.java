@@ -3,7 +3,6 @@ package com.lulakssoft.activitymanagement.user;
 import com.lulakssoft.activitymanagement.user.role.RoleFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,7 +29,7 @@ public class UserManagementController {
     private PasswordField passwordField;
 
     @FXML
-    private ComboBox<Privilages> roleComboBox;
+    private ComboBox<Privileges> roleComboBox;
 
     @FXML
     private Button createUserButton;
@@ -68,7 +67,7 @@ public class UserManagementController {
             }
         });
 
-        roleComboBox.setItems(FXCollections.observableArrayList(Privilages.values()));
+        roleComboBox.setItems(FXCollections.observableArrayList(Privileges.values()));
 
         loadUsers();
 
@@ -83,7 +82,7 @@ public class UserManagementController {
     private void createUser() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        Privilages selectedRole = roleComboBox.getValue();
+        Privileges selectedRole = roleComboBox.getValue();
 
         if (username.isEmpty() || password.isEmpty() || selectedRole == null) {
             showAlert("Error", "Please enter all credentials.");
