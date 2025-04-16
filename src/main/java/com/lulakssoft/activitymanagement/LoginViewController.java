@@ -55,10 +55,9 @@ public class LoginViewController {
         Optional<User> userOptional = userManager.findUserByUsername(username);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            String decodedPassword = decodePassword(user.getPassword());
-            logger.logInfo("Decoded password for user " + username + ": " + decodedPassword);
 
-            if (password.equals(decodedPassword)) {
+            // Password is plain text for simplicity, in real applications use hashed passwords
+            if (password.equals(user.getPassword())) {
                 logger.logInfo("Login successful for user: " + username);
                 userManager.setCurrentUser(user);
                 createProjectView();
@@ -108,9 +107,5 @@ public class LoginViewController {
     private void changeLabelInformation(String text, Color color) {
         loginInformationLabel.setText(text);
         loginInformationLabel.setTextFill(color);
-    }
-
-    private String decodePassword(String password) {
-        return new String(Base64.getDecoder().decode(password));
     }
 }

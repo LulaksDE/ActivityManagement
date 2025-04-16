@@ -12,7 +12,7 @@ public class User {
     public User(String username, String password, UserRole role) {
         this.id = UUID.randomUUID().toString();
         this.username = username;
-        this.password = encodePassword(password);
+        this.password = password;
         this.role = role;
     }
 
@@ -37,7 +37,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = encodePassword(password);
+        this.password = password;
     }
 
     public UserRole getRole() {
@@ -59,10 +59,5 @@ public class User {
                 "username='" + username + '\'' +
                 ", role=" + role.getRoleName() +
                 '}';
-    }
-
-    private String encodePassword(String password) {
-        Base64.Encoder encoder = Base64.getEncoder();
-        return encoder.encodeToString(password.getBytes());
     }
 }

@@ -32,7 +32,6 @@ public enum UserManager {
                 logger.logInfo("Creating default users");
                 userRepository.save(new User("admin01", "admin", RoleFactory.getRole(Privileges.ADMIN)));
                 userRepository.save(new User("employee01", "admin", RoleFactory.getRole(Privileges.WORKER)));
-                // Other users...
             }
         } catch (Exception e) {
             logger.logError("Error initializing default users", e);
