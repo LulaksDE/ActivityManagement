@@ -2,11 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="421.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.HistoryViewController">
+<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.HistoryViewController">
    <children>
-      <ListView fx:id="historyListView" layoutX="39.0" layoutY="56.0" prefHeight="307.0" prefWidth="200.0" />
-      <Label fx:id="historyLabel" layoutX="39.0" layoutY="23.0" text="Historie" textAlignment="CENTER" />
-      <Button fx:id="clearButton" layoutX="187.0" layoutY="381.0" mnemonicParsing="false" text="Clear" />
+      <VBox spacing="10" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" AnchorPane.bottomAnchor="15.0">
+         <Label fx:id="historyLabel" text="History" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="16.0" />
+            </font>
+         </Label>
+         <ListView fx:id="historyListView" VBox.vgrow="ALWAYS" />
+         <HBox alignment="BOTTOM_RIGHT">
+            <Button fx:id="clearButton" mnemonicParsing="false" text="Clear History" styleClass="action-button" />
+         </HBox>
+      </VBox>
    </children>
 </AnchorPane>

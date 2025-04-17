@@ -1,19 +1,17 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
-import com.lulakssoft.activitymanagement.User.UserManager;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
+import com.lulakssoft.activitymanagement.user.UserRole;
+import com.lulakssoft.activitymanagement.user.role.PermissionChecker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -34,6 +32,8 @@ public class ProjectViewController {
     private Button deleteButton;
     @FXML
     private Button loadButton;
+    @FXML
+    private Button manageUsersButton;
 
     private List<Project> projectList;
 
@@ -100,6 +100,13 @@ public class ProjectViewController {
         deleteButton.setOnAction(e -> handleDelete());
         loadButton.setOnAction(e -> handleLoad());
         logoutButton.setOnAction(e -> handleLogout());
+
+        // Manage Users Button hinzufügen und konfigurieren
+        manageUsersButton.setOnAction(e -> handleManageUsers());
+
+        // Nur für Admins sichtbar machen
+        PermissionChecker.configureUIComponent(manageUsersButton, loggedInUser,
+                UserRole::canManageUsers);
     }
 
     private void handleCreate() {
@@ -166,5 +173,17 @@ public class ProjectViewController {
         loggedIn = false;
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
+    }
+
+    private void handleManageUsers() {
+        try {
+            SceneManager sceneManager = SceneManager.getInstance();
+            sceneManager.openModalWindow(
+                    manageUsersButton.getScene().getWindow(),
+                    SceneManager.USER_MANAGEMENT,
+                    "Benutzerverwaltung");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

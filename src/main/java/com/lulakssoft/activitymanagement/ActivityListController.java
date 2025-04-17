@@ -1,8 +1,10 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.Notification.ActivityNotifier;
-import com.lulakssoft.activitymanagement.Notification.Toast;
-import com.lulakssoft.activitymanagement.Notification.UINotifier;
+import com.lulakssoft.activitymanagement.notification.*;
+import com.lulakssoft.activitymanagement.user.role.PermissionChecker;
+import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.user.UserManager;
+import com.lulakssoft.activitymanagement.user.UserRole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -40,31 +42,34 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private Project currentProject;
 
-    // Liste für Historie-Logs
-    private List<String> historyLogs = new ArrayList<>();
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
+
 
     @FXML
     public void initialize() {
         ProjectManager projectManager = ProjectManager.getInstance();
+        UserManager userManager = UserManager.INSTANCE;
         currentProject = projectManager.getCurrentProject();
         activityList = FXCollections.observableArrayList(currentProject.getActivityList());
         activityListView.setItems(activityList);
+
+        User currentUser = userManager.getCurrentUser();
+        PermissionChecker.configureUIComponent(historyButton, currentUser,
+                UserRole::canSeeHistory);
 
         // Filter-Listener für das Suchfeld
         FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
         activityListView.setItems(filteredActivities);
 
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredActivities.setPredicate(activity -> {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    return true;
-                }
-                return activity.getTitle().toLowerCase().contains(newValue.toLowerCase());
-            });
-        });
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> filteredActivities.setPredicate(activity -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                return true;
+            }
+            return activity.getTitle().toLowerCase().contains(newValue.toLowerCase());
+        }));
 
-        // Setze den benutzerdefinierten Zell-Renderer
-        activityListView.setCellFactory(listView -> new ListCell<Activity>() {
+        // Custom cell factory for the ListView to show the activity title and icon
+        activityListView.setCellFactory(listView -> new ListCell<>() {
             private final Label iconLabel = new Label("🔍");
 
             @Override
@@ -91,7 +96,7 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
         addButton.setOnAction(e -> handleAddActivity());
         deleteButton.setOnAction(e -> handleDeleteActivity());
-        historyButton.setOnAction(e -> openHistoryView());  // Historie-Button Aktion
+        historyButton.setOnAction(e -> openHistoryView());
 
         activityListView.setOnMouseClicked(this::handleDoubleClick);
     }
@@ -104,11 +109,13 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
     private void handleDeleteActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
-            // Notify the activity deletion
             notifyActivityDeleted(selectedActivity);
 
             currentProject.removeActivity(selectedActivity);
             activityList.remove(selectedActivity);
+
+            ActivityManager.getInstance().deleteActivity(selectedActivity);
+
             activityListView.refresh();
         }
     }
@@ -124,92 +131,102 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     private void openEditor() {
         try {
+            ActivityManager.getInstance().clearCurrentEditingActivity();
+
             SceneManager sceneManager = SceneManager.getInstance();
             ActivityEditorController controller = sceneManager.openModalWindow(
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
-                    "Add New Activities",
-                    editorController -> editorController.initialize(currentProject.getActivityList())
+                    "Add New Activities"
             );
+            controller.initialize();
 
-            List<Activity> newActivities = controller.getNewActivities();
-            if (newActivities != null) {
-                for (Activity activity : newActivities) {
-                    currentProject.addActivity(activity);
-                    activityList.add(activity);
-                    // Notify the activity creation
-                    notifyActivityCreated(activity);
-                }
-                activityListView.refresh();
-            }
+            currentProject.refreshActivities();
+            updateActivityList();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error when opening activity editor: " + e.getMessage());
+            logger.logError("Error when opening activity editor: " + e.getMessage(), e);
         }
+    }
+
+    private void updateActivityList() {
+        List<Activity> activities = currentProject.getActivityList();
+        activityList.clear();
+        activityList.addAll(activities);
     }
 
     private void openActivityEditor(Activity selectedActivity) {
         try {
-            // Save original values for comparison
             String originalTitle = selectedActivity.getTitle();
             String originalDescription = selectedActivity.getDescription();
+
+            ActivityManager.getInstance().setCurrentEditingActivity(selectedActivity);
 
             SceneManager sceneManager = SceneManager.getInstance();
             ActivityEditorController controller = sceneManager.openModalWindow(
                     addButton.getScene().getWindow(),
                     SceneManager.ACTIVITY_EDITOR,
-                    "Edit Activity",
-                    editorController -> editorController.initialize(selectedActivity)
+                    "Edit Activity"
             );
+            controller.initialize();
 
-            // Check if the activity was updated
+
             boolean wasUpdated = !originalTitle.equals(selectedActivity.getTitle()) ||
                     !originalDescription.equals(selectedActivity.getDescription());
 
             if (wasUpdated) {
-                // Notify the activity update
                 notifyActivityUpdated(selectedActivity);
             }
 
             activityListView.refresh();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error when opening activity editor: " + e.getMessage());
+            logger.logError("Error when opening activity editor: " + e.getMessage(), e);
+        } finally {
+            ActivityManager.getInstance().clearCurrentEditingActivity();
         }
     }
 
     private void openHistoryView() {
         try {
+            User currentUser = UserManager.INSTANCE.getCurrentUser();
+            if (!PermissionChecker.checkPermission(currentUser.getRole(),
+                    UserRole::canSeeHistory)) {
+                showBannerNotification("You don't have permissions to see the history.");
+                return;
+            }
+
             SceneManager sceneManager = SceneManager.getInstance();
-            // initializing need more work, values are initialized too late outside openModalWindow
             HistoryViewController controller = sceneManager.openModalWindow(
                     historyButton.getScene().getWindow(),
                     SceneManager.HISTORY_VIEW,
-                    "Historie",
-                    historyController -> historyController.initialize(historyLogs)
-            ); // History should use managing class in the future
+                    "History View"
+            );
+            controller.initialize();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error when opening history view: " + e.getMessage());
+            logger.logError("Error when opening history view: " + e.getMessage(), e);
+        } finally {
+            activityListView.refresh();
         }
     }
 
     @Override
     public void notifyActivityCreated(Activity activity) {
         showPopupNotification(activity.getTitle(), activity.getDescription());
-        historyLogs.add("Created Activity: " + activity.getTitle());
+        logger.logInfo("Activity created: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Created Activity: " + activity.getTitle());
     }
 
     @Override
     public void notifyActivityUpdated(Activity activity) {
         showBannerNotification(activity.getTitle() + " updated");
-        historyLogs.add("Updated Activity: " + activity.getTitle());
+        logger.logInfo("Activity updated: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Updated Activity: " + activity.getTitle());
     }
 
     @Override
     public void notifyActivityDeleted(Activity activity) {
         showPopupNotification(activity.getTitle(), activity.getDescription());
-        historyLogs.add("Deleted Activity: " + activity.getTitle());
+        logger.logInfo("Activity deleted: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Deleted Activity: " + activity.getTitle());
     }
 
     @Override
@@ -223,7 +240,6 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
     @Override
     public void showBannerNotification(String message) {
-        // Show toast
         Window currentWindow = activityListView.getScene().getWindow();
         Toast toast = Toast.makeText(currentWindow, message, 3000);
         toast.show();

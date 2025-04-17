@@ -18,8 +18,8 @@ public class HistoryViewController {
     private List<String> historyLogs;
 
     @FXML
-    public void initialize(List<String> historyLogs) {
-        this.historyLogs = historyLogs;
+    public void initialize() {
+        this.historyLogs = HistoryManager.getInstance().getHistoryLogs();
 
         historyListView.setItems(FXCollections.observableArrayList(historyLogs));
         clearButton.setOnAction(e -> clearHistory());

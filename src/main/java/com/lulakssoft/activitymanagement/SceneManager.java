@@ -1,6 +1,5 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.User.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.stage.Window;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class SceneManager {
@@ -25,6 +23,7 @@ public class SceneManager {
     public static final String ACTIVITY_LIST = "ActivityList.fxml";
     public static final String ACTIVITY_EDITOR = "ActivityEditor.fxml";
     public static final String HISTORY_VIEW = "HistoryView.fxml";
+    public static final String USER_MANAGEMENT = "UserManagement.fxml";
 
     private SceneManager() {}
 
@@ -38,7 +37,7 @@ public class SceneManager {
     public <T> T loadFXML(String fxmlPath) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
+            loader.load();
             loaderCache.put(fxmlPath, loader);
             return loader.getController();
         } catch (IOException e) {
