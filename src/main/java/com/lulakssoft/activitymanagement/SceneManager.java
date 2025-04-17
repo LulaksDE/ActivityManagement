@@ -1,5 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,12 +18,14 @@ public class SceneManager {
     private static SceneManager instance;
     private final Map<String, FXMLLoader> loaderCache = new HashMap<>();
 
-    // FXML-Dateinamen als Konstanten definieren
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
+
     public static final String LOGIN_VIEW = "LoginScreen.fxml";
     public static final String PROJECT_VIEW = "ProjectView.fxml";
     public static final String PROJECT_CREATION = "ProjectCreationScreen.fxml";
     public static final String ACTIVITY_LIST = "ActivityList.fxml";
     public static final String ACTIVITY_EDITOR = "ActivityEditor.fxml";
+    public static final String ACTIVITY_CREATOR = "ActivityCreator.fxml";
     public static final String HISTORY_VIEW = "HistoryView.fxml";
     public static final String USER_MANAGEMENT = "UserManagement.fxml";
 
@@ -41,7 +45,7 @@ public class SceneManager {
             loaderCache.put(fxmlPath, loader);
             return loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.logError("Error loading FXML file: " + fxmlPath, e);
             throw new IOException("Error loading FXML file: " + fxmlPath, e);
         }
 
@@ -76,43 +80,5 @@ public class SceneManager {
         stage.initOwner(owner);
         stage.showAndWait();
         return controller;
-    }
-
-    public <T> T openModalWindow(Window owner, String fxmlPath, String title,
-                                 Consumer<T> initializer) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-        Parent root = loader.load();
-        loaderCache.put(fxmlPath, loader);
-
-        T controller = loader.getController();
-        initializer.accept(controller);
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(owner);
-        stage.showAndWait();
-        return controller;
-    }
-
-
-    public <T> T openApplicationModalWindow(String fxmlPath, String title) throws IOException {
-        T controller = loadFXML(fxmlPath);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(getRoot(fxmlPath)));
-        stage.setTitle(title);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
-        return controller;
-    }
-
-    public void closeWindow(Scene scene) {
-        Stage stage = (Stage) scene.getWindow();
-        stage.close();
-    }
-    @FunctionalInterface
-    public interface TriConsumer<T, U, V> {
-        void accept(T t, U u, V v);
     }
 }

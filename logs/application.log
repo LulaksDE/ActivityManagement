@@ -1323,3 +1323,39 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Lukas/I
 10:15:24.676 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 10:15:24.893 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 10:15:24.893 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+14:04:00.900 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+14:04:10.972 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:04:11.276 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+14:04:11.278 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+14:04:11.284 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+14:04:11.291 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+14:04:11.325 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+14:04:11.326 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+14:04:11.330 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+14:04:47.247 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+14:04:47.247 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+14:04:47.247 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+14:04:47.257 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+14:04:47.257 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+14:32:04.562 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+14:32:09.756 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:32:10.070 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+14:32:10.072 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+14:32:10.078 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+14:32:10.084 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+14:32:10.126 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+14:32:10.126 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+14:32:10.130 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+14:33:57.712 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user employee01 with password admin
+14:33:57.712 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: employee01
+14:34:33.254 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin02 with password admin
+14:34:33.254 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin02
+14:35:17.715 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+14:35:17.715 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+14:35:42.874 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user technician01 with password admin
+14:35:42.874 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: technician01
+14:36:07.042 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+14:36:07.042 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+14:36:07.043 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+14:36:07.249 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+14:36:07.249 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
