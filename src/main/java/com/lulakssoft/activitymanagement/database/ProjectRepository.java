@@ -2,6 +2,7 @@ package com.lulakssoft.activitymanagement.database;
 
 import com.lulakssoft.activitymanagement.Activity;
 import com.lulakssoft.activitymanagement.Project;
+import com.lulakssoft.activitymanagement.ServiceLocator;
 import com.lulakssoft.activitymanagement.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.user.User;
@@ -10,26 +11,9 @@ import com.lulakssoft.activitymanagement.user.UserManager;
 import java.sql.*;
 import java.util.*;
 
-public class ProjectRepository implements Repository<Project, String> {
+public class ProjectRepository implements IProjectRepository {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
-
-    @Override
-    public Optional<Project> findById(String id) {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM projects WHERE id = ?")) {
-
-            stmt.setString(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return Optional.of(mapResultSetToProject(rs));
-            }
-        } catch (SQLException e) {
-            logger.logError("Error finding project by ID: " + id, e);
-        }
-        return Optional.empty();
-    }
 
     @Override
     public List<Project> findAll() {
@@ -69,7 +53,6 @@ public class ProjectRepository implements Repository<Project, String> {
 
             while (rs.next()) {
                 String projectId = rs.getString("id");
-                // Überprüfe, ob dieses Projekt bereits hinzugefügt wurde
                 if (!addedProjectIds.contains(projectId)) {
                     addedProjectIds.add(projectId);
                     projects.add(mapResultSetToProject(rs));
@@ -181,7 +164,6 @@ public class ProjectRepository implements Repository<Project, String> {
         }
     }
 
-    @Override
     public boolean existsById(String id) {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement("SELECT 1 FROM projects WHERE id = ?")) {
@@ -205,7 +187,7 @@ public class ProjectRepository implements Repository<Project, String> {
 
         List<User> members = getProjectMembers(id);
 
-        Project project = new Project(name, creator, members);
+        Project project = new Project(name, creator, members, ServiceLocator.getInstance().getService(IActivityRepository.class));
         project.setId(id);
 
         ActivityRepository activityRepository = new ActivityRepository();

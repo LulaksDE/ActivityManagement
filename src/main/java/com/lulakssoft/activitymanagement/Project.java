@@ -1,6 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
 import com.lulakssoft.activitymanagement.database.ActivityRepository;
+import com.lulakssoft.activitymanagement.database.IActivityRepository;
 import com.lulakssoft.activitymanagement.user.User;
 
 import java.util.ArrayList;
@@ -12,30 +13,30 @@ public class Project {
     private String name;
     private final List<Activity> activityList;
     private User creator;
-    private List<User> userList = new ArrayList<>();
+    private List<User> userList;
+    private final IActivityRepository activityRepository;
 
-    public Project(String name, User creator, List<User> userList) {
+    public Project(String name, User creator, List<User> userList, IActivityRepository activityRepository) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.activityList = new ArrayList<>();
         this.creator = creator;
-        this.userList = userList;
+        this.userList = userList != null ? userList : new ArrayList<>();
+        this.activityRepository = activityRepository;
     }
 
     public void addActivity(Activity activity) {
-        ActivityRepository repository = new ActivityRepository();
-        activity = repository.save(activity);
+        activity = activityRepository.save(activity);
         activityList.add(activity);
     }
 
     public void removeActivity(Activity activity) {
-        ActivityRepository repository = new ActivityRepository();
-        repository.delete(activity);
+        activityRepository.delete(activity);
         activityList.remove(activity);
     }
+
     public void refreshActivities() {
-        ActivityRepository repository = new ActivityRepository();
-        List<Activity> activitiesFromDb = repository.findByProjectId(this.id);
+        List<Activity> activitiesFromDb = activityRepository.findByProjectId(this.id);
         this.activityList.clear();
         this.activityList.addAll(activitiesFromDb);
     }

@@ -36,10 +36,11 @@ public class ActivityListController {
     private ObservableList<Activity> observableActivityList;
     private FilteredList<Activity> filteredActivityList;
     private final LoggerNotifier logger = LoggerFactory.getLogger();
+    private ProjectManager projectManager;
 
     @FXML
     public void initialize() {
-        ProjectManager projectManager = ProjectManager.getInstance();
+        this.projectManager = ProjectManager.getInstance();
         Project currentProject = projectManager.getCurrentProject();
 
         if (currentProject != null) {
@@ -99,6 +100,12 @@ public class ActivityListController {
         ActivityOperation createOperation = ActivityOperationFactory.createNewOperation(
                 addButton.getScene().getWindow());
         createOperation.execute();
+        if (createOperation.wasSuccessful()) {
+            logger.logInfo("Activity created successfully.");
+            HistoryManager.getInstance().addLogEntry("Created Activity");
+        } else {
+            logger.logWarning("Failed to create activity.");
+        }
         refreshActivityList();
     }
 
@@ -112,7 +119,9 @@ public class ActivityListController {
 
             confirmation.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    ProjectManager.getInstance().getCurrentProject().removeActivity(selectedActivity);
+                    projectManager.getCurrentProject().removeActivity(selectedActivity);
+                    logger.logInfo("Deleted activity: " + selectedActivity.getTitle());
+                    HistoryManager.getInstance().addLogEntry("Deleted Activity: " + selectedActivity.getTitle());
                     refreshActivityList();
                 }
             });
@@ -132,7 +141,7 @@ public class ActivityListController {
     }
 
     private void refreshActivityList() {
-        Project currentProject = ProjectManager.getInstance().getCurrentProject();
+        Project currentProject = projectManager.getCurrentProject();
         if (currentProject != null) {
             currentProject.refreshActivities();
             observableActivityList.setAll(currentProject.getActivityList());

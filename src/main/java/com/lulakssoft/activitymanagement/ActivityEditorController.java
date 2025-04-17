@@ -85,6 +85,7 @@ public class ActivityEditorController implements UINotifier {
 
             showBannerNotification("Activity updated: " + editingActivity.getTitle());
             HistoryManager.getInstance().addLogEntry("Updated Activity: " + editingActivity.getTitle());
+            logger.logInfo("Activity updated: " + editingActivity.getTitle());
 
             closeWindow();
         }
@@ -96,6 +97,7 @@ public class ActivityEditorController implements UINotifier {
     }
 
     private void closeWindow() {
+        logger.logInfo("Closing Activity Editor");
         Stage stage = (Stage) updateButton.getScene().getWindow();
         stage.close();
     }

@@ -48,8 +48,7 @@ public class UserManagementController {
                 new SimpleStringProperty(cellData.getValue().getRole().getRoleName()));
 
         actionsColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("Delete");
-            {
+            private final Button deleteButton = new Button("Delete"); {
                 deleteButton.setOnAction(event -> {
                     User user = getTableView().getItems().get(getIndex());
                     deleteUser(user);
@@ -97,12 +96,10 @@ public class UserManagementController {
         User newUser = new User(username, password, RoleFactory.getRole(selectedRole));
         userManager.addUser(newUser);
 
-        // Felder zurücksetzen
         usernameField.clear();
         passwordField.clear();
         roleComboBox.getSelectionModel().clearSelection();
 
-        // Tabelle aktualisieren
         loadUsers();
     }
 

@@ -1,25 +1,24 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.database.ProjectRepository;
+import com.lulakssoft.activitymanagement.database.IProjectRepository;
 import com.lulakssoft.activitymanagement.user.User;
-import com.lulakssoft.activitymanagement.user.UserManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-// Managing class for different projects
 public class ProjectManager {
     private static ProjectManager instance;
-    private final ProjectRepository projectRepository;
+    private final IProjectRepository projectRepository;
     private Project currentProject;
 
-    private ProjectManager() {
-        projectRepository = new ProjectRepository();
+    private ProjectManager(IProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
     }
 
     public static ProjectManager getInstance() {
         if (instance == null) {
-            instance = new ProjectManager();
+            instance = new ProjectManager(
+                    ServiceLocator.getInstance().getService(IProjectRepository.class)
+            );
         }
         return instance;
     }
@@ -30,6 +29,10 @@ public class ProjectManager {
 
     public void addProject(Project project) {
         projectRepository.save(project);
+    }
+
+    public void removeProject(Project project) {
+        projectRepository.delete(project);
     }
 
     public List<Project> getProjectsForUser(User user) {

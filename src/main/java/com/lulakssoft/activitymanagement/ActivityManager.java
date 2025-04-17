@@ -1,18 +1,23 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.database.ActivityRepository;
+import com.lulakssoft.activitymanagement.database.IActivityRepository;
 
 public class ActivityManager {
-    private static final ActivityManager INSTANCE = new ActivityManager();
-    private final ActivityRepository activityRepository;
+    private static ActivityManager instance;
+    private final IActivityRepository activityRepository;
     private Activity currentEditingActivity;
 
-    private ActivityManager() {
-        activityRepository = new ActivityRepository();
+    private ActivityManager(IActivityRepository activityRepository) {
+        this.activityRepository = activityRepository;
     }
 
     public static ActivityManager getInstance() {
-        return INSTANCE;
+        if (instance == null) {
+            instance = new ActivityManager(
+                    ServiceLocator.getInstance().getService(IActivityRepository.class)
+            );
+        }
+        return instance;
     }
 
     public void setCurrentEditingActivity(Activity activity) {

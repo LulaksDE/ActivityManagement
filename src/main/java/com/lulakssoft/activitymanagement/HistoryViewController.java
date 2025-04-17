@@ -1,5 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +19,8 @@ public class HistoryViewController {
 
     private List<String> historyLogs;
 
+    private LoggerNotifier logger = LoggerFactory.getLogger();
+
     @FXML
     public void initialize() {
         this.historyLogs = HistoryManager.getInstance().getHistoryLogs();
@@ -28,10 +32,11 @@ public class HistoryViewController {
     private void clearHistory() {
         historyLogs.clear();
         historyListView.getItems().clear();
+        logger.logInfo("History cleared");
     }
 
     public List<String> getHistoryData() {
-        System.out.println("History-Logs: " + historyLogs);
+        logger.logInfo("getHistoryData");
         return historyLogs;
     }
 }

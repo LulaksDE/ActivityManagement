@@ -32,15 +32,11 @@ public class LoginViewController {
     @FXML
     private Button loginButton;
 
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-
-
-    private Border defaultBorder;
 
     @FXML
     public void initialize() {
-        defaultBorder = usernameField.getBorder();
-
         loginButton.setOnAction(event -> handleLoginButton());
     }
 
@@ -79,7 +75,6 @@ public class LoginViewController {
     private void createProjectView() {
 
         try {
-            // Erstelle ein neues Fenster für die Projektansicht
             Stage stage = new Stage();
             SceneManager sceneManager = SceneManager.getInstance();
             ProjectViewController controller = sceneManager.loadFXML(SceneManager.PROJECT_VIEW);
@@ -100,7 +95,8 @@ public class LoginViewController {
             Stage loginStage = (Stage) loginButton.getScene().getWindow();
             loginStage.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.logError("Error loading ProjectView", e);
+            changeLabelInformation("Error loading ProjectView", Color.RED);
         }
     }
 

@@ -1,5 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.notification.Toast;
 import com.lulakssoft.activitymanagement.notification.UINotifier;
 import com.lulakssoft.activitymanagement.user.UserManager;
@@ -37,8 +39,13 @@ public class ActivityCreatorController implements UINotifier {
     @FXML
     private ChoiceBox<String> priorityChoiceBox;
 
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
+
+    private ProjectManager projectManager;
+
     @FXML
     public void initialize() {
+        this.projectManager = ProjectManager.getInstance();
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
         completedCheckBox.setSelected(false);
 
@@ -65,7 +72,7 @@ public class ActivityCreatorController implements UINotifier {
         );
 
         ActivityManager.getInstance().saveActivity(newActivity);
-        ProjectManager.getInstance().getCurrentProject().addActivity(newActivity);
+        projectManager.getCurrentProject().addActivity(newActivity);
 
         showBannerNotification("Activity created: " + newActivity.getTitle());
         HistoryManager.getInstance().addLogEntry("Created Activity: " + newActivity.getTitle());
@@ -92,6 +99,7 @@ public class ActivityCreatorController implements UINotifier {
     }
 
     private void closeWindow() {
+        logger.logInfo("Closing Activity Creator");
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }

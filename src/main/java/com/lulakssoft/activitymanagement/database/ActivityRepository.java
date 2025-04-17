@@ -2,6 +2,7 @@ package com.lulakssoft.activitymanagement.database;
 
 import com.lulakssoft.activitymanagement.Activity;
 import com.lulakssoft.activitymanagement.ProjectManager;
+import com.lulakssoft.activitymanagement.ServiceLocator;
 import com.lulakssoft.activitymanagement.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.user.User;
@@ -13,27 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ActivityRepository implements Repository<Activity, String> {
+public class ActivityRepository implements IActivityRepository {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
     @Override
-    public Optional<Activity> findById(String id) {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM activities WHERE id = ?")) {
-
-            stmt.setString(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return Optional.of(mapResultSetToActivity(rs));
-            }
-        } catch (SQLException e) {
-            logger.logError("Error finding activity by ID: " + id, e);
-        }
-        return Optional.empty();
-    }
-
     public List<Activity> findByProjectId(String projectId) {
         List<Activity> activities = new ArrayList<>();
 
@@ -48,24 +33,6 @@ public class ActivityRepository implements Repository<Activity, String> {
             }
         } catch (SQLException e) {
             logger.logError("Error finding activities by project ID: " + projectId, e);
-        }
-
-        return activities;
-    }
-
-    @Override
-    public List<Activity> findAll() {
-        List<Activity> activities = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM activities")) {
-
-            while (rs.next()) {
-                activities.add(mapResultSetToActivity(rs));
-            }
-        } catch (SQLException e) {
-            logger.logError("Error loading all activities: " + e.getMessage(), e);
         }
 
         return activities;
@@ -108,11 +75,28 @@ public class ActivityRepository implements Repository<Activity, String> {
         }
     }
 
+    private boolean existsById(String id) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM activities WHERE id = ?")) {
+
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            logger.logError("Error checking existence of activity by ID: " + id, e);
+        }
+        return false;
+    }
+
     private void insertActivity(Connection conn, Activity activity) throws SQLException {
         String sql = "INSERT INTO activities (id, title, description, due_date, completed, priority, " +
                 "project_id, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        String projectId = ProjectManager.getInstance().getCurrentProject().getId();
+        ProjectManager projectManager = ProjectManager.getInstance();
+        String projectId = projectManager.getCurrentProject().getId();
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, activity.getId());
@@ -169,20 +153,6 @@ public class ActivityRepository implements Repository<Activity, String> {
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.logError("Error deleting activity: " + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public boolean existsById(String id) {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT 1 FROM activities WHERE id = ?")) {
-
-            stmt.setString(1, id);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            logger.logError("Error checking if activity exists by ID: " + id, e);
-            return false;
         }
     }
 

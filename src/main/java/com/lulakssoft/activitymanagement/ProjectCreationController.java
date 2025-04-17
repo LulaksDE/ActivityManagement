@@ -1,5 +1,8 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.database.IActivityRepository;
+import com.lulakssoft.activitymanagement.notification.Toast;
+import com.lulakssoft.activitymanagement.notification.UINotifier;
 import com.lulakssoft.activitymanagement.user.User;
 import com.lulakssoft.activitymanagement.user.UserManager;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,11 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class ProjectCreationController {
+public class ProjectCreationController implements UINotifier {
 
     @FXML
     private TextField projectTitle;
@@ -46,14 +50,16 @@ public class ProjectCreationController {
 
     private Project createdProject;
 
-    // Der aktuelle Benutzer, der das Projekt erstellt
     private User creator;
+
+    private ProjectManager projectManager;
 
 
     public void initialize() {
+        this.projectManager = ProjectManager.getInstance();
         UserManager userManager = UserManager.INSTANCE;
         List<User> userList = userManager.getAllUsers();
-        User creator = userManager.getCurrentUser();
+        creator = userManager.getCurrentUser();
 
         ObservableList<User> availableUsers = FXCollections.observableArrayList(userList);
         ObservableList<User> projectUsers = FXCollections.observableArrayList();
@@ -99,29 +105,27 @@ public class ProjectCreationController {
 
         personTableView.setItems(availableUsers);
 
-        this.creator = creator;
-
         createButton.setOnAction(e -> handleCreateProject());
         cancelButton.setOnAction(e -> handleCancelation());
 
     }
 
     private void handleCreateProject() {
-        ProjectManager projectManager = ProjectManager.getInstance();
         String title = projectTitle.getText();
         String description = projectDescription.getText();
         LocalDate dueDate = dueDatePicker.getValue();
 
         if (title.isEmpty() || dueDate == null) {
-            showAlert("Missing Information", "Please enter the project title and due date.");
+            showPopupNotification("Please fill in all fields", "Error");
             return;
         }
-
-        // Projekt mit dem definierten Ersteller erstellen
-        createdProject = new Project(title, creator, projectMemberListView.getItems());
+        if (projectMemberListView.getItems().isEmpty()) {
+            showBannerNotification("Please add at least one member to the project");
+            return;
+        }
+        createdProject = ServiceLocator.createProject(title, creator, projectMemberListView.getItems());
         projectManager.addProject(createdProject);
         projectManager.setCurrentProject(createdProject);
-        // Aktivität zum Projekt hinzufügen
         Activity kickoffActivity = new Activity(
                 creator,
                 title + " - Kickoff Meeting",
@@ -145,13 +149,6 @@ public class ProjectCreationController {
         closeWindow();
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
     private void closeWindow() {
         Stage stage = (Stage) createButton.getScene().getWindow();
         stage.close();
@@ -159,5 +156,25 @@ public class ProjectCreationController {
 
     public Project getCreatedProject() {
         return createdProject;
+    }
+
+    @Override
+    public void showPopupNotification(String message, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @Override
+    public void showBannerNotification(String message) {
+        Window currentWindow = createButton.getScene().getWindow();
+        Toast toast = Toast.makeText(currentWindow, message, 3000);
+        toast.show();
+    }
+    @Override
+    public void sendNotification(String message, String receiver) {
+        showBannerNotification(message);
     }
 }

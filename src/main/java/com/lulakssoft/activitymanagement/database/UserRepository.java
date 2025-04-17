@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserRepository implements Repository<User, String> {
+public class UserRepository implements IUserRepository {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
@@ -104,7 +104,6 @@ public class UserRepository implements Repository<User, String> {
         }
     }
 
-    @Override
     public boolean existsById(String id) {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement("SELECT 1 FROM users WHERE id = ?")) {
