@@ -61,14 +61,12 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
         FilteredList<Activity> filteredActivities = new FilteredList<>(activityList, p -> true);
         activityListView.setItems(filteredActivities);
 
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredActivities.setPredicate(activity -> {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    return true;
-                }
-                return activity.getTitle().toLowerCase().contains(newValue.toLowerCase());
-            });
-        });
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> filteredActivities.setPredicate(activity -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                return true;
+            }
+            return activity.getTitle().toLowerCase().contains(newValue.toLowerCase());
+        }));
 
         // Custom cell factory for the ListView to show the activity title and icon
         activityListView.setCellFactory(listView -> new ListCell<>() {
@@ -143,19 +141,17 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
             );
             controller.initialize();
 
-            List<Activity> newActivities = controller.getNewActivities();
-            if (newActivities != null) {
-                for (Activity activity : newActivities) {
-                    currentProject.addActivity(activity);
-                    activityList.add(activity);
-                    notifyActivityCreated(activity);
-                }
-                activityListView.refresh();
-            }
+            currentProject.refreshActivities();
+            updateActivityList();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error when opening activity editor: " + e.getMessage());
+            logger.logError("Error when opening activity editor: " + e.getMessage(), e);
         }
+    }
+
+    private void updateActivityList() {
+        List<Activity> activities = currentProject.getActivityList();
+        activityList.clear();
+        activityList.addAll(activities);
     }
 
     private void openActivityEditor(Activity selectedActivity) {
@@ -183,8 +179,9 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
 
             activityListView.refresh();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error when opening activity editor: " + e.getMessage());
+            logger.logError("Error when opening activity editor: " + e.getMessage(), e);
+        } finally {
+            ActivityManager.getInstance().clearCurrentEditingActivity();
         }
     }
 
@@ -205,8 +202,9 @@ public class ActivityListController implements UINotifier, ActivityNotifier {
             );
             controller.initialize();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error when opening history view: " + e.getMessage());
+            logger.logError("Error when opening history view: " + e.getMessage(), e);
+        } finally {
+            activityListView.refresh();
         }
     }
 

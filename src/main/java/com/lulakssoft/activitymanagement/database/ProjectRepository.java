@@ -8,9 +8,7 @@ import com.lulakssoft.activitymanagement.user.User;
 import com.lulakssoft.activitymanagement.user.UserManager;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ProjectRepository implements Repository<Project, String> {
 
@@ -54,8 +52,9 @@ public class ProjectRepository implements Repository<Project, String> {
     public List<Project> findProjectsByUser(String userId) {
         List<Project> projects = new ArrayList<>();
 
-        String sql = "SELECT p.* FROM projects p " +
-                "JOIN project_members pm ON p.id = pm.project_id " +
+        // Use of DISTINCT to avoid duplicates
+        String sql = "SELECT DISTINCT p.* FROM projects p " +
+                "LEFT JOIN project_members pm ON p.id = pm.project_id " +
                 "WHERE pm.user_id = ? OR p.creator_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -65,8 +64,16 @@ public class ProjectRepository implements Repository<Project, String> {
             stmt.setString(2, userId);
             ResultSet rs = stmt.executeQuery();
 
+            // Set for already added project IDs
+            Set<String> addedProjectIds = new HashSet<>();
+
             while (rs.next()) {
-                projects.add(mapResultSetToProject(rs));
+                String projectId = rs.getString("id");
+                // Überprüfe, ob dieses Projekt bereits hinzugefügt wurde
+                if (!addedProjectIds.contains(projectId)) {
+                    addedProjectIds.add(projectId);
+                    projects.add(mapResultSetToProject(rs));
+                }
             }
         } catch (SQLException e) {
             logger.logError("Error finding projects by user ID: " + userId, e);

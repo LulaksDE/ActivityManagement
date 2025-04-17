@@ -20,7 +20,7 @@ ext {
 sourceCompatibility = '21'
 targetCompatibility = '21'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.zaxxer:HikariCP:5.1.0'
 
     implementation 'org.slf4j:slf4j-api:2.0.16'
-    implementation 'ch.qos.logback:logback-classic:1.5.11'
+    implementation 'ch.qos.logback:logback-classic:1.5.18'
 
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

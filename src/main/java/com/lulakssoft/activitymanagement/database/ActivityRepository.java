@@ -84,8 +84,6 @@ public class ActivityRepository implements Repository<Activity, String> {
                 insertActivity(conn, activity);
             }
 
-            updateActivityMembers(conn, activity);
-
             conn.commit();
             return activity;
         } catch (SQLException e) {
@@ -114,6 +112,8 @@ public class ActivityRepository implements Repository<Activity, String> {
         String sql = "INSERT INTO activities (id, title, description, due_date, completed, priority, " +
                 "project_id, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+        String projectId = ProjectManager.getInstance().getCurrentProject().getId();
+
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, activity.getId());
             stmt.setString(2, activity.getTitle());
@@ -127,7 +127,7 @@ public class ActivityRepository implements Repository<Activity, String> {
 
             stmt.setBoolean(5, activity.isCompleted());
             stmt.setString(6, activity.getPriority());
-            stmt.setString(7, ProjectManager.getInstance().getCurrentProject().getId());
+            stmt.setString(7, projectId);
             stmt.setString(8, activity.getCreator().getId());
 
             stmt.executeUpdate();
@@ -157,25 +157,6 @@ public class ActivityRepository implements Repository<Activity, String> {
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.logError("Error updating activity: " + e.getMessage(), e);
-        }
-    }
-
-    private void updateActivityMembers(Connection conn, Activity activity) throws SQLException {
-        String deleteSql = "DELETE FROM activity_members WHERE activity_id = ?";
-        try (PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
-            deleteStmt.setString(1, activity.getId());
-            deleteStmt.executeUpdate();
-        }
-
-        String insertSql = "INSERT INTO activity_members (activity_id, user_id) VALUES (?, ?)";
-        try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
-            for (User member : activity.getUserList()) {
-                insertStmt.setString(1, activity.getId());
-                insertStmt.setString(2, member.getId());
-                insertStmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            logger.logError("Error inserting activity members: " + e.getMessage(), e);
         }
     }
 
@@ -223,36 +204,9 @@ public class ActivityRepository implements Repository<Activity, String> {
         User creator = UserManager.INSTANCE.findUserById(creatorId)
                 .orElseThrow(() -> new SQLException("Creator with ID " + creatorId + " not found."));
 
-        List<User> members = getActivityMembers(id);
-
-        Activity activity = new Activity(creator, members, title, description, dueDate, completed);
-        activity.setPriority(priority);
+        Activity activity = new Activity(creator, title, description, priority,dueDate, completed);
+        activity.setId(id);
 
         return activity;
-    }
-
-    private List<User> getActivityMembers(String activityId) {
-        List<User> members = new ArrayList<>();
-
-        String sql = "SELECT u.* FROM users u " +
-                "JOIN activity_members am ON u.id = am.user_id " +
-                "WHERE am.activity_id = ?";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, activityId);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                UserRepository userRepo = new UserRepository();
-                String userId = rs.getString("id");
-                userRepo.findById(userId).ifPresent(members::add);
-            }
-        } catch (SQLException e) {
-            logger.logError("Error finding activity members: " + e.getMessage(), e);
-        }
-
-        return members;
     }
 }

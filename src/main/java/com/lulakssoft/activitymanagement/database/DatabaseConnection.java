@@ -7,6 +7,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseConnection {
     private static final String DB_URL = "jdbc:h2:./activitymanagement";
@@ -52,60 +53,62 @@ public class DatabaseConnection {
 
     private static void initDatabase() {
         try (Connection connection = getConnection()) {
-            connection.createStatement().execute(
-                    "CREATE TABLE IF NOT EXISTS users (" +
-                            "id VARCHAR(36) PRIMARY KEY, " +
-                            "username VARCHAR(50) NOT NULL UNIQUE, " +
-                            "password VARCHAR(100) NOT NULL, " +
-                            "role VARCHAR(20) NOT NULL" +
-                            ")"
-            );
+            try (Statement stmt = connection.createStatement()) {
+                stmt.execute(
+                        "CREATE TABLE IF NOT EXISTS users (" +
+                                "id VARCHAR(36) PRIMARY KEY, " +
+                                "username VARCHAR(50) NOT NULL UNIQUE, " +
+                                "password VARCHAR(100) NOT NULL, " +
+                                "role VARCHAR(20) NOT NULL" +
+                                ")"
+                );
 
-            connection.createStatement().execute(
-                    "CREATE TABLE IF NOT EXISTS projects (" +
-                            "id VARCHAR(36) PRIMARY KEY, " +
-                            "name VARCHAR(100) NOT NULL, " +
-                            "creator_id VARCHAR(36) NOT NULL, " +
-                            "FOREIGN KEY (creator_id) REFERENCES users(id)" +
-                            ")"
-            );
+                stmt.execute(
+                        "CREATE TABLE IF NOT EXISTS projects (" +
+                                "id VARCHAR(36) PRIMARY KEY, " +
+                                "name VARCHAR(100) NOT NULL, " +
+                                "creator_id VARCHAR(36) NOT NULL, " +
+                                "FOREIGN KEY (creator_id) REFERENCES users(id)" +
+                                ")"
+                );
 
-            // (m:n-Beziehung)
-            connection.createStatement().execute(
-                    "CREATE TABLE IF NOT EXISTS project_members (" +
-                            "project_id VARCHAR(36) NOT NULL, " +
-                            "user_id VARCHAR(36) NOT NULL, " +
-                            "PRIMARY KEY (project_id, user_id), " +
-                            "FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE, " +
-                            "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
-                            ")"
-            );
+                stmt.execute(
+                        "CREATE TABLE IF NOT EXISTS project_members (" +
+                                "project_id VARCHAR(36) NOT NULL, " +
+                                "user_id VARCHAR(36) NOT NULL, " +
+                                "PRIMARY KEY (project_id, user_id), " +
+                                "FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE, " +
+                                "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
+                                ")"
+                );
 
-            connection.createStatement().execute(
-                    "CREATE TABLE IF NOT EXISTS activities (" +
-                            "id VARCHAR(36) PRIMARY KEY, " +
-                            "title VARCHAR(100) NOT NULL, " +
-                            "description TEXT, " +
-                            "due_date DATE, " +
-                            "completed BOOLEAN NOT NULL DEFAULT FALSE, " +
-                            "priority VARCHAR(20), " +
-                            "project_id VARCHAR(36) NOT NULL, " +
-                            "creator_id VARCHAR(36) NOT NULL, " +
-                            "FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE, " +
-                            "FOREIGN KEY (creator_id) REFERENCES users(id)" +
-                            ")"
-            );
+                stmt.execute(
+                        "CREATE TABLE IF NOT EXISTS activities (" +
+                                "id VARCHAR(36) PRIMARY KEY, " +
+                                "title VARCHAR(100) NOT NULL, " +
+                                "description TEXT, " +
+                                "due_date DATE, " +
+                                "completed BOOLEAN NOT NULL DEFAULT FALSE, " +
+                                "priority VARCHAR(20), " +
+                                "project_id VARCHAR(36) NOT NULL, " +
+                                "creator_id VARCHAR(36) NOT NULL, " +
+                                "FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE, " +
+                                "FOREIGN KEY (creator_id) REFERENCES users(id)" +
+                                ")"
+                );
 
-            // (m:n-Beziehung)
-            connection.createStatement().execute(
-                    "CREATE TABLE IF NOT EXISTS activity_members (" +
-                            "activity_id VARCHAR(36) NOT NULL, " +
-                            "user_id VARCHAR(36) NOT NULL, " +
-                            "PRIMARY KEY (activity_id, user_id), " +
-                            "FOREIGN KEY (activity_id) REFERENCES activities(id) ON DELETE CASCADE, " +
-                            "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
-                            ")"
-            );
+                stmt.execute(
+                        "CREATE TABLE IF NOT EXISTS activity_members (" +
+                                "activity_id VARCHAR(36) NOT NULL, " +
+                                "user_id VARCHAR(36) NOT NULL, " +
+                                "PRIMARY KEY (activity_id, user_id), " +
+                                "FOREIGN KEY (activity_id) REFERENCES activities(id) ON DELETE CASCADE, " +
+                                "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
+                                ")"
+                );
+            } catch (SQLException e) {
+                logger.logError("Error creating tables: " + e.getMessage(), e);
+            }
             logger.logInfo("Database initialized successfully");
         } catch (SQLException e) {
             logger.logError("Error initializing database: " + e.getMessage(), e);

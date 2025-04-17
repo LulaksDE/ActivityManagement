@@ -15,21 +15,6 @@ public class ProjectManager {
 
     private ProjectManager() {
         projectRepository = new ProjectRepository();
-        initializeDefaultProjects();
-    }
-
-    private void initializeDefaultProjects() {
-        // Nur wenn die Tabelle leer ist
-        if (projectRepository.findAll().isEmpty()) {
-            UserManager userManager = UserManager.INSTANCE;
-            User currentUser = userManager.getCurrentUser();
-            if (currentUser != null) {
-                List<User> allUsers = userManager.getAllUsers();
-                projectRepository.save(new Project("Project A", currentUser, allUsers));
-                projectRepository.save(new Project("Project B", currentUser, allUsers));
-                projectRepository.save(new Project("Project C", currentUser, allUsers));
-            }
-        }
     }
 
     public static ProjectManager getInstance() {

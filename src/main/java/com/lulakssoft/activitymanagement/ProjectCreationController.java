@@ -120,16 +120,22 @@ public class ProjectCreationController {
         // Projekt mit dem definierten Ersteller erstellen
         createdProject = new Project(title, creator, projectMemberListView.getItems());
         projectManager.addProject(createdProject);
-
+        projectManager.setCurrentProject(createdProject);
         // Aktivität zum Projekt hinzufügen
-        createdProject.addActivity(new Activity(
+        Activity kickoffActivity = new Activity(
                 creator,
-                createdProject.getMembers(),
                 title + " - Kickoff Meeting",
                 description + "\nProject Description",
+                "Medium",
                 dueDate,
                 false
-        ));
+        );
+        createdProject.addActivity(kickoffActivity);
+
+
+
+        ActivityManager.getInstance().saveActivity(kickoffActivity);
+        createdProject.refreshActivities();
 
         closeWindow();
     }

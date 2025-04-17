@@ -61,8 +61,12 @@ public class ActivityEditorController implements UINotifier {
 
             completedCheckBox.setSelected(editingActivity.isCompleted());
 
-            if (editingActivity.getPriority() != null) {
-                priorityChoiceBox.setValue(editingActivity.getPriority());
+            // Ensure priority is set correctly - fix for priority not showing
+            String priority = editingActivity.getPriority();
+            if (priority != null && !priority.isEmpty()) {
+                priorityChoiceBox.setValue(priority);
+            } else {
+                priorityChoiceBox.setValue("Low");
             }
 
             if (editingActivity.getId() != null) {
@@ -79,10 +83,14 @@ public class ActivityEditorController implements UINotifier {
 
         // Initialize priority options
         priorityChoiceBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
-        priorityChoiceBox.setValue(""); // Default value
+        if (priorityChoiceBox.getValue() == null) {
+            priorityChoiceBox.setValue("Low"); // Default value only if not set above
+        }
 
         // Default due date: one week in the future
-        dueDatePicker.setValue(LocalDate.now().plusDays(7));
+        if (dueDatePicker.getValue() == null) {
+            dueDatePicker.setValue(LocalDate.now().plusDays(7));
+        }
 
         // Event handlers for buttons
         saveButton.setOnAction(event -> handleSave());
@@ -95,7 +103,7 @@ public class ActivityEditorController implements UINotifier {
         activityIdLabel.setText("");
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
         completedCheckBox.setSelected(false);
-        priorityChoiceBox.setValue("");
+        priorityChoiceBox.setValue("Low");
     }
 
     public ObservableList<Activity> getNewActivities() {
@@ -113,6 +121,7 @@ public class ActivityEditorController implements UINotifier {
         Activity editingActivity = ActivityManager.getInstance().getCurrentEditingActivity();
 
         if (editingActivity != null) {
+            // Edit existing activity - don't change the ID
             editingActivity.setTitle(titleField.getText());
             editingActivity.setDescription(descriptionArea.getText());
             editingActivity.setDueDate(dueDatePicker.getValue());
@@ -120,20 +129,26 @@ public class ActivityEditorController implements UINotifier {
             editingActivity.setPriority(priorityChoiceBox.getValue());
             ActivityManager.getInstance().clearCurrentEditingActivity();
 
+            // Save updated activity to the database
+            ActivityManager.getInstance().saveActivity(editingActivity);
+
             showBannerNotification("Activity updated: " + editingActivity.getTitle());
             HistoryManager.getInstance().addLogEntry("Updated Activity: " + editingActivity.getTitle());
         } else {
+            // Create new activity
             Activity newActivity = new Activity(
                     UserManager.INSTANCE.getCurrentUser(),
-                    new ArrayList<>(),
                     titleField.getText(),
                     descriptionArea.getText(),
+                    priorityChoiceBox.getValue(),
                     dueDatePicker.getValue(),
                     completedCheckBox.isSelected()
             );
-            newActivity.setPriority(priorityChoiceBox.getValue());
 
             newActivities.add(newActivity);
+
+            // Save new activity to the database
+            ActivityManager.getInstance().saveActivity(newActivity);
 
             // Show notification for creation
             showBannerNotification("Activity created: " + newActivity.getTitle());

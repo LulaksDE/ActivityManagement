@@ -3,32 +3,30 @@ package com.lulakssoft.activitymanagement;
 import com.lulakssoft.activitymanagement.user.User;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class Activity {
-    private final String id;
+    private String id;
     private String title;
     private String description;
     private LocalDate dueDate;
     private boolean completed;
     private String priority;
-    private List<User> userList = new ArrayList<>();
     private final User creator;
 
-    public Activity(User creator, List<User> userList , String title, String description, LocalDate dueDate, boolean completed) {
+    public Activity(User creator, String title, String description, String priority,LocalDate dueDate, boolean completed) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
+        this.priority = priority;
         this.dueDate = dueDate;
         this.completed = completed;
         this.creator = creator;
-        this.userList = userList;
     }
 
     // Getter and Setter
     public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -48,9 +46,6 @@ public class Activity {
     public User getCreator(){
         return creator;
     }
-
-    public List<User> getUserList() { return userList; }
-    public void setUserList(List<User> userList) { this.userList = userList; }
 
     @Override
     public String toString() {

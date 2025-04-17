@@ -1,5 +1,6 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.database.ActivityRepository;
 import com.lulakssoft.activitymanagement.user.User;
 
 import java.util.ArrayList;
@@ -22,11 +23,21 @@ public class Project {
     }
 
     public void addActivity(Activity activity) {
+        ActivityRepository repository = new ActivityRepository();
+        activity = repository.save(activity);
         activityList.add(activity);
     }
 
     public void removeActivity(Activity activity) {
+        ActivityRepository repository = new ActivityRepository();
+        repository.delete(activity);
         activityList.remove(activity);
+    }
+    public void refreshActivities() {
+        ActivityRepository repository = new ActivityRepository();
+        List<Activity> activitiesFromDb = repository.findByProjectId(this.id);
+        this.activityList.clear();
+        this.activityList.addAll(activitiesFromDb);
     }
 
     public List<Activity> getActivityList() {
