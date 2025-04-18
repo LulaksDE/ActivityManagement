@@ -3108,3 +3108,191 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 23:03:55.343 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 23:03:55.343 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
 23:03:55.355 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+10:19:04.062 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+10:19:12.594 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:19:12.889 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+10:19:12.890 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:19:12.897 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+10:19:12.903 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+10:19:12.938 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+10:19:12.938 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+10:19:12.942 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+10:19:12.968 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+10:19:23.542 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Admin Project
+10:19:24.853 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Failed to open activity editor window
+java.lang.IllegalStateException: ActivityManager is not initialized. Call initialize() first.
+	at com.lulakssoft.activitymanagement.ActivityManager.getInstance(ActivityManager.java:22)
+	at com.lulakssoft.activitymanagement.operation.EditActivityOperation.execute(EditActivityOperation.java:25)
+	at com.lulakssoft.activitymanagement.ActivityListController.handleEditActivity(ActivityListController.java:94)
+	at com.lulakssoft.activitymanagement.ActivityListController.lambda$initialize$4(ActivityListController.java:79)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3688)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3993)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:212)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:81)
+	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:154)
+	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:104)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:212)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:86)
+	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:59)
+	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:40)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.keyReleased(ButtonBehavior.java:163)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene.processKeyEvent(Scene.java:2194)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2715)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:218)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:150)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$1(GlassViewEventHandler.java:250)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:249)
+	at javafx.graphics/com.sun.glass.ui.View.handleKeyEvent(View.java:542)
+	at javafx.graphics/com.sun.glass.ui.View.notifyKey(View.java:966)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+10:23:54.096 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+10:24:01.687 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:24:01.956 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+10:24:01.958 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:24:01.964 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+10:24:01.970 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+10:24:02.003 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+10:24:02.004 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+10:24:02.008 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+10:24:02.029 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+10:24:04.815 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Admin Project
+10:24:31.036 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Admin Project
+10:24:56.896 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing Activity Creator
+10:24:56.906 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Activity created successfully.
+10:25:08.687 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user employee01 with password admin
+10:25:08.688 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: employee01
+10:25:26.647 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Updating project: Hi There
+10:25:37.180 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+10:25:37.181 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+10:25:39.419 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Hi There
+10:25:49.024 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Activity created successfully.
+10:26:11.077 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+10:26:11.078 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+10:26:11.078 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:26:11.090 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:26:11.090 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+10:31:24.549 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+10:31:31.901 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:31:32.211 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+10:31:32.213 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:31:32.219 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+10:31:32.225 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+10:31:32.266 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+10:31:32.266 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+10:31:32.270 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+10:31:32.296 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+10:31:35.727 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Hi There
+10:31:40.780 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+10:31:40.781 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+10:31:40.781 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:31:40.999 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:31:41.000 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed

@@ -3,6 +3,8 @@ package com.lulakssoft.activitymanagement.operation;
 import com.lulakssoft.activitymanagement.Activity;
 import com.lulakssoft.activitymanagement.ActivityManager;
 import com.lulakssoft.activitymanagement.SceneManager;
+import com.lulakssoft.activitymanagement.database.ActivityRepository;
+import com.lulakssoft.activitymanagement.database.IActivityRepository;
 import com.lulakssoft.activitymanagement.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
 import javafx.stage.Window;
@@ -17,6 +19,9 @@ public class EditActivityOperation implements ActivityOperation {
     public EditActivityOperation(Activity activity, Window ownerWindow) {
         this.activity = activity;
         this.ownerWindow = ownerWindow;
+
+        IActivityRepository activityRepository = new ActivityRepository();
+        ActivityManager.initialize(activityRepository);
     }
 
     @Override

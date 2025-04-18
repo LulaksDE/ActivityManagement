@@ -7,20 +7,25 @@ public class ActivityManager {
     private final IActivityRepository activityRepository;
     private Activity currentEditingActivity;
 
-    private ActivityManager(IActivityRepository activityRepository) {
+    public ActivityManager(IActivityRepository activityRepository) {
         this.activityRepository = activityRepository;
+    }
+
+    public static void initialize(IActivityRepository repository) {
+        if (instance == null) {
+            instance = new ActivityManager(repository);
+        }
     }
 
     public static ActivityManager getInstance() {
         if (instance == null) {
-            instance = new ActivityManager(
-                    ServiceLocator.getInstance().getService(IActivityRepository.class)
-            );
+            throw new IllegalStateException("ActivityManager is not initialized. Call initialize() first.");
         }
         return instance;
     }
 
-    public void setCurrentEditingActivity(Activity activity) {
+
+        public void setCurrentEditingActivity(Activity activity) {
         this.currentEditingActivity = activity;
     }
 
