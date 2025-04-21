@@ -14,10 +14,9 @@ public class CreateActivityOperation implements ActivityOperation {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    public CreateActivityOperation(Window ownerWindow) {
+    public CreateActivityOperation(Window ownerWindow, IActivityRepository activityRepository) {
         this.ownerWindow = ownerWindow;
 
-        IActivityRepository activityRepository = new ActivityRepository();
         ActivityManager.initialize(activityRepository);
     }
 

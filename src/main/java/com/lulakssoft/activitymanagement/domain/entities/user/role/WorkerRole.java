@@ -19,18 +19,18 @@ public class WorkerRole implements UserRole {
     }
 
     @Override
-    public boolean canEditProject(Project project, User currentUser) {
+    public boolean canEditProject(Project project, String currentUser) {
         return false;
     }
 
     @Override
-    public boolean canCreateActivity(Project project, User currentUser) {
-        return project.getMembers().contains(currentUser.getId());
+    public boolean canCreateActivity(Project project, String currentUser) {
+        return project.getMembers().contains(currentUser);
     }
 
     @Override
-    public boolean canEditActivity(Activity activity, User currentUser) {
-        return activity.getCreator() == currentUser;
+    public boolean canEditActivity(Activity activity, String currentUser) {
+        return activity.getCreator().equals(currentUser);
     }
 
     @Override

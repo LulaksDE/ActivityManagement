@@ -111,7 +111,7 @@ public class ActivityRepository implements IActivityRepository {
             stmt.setBoolean(5, activity.isCompleted());
             stmt.setString(6, activity.getPriority());
             stmt.setString(7, projectId);
-            stmt.setString(8, activity.getCreator().getId());
+            stmt.setString(8, activity.getCreator());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -170,10 +170,7 @@ public class ActivityRepository implements IActivityRepository {
         String priority = rs.getString("priority");
         String creatorId = rs.getString("creator_id");
 
-        User creator = UserManager.INSTANCE.findUserById(creatorId)
-                .orElseThrow(() -> new SQLException("Creator with ID " + creatorId + " not found."));
-
-        Activity activity = new Activity(creator, title, description, priority,dueDate, completed);
+        Activity activity = new Activity(creatorId, title, description, priority,dueDate, completed);
         activity.setId(id);
 
         return activity;

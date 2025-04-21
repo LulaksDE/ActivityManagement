@@ -16,11 +16,10 @@ public class EditActivityOperation implements ActivityOperation {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    public EditActivityOperation(Activity activity, Window ownerWindow) {
+    public EditActivityOperation(Activity activity, Window ownerWindow, IActivityRepository activityRepository) {
         this.activity = activity;
         this.ownerWindow = ownerWindow;
 
-        IActivityRepository activityRepository = new ActivityRepository();
         ActivityManager.initialize(activityRepository);
     }
 

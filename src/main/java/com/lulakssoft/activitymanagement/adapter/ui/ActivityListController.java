@@ -7,6 +7,8 @@ import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.domain.repositories.ActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.IActivityRepository;
 import com.lulakssoft.activitymanagement.operation.ActivityOperation;
 import com.lulakssoft.activitymanagement.operation.ActivityOperationFactory;
 import javafx.collections.FXCollections;
@@ -42,10 +44,12 @@ public class ActivityListController {
     private FilteredList<Activity> filteredActivityList;
     private final LoggerNotifier logger = LoggerFactory.getLogger();
     private ProjectManager projectManager;
+    private IActivityRepository activityRepository;
 
     @FXML
     public void initialize() {
         this.projectManager = ProjectManager.getInstance();
+        this.activityRepository = new ActivityRepository();
         Project currentProject = projectManager.getCurrentProject();
 
         if (currentProject != null) {
@@ -95,7 +99,7 @@ public class ActivityListController {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
             ActivityOperation editOperation = ActivityOperationFactory.createEditOperation(
-                    selectedActivity, activityListView.getScene().getWindow());
+                    selectedActivity, activityListView.getScene().getWindow(), activityRepository);
             editOperation.execute();
             refreshActivityList();
         }
@@ -103,7 +107,7 @@ public class ActivityListController {
 
     private void handleAddActivity() {
         ActivityOperation createOperation = ActivityOperationFactory.createNewOperation(
-                addButton.getScene().getWindow());
+                addButton.getScene().getWindow(), activityRepository);
         createOperation.execute();
         if (createOperation.wasSuccessful()) {
             logger.logInfo("Activity created successfully.");

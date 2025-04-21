@@ -26,7 +26,7 @@ public interface UserRole {
      * @param currentUser The current user.
      * @return true if authorized, false otherwise.
      */
-    boolean canEditProject(Project project, User currentUser);
+    boolean canEditProject(Project project, String currentUser);
 
     /**
      * Checks if the role is authorized to create an activity.
@@ -34,7 +34,7 @@ public interface UserRole {
      * @param currentUser The current user.
      * @return true if authorized, false otherwise.
      */
-    boolean canCreateActivity(Project project, User currentUser);
+    boolean canCreateActivity(Project project, String currentUser);
 
     /**
      * Checks if the role is authorized to edit an activity.
@@ -42,7 +42,7 @@ public interface UserRole {
      * @param currentUser The current user.
      * @return true if authorized, false otherwise.
      */
-    boolean canEditActivity(Activity activity, User currentUser);
+    boolean canEditActivity(Activity activity, String currentUser);
 
     /**
      * Checks if the role is authorized to manage users.

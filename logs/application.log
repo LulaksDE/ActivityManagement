@@ -3456,3 +3456,21 @@ java.lang.IllegalStateException: ActivityManager is not initialized. Call initia
 16:00:22.403 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 16:00:22.616 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 16:00:22.616 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed
+16:26:30.004 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+16:26:34.783 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:26:35.028 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+16:26:35.030 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+16:26:35.035 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+16:26:35.041 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+16:26:35.075 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - UserManager initialized successfully
+16:26:35.075 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin01 with password admin
+16:26:35.079 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin01
+16:26:35.103 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - ServiceLocator initialized with default services
+16:26:38.572 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: I am really new
+16:26:48.932 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Creator
+16:26:48.943 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Activity created successfully.
+16:26:53.999 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection to prevent memory leaks
+16:26:53.999 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection pool
+16:26:53.999 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+16:26:54.217 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+16:26:54.217 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed

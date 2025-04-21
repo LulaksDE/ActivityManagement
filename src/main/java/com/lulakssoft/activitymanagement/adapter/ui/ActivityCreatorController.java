@@ -67,7 +67,7 @@ public class ActivityCreatorController implements UINotifier {
         }
 
         Activity newActivity = new Activity(
-                UserManager.INSTANCE.getCurrentUser(),
+                UserManager.INSTANCE.getCurrentUser().getId(),
                 titleField.getText(),
                 descriptionArea.getText(),
                 priorityChoiceBox.getValue(),
