@@ -1,9 +1,11 @@
 package com.lulakssoft.activitymanagement.operation;
 
-import com.lulakssoft.activitymanagement.ProjectManager;
 import com.lulakssoft.activitymanagement.SceneManager;
-import com.lulakssoft.activitymanagement.notification.LoggerFactory;
-import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.domain.entities.activity.ActivityManager;
+import com.lulakssoft.activitymanagement.domain.repositories.ActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.IActivityRepository;
 import javafx.stage.Window;
 
 public class CreateActivityOperation implements ActivityOperation {
@@ -14,6 +16,9 @@ public class CreateActivityOperation implements ActivityOperation {
 
     public CreateActivityOperation(Window ownerWindow) {
         this.ownerWindow = ownerWindow;
+
+        IActivityRepository activityRepository = new ActivityRepository();
+        ActivityManager.initialize(activityRepository);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.lulakssoft.activitymanagement.operation;
 
-import com.lulakssoft.activitymanagement.Activity;
+import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
 import javafx.stage.Window;
 
 public class ActivityOperationFactory {

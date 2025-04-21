@@ -1,14 +1,14 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.database.ActivityRepository;
-import com.lulakssoft.activitymanagement.database.IActivityRepository;
-import com.lulakssoft.activitymanagement.database.IProjectRepository;
-import com.lulakssoft.activitymanagement.database.IUserRepository;
-import com.lulakssoft.activitymanagement.database.ProjectRepository;
-import com.lulakssoft.activitymanagement.database.UserRepository;
-import com.lulakssoft.activitymanagement.notification.LoggerFactory;
-import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
-import com.lulakssoft.activitymanagement.user.User;
+import com.lulakssoft.activitymanagement.domain.entities.proejct.Project;
+import com.lulakssoft.activitymanagement.domain.repositories.ActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.IActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.IProjectRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.IUserRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.ProjectRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.UserRepository;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,11 +43,11 @@ public class ServiceLocator {
         return service;
     }
 
-    public static Project createProject(String name, User creator, List<User> userList) {
+    public static Project createProject(String name, String creatorId, List<String> userIdList) {
         return new Project(
                 name,
-                creator,
-                userList,
+                creatorId,
+                userIdList,
                 ServiceLocator.getInstance().getService(IActivityRepository.class)
         );
     }

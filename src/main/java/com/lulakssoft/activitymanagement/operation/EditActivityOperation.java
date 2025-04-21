@@ -1,12 +1,12 @@
 package com.lulakssoft.activitymanagement.operation;
 
-import com.lulakssoft.activitymanagement.Activity;
-import com.lulakssoft.activitymanagement.ActivityManager;
+import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
+import com.lulakssoft.activitymanagement.domain.entities.activity.ActivityManager;
 import com.lulakssoft.activitymanagement.SceneManager;
-import com.lulakssoft.activitymanagement.database.ActivityRepository;
-import com.lulakssoft.activitymanagement.database.IActivityRepository;
-import com.lulakssoft.activitymanagement.notification.LoggerFactory;
-import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.domain.repositories.ActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repositories.IActivityRepository;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import javafx.stage.Window;
 
 public class EditActivityOperation implements ActivityOperation {

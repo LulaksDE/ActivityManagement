@@ -1,7 +1,7 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.notification.LoggerFactory;
-import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,7 +12,6 @@ import javafx.stage.Window;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class SceneManager {
     private static SceneManager instance;

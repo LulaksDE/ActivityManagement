@@ -1,8 +1,9 @@
 package com.lulakssoft.activitymanagement;
 
+import com.lulakssoft.activitymanagement.adapter.ui.LoginViewController;
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
-import com.lulakssoft.activitymanagement.notification.LoggerFactory;
-import com.lulakssoft.activitymanagement.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;

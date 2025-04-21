@@ -25,12 +25,12 @@ Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:21)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -115,12 +115,12 @@ Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.getConnection(DatabaseConnection.java:48)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -266,12 +266,12 @@ Database may be already in use: "C:/Users/Lulak/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:21)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -356,12 +356,12 @@ Database may be already in use: "C:/Users/Lulak/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.getConnection(DatabaseConnection.java:48)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -490,12 +490,12 @@ Database may be already in use: "C:/Users/Lulak/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:21)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -580,12 +580,12 @@ Database may be already in use: "C:/Users/Lulak/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:39)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.getConnection(DatabaseConnection.java:48)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -835,12 +835,12 @@ Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:40)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:22)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -925,12 +925,12 @@ Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:40)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.getConnection(DatabaseConnection.java:49)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1045,12 +1045,12 @@ Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:40)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:22)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1135,12 +1135,12 @@ Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/
 	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:40)
 	at com.lulakssoft.activitymanagement.database.DatabaseConnection.getConnection(DatabaseConnection.java:49)
-	at com.lulakssoft.activitymanagement.database.UserRepository.findAll(UserRepository.java:53)
-	at com.lulakssoft.activitymanagement.user.UserManager.initializeDefaultUsers(UserManager.java:30)
-	at com.lulakssoft.activitymanagement.user.UserManager.<init>(UserManager.java:21)
-	at com.lulakssoft.activitymanagement.user.UserManager.<clinit>(UserManager.java:12)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:50)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.domain.repositories.UserRepository.findAll(UserRepository.java:53)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.initializeDefaultUsers(UserManager.java:30)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<init>(UserManager.java:21)
+	at com.lulakssoft.activitymanagement.domain.entities.user.UserManager.<clinit>(UserManager.java:12)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:50)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1470,9 +1470,9 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.loadFXML(SceneManager.java:44)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:85)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:85)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1517,7 +1517,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ProjectViewController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -1546,9 +1546,9 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.loadFXML(SceneManager.java:44)
 	at com.lulakssoft.activitymanagement.SceneManager.setMainScene(SceneManager.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:86)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:86)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1593,7 +1593,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ProjectViewController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -1621,9 +1621,9 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.loadFXML(SceneManager.java:44)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:85)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:85)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1668,7 +1668,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ProjectViewController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -1683,7 +1683,7 @@ Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.Pr
 19:56:29.222 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 19:56:29.227 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 19:56:29.250 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-19:56:29.250 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+19:56:29.250 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 19:56:29.251 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error loading FXML file: ProjectView.fxml
 javafx.fxml.LoadException: 
 /C:/Users/Lukas/IdeaProjects/ActivityManagement/build/resources/main/com/lulakssoft/activitymanagement/ProjectView.fxml
@@ -1693,9 +1693,9 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.loadFXML(SceneManager.java:44)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:85)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:85)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1750,8 +1750,8 @@ Caused by: java.lang.reflect.InvocationTargetException: null
 	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
 	... 50 common frames omitted
-Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.ProjectManager.getProjectsForUser(com.lulakssoft.activitymanagement.user.User)" because "this.projectManager" is null
-	at com.lulakssoft.activitymanagement.ProjectViewController.initialize(ProjectViewController.java:64)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager.getProjectsForUser(com.lulakssoft.activitymanagement.domain.entities.user.User)" because "this.projectManager" is null
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.initialize(ProjectViewController.java:64)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 57 common frames omitted
 20:02:13.474 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
@@ -1779,8 +1779,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1829,9 +1829,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1876,7 +1876,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ActivityListController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -1911,8 +1911,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -1961,9 +1961,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2008,7 +2008,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ActivityListController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -2029,7 +2029,7 @@ Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.Ac
 20:05:24.044 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:05:24.069 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
 20:05:26.604 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Everybody is here!
-20:05:26.616 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:05:26.616 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:05:26.617 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error loading project: Everybody is here!
 javafx.fxml.LoadException: 
 /C:/Users/Lukas/IdeaProjects/ActivityManagement/build/resources/main/com/lulakssoft/activitymanagement/ActivityList.fxml
@@ -2039,8 +2039,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2089,9 +2089,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2146,8 +2146,8 @@ Caused by: java.lang.reflect.InvocationTargetException: null
 	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
 	... 100 common frames omitted
-Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.ProjectManager.getCurrentProject()" because "this.projectManager" is null
-	at com.lulakssoft.activitymanagement.ActivityListController.initialize(ActivityListController.java:44)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager.getCurrentProject()" because "this.projectManager" is null
+	at com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.initialize(ActivityListController.java:44)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 107 common frames omitted
 20:05:34.648 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
@@ -2165,9 +2165,9 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 20:06:40.333 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 20:06:40.337 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:06:40.372 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-20:06:43.370 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
-20:06:45.887 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
-20:06:53.285 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:06:43.370 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
+20:06:45.887 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
+20:06:53.285 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:07:47.454 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
 20:07:52.040 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
 20:07:52.315 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
@@ -2178,7 +2178,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 20:07:52.368 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 20:07:52.373 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:07:52.399 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-20:08:10.670 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:08:10.670 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:12:12.944 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
 20:12:17.677 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
 20:12:17.944 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
@@ -2189,7 +2189,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 20:12:17.994 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 20:12:17.998 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:12:18.021 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-20:12:19.387 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:12:19.387 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:15:08.051 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
 20:15:12.330 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
 20:15:12.602 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
@@ -2215,8 +2215,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2265,9 +2265,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2312,7 +2312,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ActivityListController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -2332,8 +2332,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2382,9 +2382,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2429,7 +2429,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ActivityListController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -2451,8 +2451,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2501,9 +2501,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2548,7 +2548,7 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.ActivityListController.<init>()
+Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.<init>()
 	at java.base/java.lang.Class.getConstructor0(Class.java:3761)
 	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2930)
 	at javafx.fxml/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:941)
@@ -2564,7 +2564,7 @@ Caused by: java.lang.NoSuchMethodException: com.lulakssoft.activitymanagement.Ac
 20:16:08.169 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:16:08.191 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
 20:16:11.091 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Everybody is here!
-20:16:11.102 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:16:11.102 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:16:11.103 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error loading project: Everybody is here!
 javafx.fxml.LoadException: 
 /C:/Users/Lukas/IdeaProjects/ActivityManagement/build/resources/main/com/lulakssoft/activitymanagement/ActivityList.fxml
@@ -2574,8 +2574,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2624,9 +2624,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:91)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:91)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2681,8 +2681,8 @@ Caused by: java.lang.reflect.InvocationTargetException: null
 	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
 	... 100 common frames omitted
-Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.ProjectManager.getCurrentProject()" because "this.projectManager" is null
-	at com.lulakssoft.activitymanagement.ActivityListController.initialize(ActivityListController.java:44)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager.getCurrentProject()" because "this.projectManager" is null
+	at com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.initialize(ActivityListController.java:44)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 107 common frames omitted
 20:16:34.631 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
@@ -2713,7 +2713,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 20:20:25.527 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 20:20:25.531 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:20:25.556 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-20:20:39.300 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:20:39.300 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:21:34.574 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
 20:21:40.253 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
 20:21:40.527 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
@@ -2735,7 +2735,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 20:25:34.358 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 20:25:34.362 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 20:25:34.383 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-20:25:34.384 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+20:25:34.384 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 20:25:34.384 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error loading FXML file: ProjectView.fxml
 javafx.fxml.LoadException: 
 /C:/Users/Lukas/IdeaProjects/ActivityManagement/build/resources/main/com/lulakssoft/activitymanagement/ProjectView.fxml
@@ -2745,9 +2745,9 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.loadFXML(SceneManager.java:44)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:85)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:85)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2802,8 +2802,8 @@ Caused by: java.lang.reflect.InvocationTargetException: null
 	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
 	... 50 common frames omitted
-Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.ProjectManager.getProjectsForUser(com.lulakssoft.activitymanagement.user.User)" because "this.projectManager" is null
-	at com.lulakssoft.activitymanagement.ProjectViewController.initialize(ProjectViewController.java:62)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager.getProjectsForUser(com.lulakssoft.activitymanagement.domain.entities.user.User)" because "this.projectManager" is null
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.initialize(ProjectViewController.java:62)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 57 common frames omitted
 22:09:40.527 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
@@ -2816,7 +2816,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 22:09:47.237 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
 22:09:47.242 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 22:09:47.265 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
-22:09:47.266 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+22:09:47.266 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 22:11:56.925 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
 22:12:03.381 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
 22:12:03.699 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
@@ -2828,7 +2828,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 22:12:03.751 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
 22:12:03.772 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
 22:12:08.117 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Project F2
-22:12:08.128 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+22:12:08.128 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 22:12:08.129 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Error loading project: Project F2
 javafx.fxml.LoadException: 
 /C:/Users/Lukas/IdeaProjects/ActivityManagement/build/resources/main/com/lulakssoft/activitymanagement/ActivityList.fxml
@@ -2838,8 +2838,8 @@ javafx.fxml.LoadException:
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
 	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:71)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:161)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:161)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:108)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2889,9 +2889,9 @@ javafx.fxml.LoadException:
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:81)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:83)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:63)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:83)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:63)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:44)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -2946,8 +2946,8 @@ Caused by: java.lang.reflect.InvocationTargetException: null
 	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
 	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
 	... 101 common frames omitted
-Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.ProjectManager.getCurrentProject()" because "this.projectManager" is null
-	at com.lulakssoft.activitymanagement.ActivityListController.initialize(ActivityListController.java:44)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager.getCurrentProject()" because "this.projectManager" is null
+	at com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.initialize(ActivityListController.java:44)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 108 common frames omitted
 22:12:09.983 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
@@ -2968,7 +2968,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 22:16:12.821 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Project F1
 22:16:16.028 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Project F2
 22:16:19.549 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Project B
-22:16:40.594 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.ProjectManager
+22:16:40.594 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - Service not found for type: com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager
 22:17:01.250 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
 22:17:06.588 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
 22:17:06.878 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
@@ -3121,10 +3121,10 @@ Caused by: java.lang.NullPointerException: Cannot invoke "com.lulakssoft.activit
 10:19:23.542 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Admin Project
 10:19:24.853 [JavaFX Application Thread] ERROR c.l.a.notification.LoggingService - Failed to open activity editor window
 java.lang.IllegalStateException: ActivityManager is not initialized. Call initialize() first.
-	at com.lulakssoft.activitymanagement.ActivityManager.getInstance(ActivityManager.java:22)
+	at com.lulakssoft.activitymanagement.domain.entities.activity.ActivityManager.getInstance(ActivityManager.java:22)
 	at com.lulakssoft.activitymanagement.operation.EditActivityOperation.execute(EditActivityOperation.java:25)
-	at com.lulakssoft.activitymanagement.ActivityListController.handleEditActivity(ActivityListController.java:94)
-	at com.lulakssoft.activitymanagement.ActivityListController.lambda$initialize$4(ActivityListController.java:79)
+	at com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.handleEditActivity(ActivityListController.java:94)
+	at com.lulakssoft.activitymanagement.adapter.ui.ActivityListController.lambda$initialize$4(ActivityListController.java:79)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -3157,8 +3157,8 @@ java.lang.IllegalStateException: ActivityManager is not initialized. Call initia
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
 	at com.lulakssoft.activitymanagement.SceneManager.openModalWindow(SceneManager.java:81)
-	at com.lulakssoft.activitymanagement.ProjectViewController.handleLoad(ProjectViewController.java:154)
-	at com.lulakssoft.activitymanagement.ProjectViewController.lambda$initialize$6(ProjectViewController.java:104)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.handleLoad(ProjectViewController.java:154)
+	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.lambda$initialize$6(ProjectViewController.java:104)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -3207,9 +3207,9 @@ java.lang.IllegalStateException: ActivityManager is not initialized. Call initia
 	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:650)
 	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:469)
-	at com.lulakssoft.activitymanagement.LoginViewController.createProjectView(LoginViewController.java:86)
-	at com.lulakssoft.activitymanagement.LoginViewController.handleLoginButton(LoginViewController.java:59)
-	at com.lulakssoft.activitymanagement.LoginViewController.lambda$initialize$0(LoginViewController.java:40)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.createProjectView(LoginViewController.java:86)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.handleLoginButton(LoginViewController.java:59)
+	at com.lulakssoft.activitymanagement.adapter.ui.LoginViewController.lambda$initialize$0(LoginViewController.java:40)
 	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
 	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
@@ -3296,3 +3296,163 @@ java.lang.IllegalStateException: ActivityManager is not initialized. Call initia
 10:31:40.781 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 10:31:40.999 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 10:31:41.000 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:33:37.156 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:33:42.170 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:33:42.466 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:33:42.468 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:33:42.474 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:33:42.480 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:33:42.525 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+15:33:42.526 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+15:33:42.529 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+15:33:42.552 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+15:33:46.336 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Admin Project
+15:33:54.313 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Hi There
+15:33:56.718 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Opening user management window
+15:34:13.457 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - User 079389c1-ac6b-442b-9fae-785ad1e409ad saved
+15:34:24.501 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user employee02 with password admin
+15:34:24.502 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: employee02
+15:37:50.707 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:37:52.010 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+15:37:52.020 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:37:52.279 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:37:52.281 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:37:52.288 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:37:52.294 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:37:52.294 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+15:37:52.294 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:37:52.508 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:37:52.509 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:37:52.525 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+15:38:00.663 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:38:06.752 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+15:38:06.761 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:38:07.005 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:38:07.006 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:38:07.012 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:38:07.018 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:38:07.018 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+15:38:07.018 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:38:07.229 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:38:07.229 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:38:07.242 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+15:38:42.218 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:38:49.389 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:38:49.635 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:38:49.636 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:38:49.642 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:38:49.647 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:38:49.678 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+15:38:49.679 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user emplyoee02 with password admin
+15:38:49.682 [JavaFX Application Thread] WARN  c.l.a.notification.LoggingService - User not found: emplyoee02
+15:39:00.027 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user employee02 with password admin
+15:39:00.028 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: employee02
+15:39:00.048 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+15:39:03.127 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: I am new
+15:39:09.267 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing Activity Editor
+15:39:11.738 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Deleted activity: I am new - Kickoff Meeting
+15:39:24.029 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Deleting project: I am new
+15:39:43.931 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Updating project: I am really new
+15:39:47.102 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: I am really new
+15:39:55.252 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+15:39:55.253 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+15:39:58.537 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: I am really new
+15:40:05.802 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+15:40:05.803 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+15:40:05.803 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:40:05.814 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:40:05.814 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:40:05.827 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+15:41:45.369 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:41:46.989 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+15:41:46.998 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:41:47.252 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:41:47.254 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:41:47.260 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:41:47.267 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:41:47.267 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+15:41:47.267 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:41:47.491 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:41:47.491 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:41:47.505 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+15:43:37.524 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:43:42.886 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:43:43.196 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:43:43.198 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:43:43.204 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:43:43.210 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:43:43.241 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+15:43:43.241 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+15:43:43.245 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+15:43:43.274 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+15:43:45.616 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Opening user management window
+15:44:01.441 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - User 11aeb7ae-9b1a-4566-823b-1582862b8120 saved
+15:44:09.226 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user technician01 with password admin
+15:44:09.227 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: technician01
+15:44:34.025 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Updating project: Im a new Technician
+15:44:37.532 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Loading project: Im a new Technician
+15:44:45.577 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Application is closing
+15:44:45.577 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+15:44:45.577 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:44:45.795 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:44:45.795 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:44:45.807 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+15:46:20.791 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Starting application
+15:46:26.735 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:46:26.985 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:46:26.987 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:46:26.992 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database initialized successfully
+15:46:26.998 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool initialized
+15:46:27.029 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - UserManager initialized successfully
+15:46:27.029 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Attempting to login user admin01 with password admin
+15:46:27.033 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Login successful for user: admin01
+15:46:27.054 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - ServiceLocator initialized with default services
+15:46:29.596 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection to prevent memory leaks
+15:46:29.596 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Closing database connection pool
+15:46:29.596 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:46:29.640 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:46:29.641 [JavaFX Application Thread] INFO  c.l.a.notification.LoggingService - Database connection pool closed
+15:54:23.423 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+15:54:28.202 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:54:28.448 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:54:28.450 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:54:28.456 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+15:54:28.462 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+15:54:28.496 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - UserManager initialized successfully
+15:54:28.496 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin01 with password admin
+15:54:28.500 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin01
+15:54:28.521 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - ServiceLocator initialized with default services
+15:54:45.342 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: I am really new
+15:55:09.633 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Creator
+15:55:09.642 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Activity created successfully.
+15:58:37.189 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+15:58:42.865 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:58:43.110 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+15:58:43.112 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:58:43.117 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+15:58:43.123 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+15:58:43.155 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - UserManager initialized successfully
+15:58:43.156 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin01 with password admin
+15:58:43.160 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin01
+15:58:43.180 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - ServiceLocator initialized with default services
+15:58:46.422 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: I am really new
+15:59:05.260 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Creator
+15:59:05.271 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Activity created successfully.
+15:59:11.170 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Editor
+15:59:32.480 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Creator
+15:59:32.492 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Activity created successfully.
+15:59:37.228 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Activity updated: This is also new but will be deleted
+15:59:37.228 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Editor
+15:59:51.283 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user employee02 with password admin
+15:59:51.284 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: employee02
+15:59:54.731 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: I am really new
+16:00:02.872 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Editor
+16:00:08.556 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Deleted activity: This is also new but will be deleted
+16:00:16.558 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin01 with password admin
+16:00:16.559 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin01
+16:00:19.827 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: I am really new
+16:00:22.403 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection to prevent memory leaks
+16:00:22.403 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection pool
+16:00:22.403 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+16:00:22.616 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+16:00:22.616 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed
