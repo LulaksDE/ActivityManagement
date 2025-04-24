@@ -49,7 +49,7 @@ public class ActivityCreatorController implements UINotifier {
 
     @FXML
     public void initialize() {
-        this.projectManager = ProjectManager.getInstance();
+        this.projectManager = ProjectManager.INSTANCE;
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
         completedCheckBox.setSelected(false);
 
@@ -75,7 +75,7 @@ public class ActivityCreatorController implements UINotifier {
                 completedCheckBox.isSelected()
         );
 
-        ActivityManager.getInstance().saveActivity(newActivity);
+        ActivityManager.INSTANCE.saveActivity(newActivity);
         projectManager.getCurrentProject().addActivity(newActivity);
 
         showBannerNotification("Activity created: " + newActivity.getTitle());

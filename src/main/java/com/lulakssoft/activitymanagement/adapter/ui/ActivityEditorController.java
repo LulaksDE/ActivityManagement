@@ -43,7 +43,8 @@ public class ActivityEditorController implements UINotifier {
 
     @FXML
     public void initialize() {
-        Activity editingActivity = ActivityManager.getInstance().getCurrentEditingActivity();
+        ActivityManager activityManager = ActivityManager.INSTANCE;
+        Activity editingActivity = activityManager.getCurrentEditingActivity();
         if (editingActivity != null) {
             titleField.setText(editingActivity.getTitle());
             descriptionArea.setText(editingActivity.getDescription());
@@ -70,12 +71,13 @@ public class ActivityEditorController implements UINotifier {
     }
 
     private void handleUpdate() {
+        ActivityManager activityManager = ActivityManager.INSTANCE;
         if (titleField.getText().trim().isEmpty()) {
             showAlert("Please enter a title.");
             return;
         }
 
-        Activity editingActivity = ActivityManager.getInstance().getCurrentEditingActivity();
+        Activity editingActivity = activityManager.getCurrentEditingActivity();
         if (editingActivity != null) {
             editingActivity.setTitle(titleField.getText());
             editingActivity.setDescription(descriptionArea.getText());
@@ -83,8 +85,8 @@ public class ActivityEditorController implements UINotifier {
             editingActivity.setCompleted(completedCheckBox.isSelected());
             editingActivity.setPriority(priorityChoiceBox.getValue());
 
-            ActivityManager.getInstance().saveActivity(editingActivity);
-            ActivityManager.getInstance().clearCurrentEditingActivity();
+            activityManager.saveActivity(editingActivity);
+            activityManager.clearCurrentEditingActivity();
 
             showBannerNotification("Activity updated: " + editingActivity.getTitle());
             HistoryManager.getInstance().addLogEntry("Updated Activity: " + editingActivity.getTitle());
@@ -95,7 +97,7 @@ public class ActivityEditorController implements UINotifier {
     }
 
     private void handleCancel() {
-        ActivityManager.getInstance().clearCurrentEditingActivity();
+        ActivityManager.INSTANCE.clearCurrentEditingActivity();
         closeWindow();
     }
 

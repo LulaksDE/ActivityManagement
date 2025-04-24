@@ -16,17 +16,15 @@ public class EditActivityOperation implements ActivityOperation {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    public EditActivityOperation(Activity activity, Window ownerWindow, IActivityRepository activityRepository) {
+    public EditActivityOperation(Activity activity, Window ownerWindow) {
         this.activity = activity;
         this.ownerWindow = ownerWindow;
-
-        ActivityManager.initialize(activityRepository);
     }
 
     @Override
     public void execute() {
         try {
-            ActivityManager.getInstance().setCurrentEditingActivity(activity);
+            ActivityManager.INSTANCE.setCurrentEditingActivity(activity);
             SceneManager sceneManager = SceneManager.getInstance();
             sceneManager.openModalWindow(
                     ownerWindow,

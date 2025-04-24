@@ -6,22 +6,14 @@ import com.lulakssoft.activitymanagement.domain.entities.user.User;
 
 import java.util.List;
 
-public class ProjectManager {
-    private static ProjectManager instance;
+public enum ProjectManager {
+    INSTANCE;
+
     private final IProjectRepository projectRepository;
     private Project currentProject;
 
-    private ProjectManager(IProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
-    }
-
-    public static ProjectManager getInstance() {
-        if (instance == null) {
-            instance = new ProjectManager(
-                    ServiceLocator.getInstance().getService(IProjectRepository.class)
-            );
-        }
-        return instance;
+    ProjectManager() {
+        this.projectRepository = ServiceLocator.getInstance().getService(IProjectRepository.class);
     }
 
     public List<Project> getProjects() {

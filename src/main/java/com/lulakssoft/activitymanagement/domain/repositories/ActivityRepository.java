@@ -5,8 +5,6 @@ import com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager;
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
-import com.lulakssoft.activitymanagement.domain.entities.user.User;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -94,7 +92,7 @@ public class ActivityRepository implements IActivityRepository {
         String sql = "INSERT INTO activities (id, title, description, due_date, completed, priority, " +
                 "project_id, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        ProjectManager projectManager = ProjectManager.getInstance();
+        ProjectManager projectManager = ProjectManager.INSTANCE;
         String projectId = projectManager.getCurrentProject().getId();
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {

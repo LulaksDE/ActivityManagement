@@ -58,7 +58,7 @@ public class ProjectCreationController implements UINotifier {
 
 
     public void initialize() {
-        this.projectManager = ProjectManager.getInstance();
+        this.projectManager = ProjectManager.INSTANCE;
         UserManager userManager = UserManager.INSTANCE;
         List<User> userList = userManager.getAllUsers();
         creator = userManager.getCurrentUser();

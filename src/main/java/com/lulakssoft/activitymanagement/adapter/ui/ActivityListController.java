@@ -48,7 +48,7 @@ public class ActivityListController {
 
     @FXML
     public void initialize() {
-        this.projectManager = ProjectManager.getInstance();
+        this.projectManager = ProjectManager.INSTANCE;
         this.activityRepository = new ActivityRepository();
         Project currentProject = projectManager.getCurrentProject();
 
@@ -99,7 +99,7 @@ public class ActivityListController {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
             ActivityOperation editOperation = ActivityOperationFactory.createEditOperation(
-                    selectedActivity, activityListView.getScene().getWindow(), activityRepository);
+                    selectedActivity, activityListView.getScene().getWindow());
             editOperation.execute();
             refreshActivityList();
         }
@@ -107,7 +107,7 @@ public class ActivityListController {
 
     private void handleAddActivity() {
         ActivityOperation createOperation = ActivityOperationFactory.createNewOperation(
-                addButton.getScene().getWindow(), activityRepository);
+                addButton.getScene().getWindow());
         createOperation.execute();
         if (createOperation.wasSuccessful()) {
             logger.logInfo("Activity created successfully.");
