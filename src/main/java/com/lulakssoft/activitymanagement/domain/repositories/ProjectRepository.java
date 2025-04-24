@@ -18,18 +18,22 @@ public class ProjectRepository implements IProjectRepository {
     @Override
     public List<Project> findAll() {
         List<Project> projects = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM projects")) {
-
-            while (rs.next()) {
-                projects.add(mapResultSetToProject(rs));
-            }
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            projects = executeQueryAndMapResults(conn, "SELECT * FROM projects");
         } catch (SQLException e) {
             logger.logError("Error finding all projects", e);
         }
+        return projects;
+    }
 
+    private List<Project> executeQueryAndMapResults(Connection conn, String sql) throws SQLException {
+        List<Project> projects = new ArrayList<>();
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                projects.add(mapResultSetToProject(rs));
+            }
+        }
         return projects;
     }
 

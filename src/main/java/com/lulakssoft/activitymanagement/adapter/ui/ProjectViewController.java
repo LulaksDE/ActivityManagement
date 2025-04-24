@@ -49,56 +49,20 @@ public class ProjectViewController {
 
     public boolean loggedIn = false;
 
-    private LoggerNotifier logger = LoggerFactory.getLogger();
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
 
     private ProjectManager projectManager;
 
 
     @FXML
     public void initialize() {
-        this.projectManager = ProjectManager.INSTANCE;
-        UserManager userManager = UserManager.INSTANCE;
-        this.loggedInUser = userManager.getCurrentUser();
-        loggedIn = true;
+        setupManagers();
 
-        projectList = projectManager.getProjectsForUser(loggedInUser);
-        observableList = FXCollections.observableArrayList(projectList);
+        setupProjectList();
 
-        projectComboBox.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Project project, boolean empty) {
-                super.updateItem(project, empty);
-                if (empty || project == null) {
-                    setText(null);
-                } else {
-                    setText(project.getName());
-                }
-            }
-        });
+        setupComboBoxRendering();
 
-        projectComboBox.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(Project project, boolean empty) {
-                super.updateItem(project, empty);
-                if (empty || project == null) {
-                    setText(null);
-                } else {
-                    setText(project.getName());
-                }
-            }
-        });
-
-
-        FilteredList<Project> filteredList = new FilteredList<>(observableList, p -> true);
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(project -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                return project.getName().toLowerCase().contains(lowerCaseFilter);
-            });
-        });
+        FilteredList<Project> filteredList = setupSearch();
 
         projectComboBox.setItems(filteredList);
 
@@ -111,6 +75,50 @@ public class ProjectViewController {
 
         PermissionChecker.configureUIComponent(manageUsersButton, loggedInUser,
                 UserRole::canManageUsers);
+    }
+
+    private void setupManagers() {
+        this.projectManager = ProjectManager.INSTANCE;
+        UserManager userManager = UserManager.INSTANCE;
+        this.loggedInUser = userManager.getCurrentUser();
+        loggedIn = true;
+    }
+
+    private void setupProjectList() {
+        projectList = projectManager.getProjectsForUser(loggedInUser);
+        observableList = FXCollections.observableArrayList(projectList);
+    }
+
+    private void setupComboBoxRendering() {
+        projectComboBox.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                setText(empty || project == null ? null : project.getName());
+            }
+        });
+
+        projectComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                setText(empty || project == null ? null : project.getName());
+            }
+        });
+    }
+
+    private FilteredList<Project> setupSearch() {
+        FilteredList<Project> filteredList = new FilteredList<>(observableList, p -> true);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(project -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return project.getName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+        return filteredList;
     }
 
     private void handleCreate() {

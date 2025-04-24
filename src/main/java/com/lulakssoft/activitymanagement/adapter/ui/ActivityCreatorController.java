@@ -61,12 +61,27 @@ public class ActivityCreatorController implements UINotifier {
     }
 
     private void handleCreate() {
-        if (titleField.getText().trim().isEmpty()) {
-            showAlert("Please enter a title.");
+        if (!validateInputFields()) {
             return;
         }
 
-        Activity newActivity = new Activity(
+        Activity newActivity = createActivityFromInputs();
+
+        saveActivityToProject(newActivity);
+
+        handlePostSave();
+    }
+
+    private boolean validateInputFields() {
+        if (titleField.getText().trim().isEmpty()) {
+            showAlert("Please enter a title.");
+            return false;
+        }
+        return true;
+    }
+
+    private Activity createActivityFromInputs() {
+        return new Activity(
                 UserManager.INSTANCE.getCurrentUser().getId(),
                 titleField.getText(),
                 descriptionArea.getText(),
@@ -74,20 +89,14 @@ public class ActivityCreatorController implements UINotifier {
                 dueDatePicker.getValue(),
                 completedCheckBox.isSelected()
         );
+    }
 
-        ActivityManager.INSTANCE.saveActivity(newActivity);
-        projectManager.getCurrentProject().addActivity(newActivity);
+    private void saveActivityToProject(Activity activity) {
+        ActivityManager.INSTANCE.saveActivity(activity);
+        projectManager.getCurrentProject().addActivity(activity);
 
-        showBannerNotification("Activity created: " + newActivity.getTitle());
-        HistoryManager.getInstance().addLogEntry("Created Activity: " + newActivity.getTitle());
-
-        if (!keepPropertiesCheckBox.isSelected()) {
-            clearFields();
-        }
-
-        if (!keepPropertiesCheckBox.isSelected()) {
-            closeWindow();
-        }
+        showBannerNotification("Activity created: " + activity.getTitle());
+        HistoryManager.getInstance().addLogEntry("Aktivität created: " + activity.getTitle());
     }
 
     private void clearFields() {
@@ -96,6 +105,13 @@ public class ActivityCreatorController implements UINotifier {
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
         completedCheckBox.setSelected(false);
         priorityChoiceBox.setValue("Low");
+    }
+
+    private void handlePostSave() {
+        if (!keepPropertiesCheckBox.isSelected()) {
+            clearFields();
+            closeWindow();
+        }
     }
 
     private void handleCancel() {
