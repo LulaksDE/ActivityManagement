@@ -9,6 +9,7 @@ import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
 import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
+import com.lulakssoft.activitymanagement.operation.ActivityRepositoryException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -92,6 +93,7 @@ public class ActivityCreatorController implements UINotifier {
     }
 
     private void saveActivityToProject(Activity activity) {
+
         ActivityManager.INSTANCE.saveActivity(activity);
         projectManager.getCurrentProject().addActivity(activity);
 

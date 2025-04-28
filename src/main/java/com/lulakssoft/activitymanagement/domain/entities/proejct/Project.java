@@ -1,7 +1,10 @@
 package com.lulakssoft.activitymanagement.domain.entities.proejct;
 
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
+import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
 import com.lulakssoft.activitymanagement.domain.repositories.IActivityRepository;
+import com.lulakssoft.activitymanagement.operation.ActivityRepositoryException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,7 @@ public class Project {
     private String creatorId;
     private List<String> userIdList;
     private final IActivityRepository activityRepository;
+    private final LoggerNotifier logger = LoggerFactory.getLogger();
 
     public Project(String name, String creatorId, List<String> userIdList, IActivityRepository activityRepository) {
         this.id = UUID.randomUUID().toString();
@@ -25,7 +29,11 @@ public class Project {
     }
 
     public void addActivity(Activity activity) {
+        try{
         activity = activityRepository.save(activity);
+        }catch (ActivityRepositoryException e){
+            logger.logError("Error saving activity in project entity: ", e);
+        }
         activityList.add(activity);
     }
 

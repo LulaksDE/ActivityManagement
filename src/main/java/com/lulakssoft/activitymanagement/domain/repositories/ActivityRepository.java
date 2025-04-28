@@ -5,6 +5,7 @@ import com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager;
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.operation.ActivityRepositoryException;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -36,7 +37,7 @@ public class ActivityRepository implements IActivityRepository {
     }
 
     @Override
-    public Activity save(Activity activity) {
+    public Activity save(Activity activity) throws ActivityRepositoryException {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
@@ -59,7 +60,7 @@ public class ActivityRepository implements IActivityRepository {
                 logger.logError("Error rolling back transaction: " + rollbackEx.getMessage(), rollbackEx);
             }
             logger.logError("Error saving activity: " + activity.getId(), e);
-            return activity;
+            throw new ActivityRepositoryException("Error saving activity: " + e.getMessage(), e);
         } finally {
             try {
                 if (conn != null) {

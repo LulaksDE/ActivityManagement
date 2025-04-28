@@ -7,6 +7,7 @@ import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
+import com.lulakssoft.activitymanagement.operation.ActivityRepositoryException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
