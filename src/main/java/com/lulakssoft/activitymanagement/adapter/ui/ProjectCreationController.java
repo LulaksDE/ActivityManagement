@@ -14,8 +14,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -55,6 +58,7 @@ public class ProjectCreationController implements UINotifier {
     private Project createdProject;
 
     private User creator;
+    private final Logger logger = LoggerFactory.getLogger(ProjectCreationController.class);
 
     private ProjectService projectService;
     private UserService userService;
@@ -128,7 +132,10 @@ public class ProjectCreationController implements UINotifier {
             showBannerNotification("Please add at least one member to the project");
             return;
         }
-        Set<String> members = projectMemberListView.getSelectionModel().getSelectedItems().stream().map(User::getId).collect(Collectors.toSet());
+        Set<String> members = projectMemberListView.getItems().stream()
+                .map(User::getId)
+                .collect(Collectors.toSet());
+        logger.info("Creating project with title: {}, due date: {}, members: {}", title, dueDate, members);
         createdProject = new Project(
                 title,
                 creator.getId(),

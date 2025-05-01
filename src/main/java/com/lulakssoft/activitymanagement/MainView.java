@@ -1,9 +1,11 @@
 package com.lulakssoft.activitymanagement;
 
 import com.lulakssoft.activitymanagement.adapter.ui.LoginViewController;
+import com.lulakssoft.activitymanagement.application.observer.ActivityObserverManager;
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
+import com.lulakssoft.activitymanagement.infrastructure.observer.EmailActivityObserver;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -22,6 +24,8 @@ public class MainView extends Application {
         controller.initialize();
         primaryStage.show();
 
+        setupObservers();
+
         primaryStage.setOnCloseRequest(event -> {
             logger.logInfo("Application is closing");
             DatabaseConnection.closeDataSource();
@@ -33,6 +37,11 @@ public class MainView extends Application {
         logger.logInfo("Closing database connection to prevent memory leaks");
         DatabaseConnection.closeDataSource();
         Platform.exit();
+    }
+
+    private void setupObservers() {
+        ActivityObserverManager manager = ActivityObserverManager.INSTANCE;
+        manager.registerObserver(new EmailActivityObserver());
     }
 
     public static void main(String[] args) {

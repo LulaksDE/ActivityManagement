@@ -166,7 +166,7 @@ public class ProjectViewController {
     private void updateProjectList(Project newProject) {
         projectList.add(newProject);
         observableList.add(newProject);
-        logger.logInfo("Updating project: " + newProject.getName());
+        logger.logInfo("Updating project list: " + newProject.getName());
     }
 
     private void handleLogout() {

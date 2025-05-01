@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjectRepository {
-    Project save(Project project);
+    void save(Project project);
     void delete(String projectId);
     Project findById(String id);
     List<Project> findAll();

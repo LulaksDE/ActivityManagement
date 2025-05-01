@@ -7578,3 +7578,74 @@ Caused by: java.lang.NullPointerException: Cannot invoke "javafx.scene.control.L
 	at com.lulakssoft.activitymanagement.adapter.ui.ProjectViewController.initialize(ProjectViewController.java:65)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 57 common frames omitted
+21:00:17.653 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+21:00:17.822 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:00:18.085 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:00:18.087 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:00:18.092 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:00:18.098 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:00:25.102 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin02 with password admin
+21:00:25.121 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin02
+21:00:27.464 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: admin02 and technician01
+21:00:35.222 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Previous Activity: Activity{id='32338960-d1b2-447b-b10a-1120cea9994b', title='Newer2', description='Idk	', dueDate=2025-05-30, completed=true, priority=Medium, creatorId='54b0dd52-ad9e-40b7-81f0-dcc5a8006cd7', projectId='61ef8c9f-36cb-4f61-90ee-75b31c5dac23'}
+21:00:35.226 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Changed values: Title: Newer2, Description: Idk	, Due Date: 2025-05-30, Completed: false, Priority: Medium
+21:00:35.246 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Activity updated: Activity{id='32338960-d1b2-447b-b10a-1120cea9994b', title='Newer2', description='Idk	', dueDate=2025-05-30, completed=false, priority=Medium, creatorId='54b0dd52-ad9e-40b7-81f0-dcc5a8006cd7', projectId='61ef8c9f-36cb-4f61-90ee-75b31c5dac23'}
+21:00:35.246 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Closing Activity Editor
+21:00:38.071 [JavaFX Application Thread] ERROR c.l.a.a.ui.ActivityEditorController - No activity selected for editing.
+21:00:38.071 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Closing Activity Editor
+21:01:05.502 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user technician01 with password admin
+21:01:05.503 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: technician01
+21:01:12.176 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection to prevent memory leaks
+21:01:12.176 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection pool
+21:01:12.176 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:01:12.384 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:01:12.384 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed
+21:03:25.955 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+21:03:26.165 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:03:26.427 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:03:26.429 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:03:26.436 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:03:26.444 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:03:35.924 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user technician01 with password admin
+21:03:35.941 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: technician01
+21:04:04.976 [JavaFX Application Thread] INFO  c.l.a.a.ui.ProjectCreationController - Creating project with title: Technician, employee01 and admin02, due date: 2025-05-16, members: []
+21:04:05.015 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Updating project: Technician, employee01 and admin02
+21:14:08.235 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+21:14:08.487 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:14:08.820 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:14:08.822 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:14:08.828 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:14:08.834 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:14:14.207 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user technician01 with password admin
+21:14:14.224 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: technician01
+21:14:22.283 [JavaFX Application Thread] WARN  c.l.a.domain.services.LoggingService - No project selected for deletion.
+21:14:55.752 [JavaFX Application Thread] INFO  c.l.a.a.ui.ProjectCreationController - Creating project with title: technician01, admin01, employee02, due date: 2025-05-29, members: [0f989726-ba94-4232-a38f-f3a2b8a6c764, bb17b956-0f59-4bb5-b55e-d716086a7301, 2863bca3-8bff-481c-9bf7-1d3f849fb45a]
+21:14:55.770 [JavaFX Application Thread] INFO  c.l.a.i.p.JdbcProjectRepository - Inserting member to project_members table 0f989726-ba94-4232-a38f-f3a2b8a6c764
+21:14:55.771 [JavaFX Application Thread] INFO  c.l.a.i.p.JdbcProjectRepository - Inserting member to project_members table bb17b956-0f59-4bb5-b55e-d716086a7301
+21:14:55.771 [JavaFX Application Thread] INFO  c.l.a.i.p.JdbcProjectRepository - Inserting member to project_members table 2863bca3-8bff-481c-9bf7-1d3f849fb45a
+21:14:55.783 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Updating project list: technician01, admin01, employee02
+21:15:14.567 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin01 with password admin
+21:15:14.568 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin01
+21:15:16.726 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: technician01, admin01, employee02
+21:15:29.028 [JavaFX Application Thread] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='204dc32c-419e-4ac5-9575-438acad29ad2', title='admin01 activity', description='1dfwdawdaw', dueDate=2025-05-08, completed=false, priority=Low, creatorId='0f989726-ba94-4232-a38f-f3a2b8a6c764', projectId='47f1a927-f665-4185-b4ed-6486c66b0b5c'}
+21:15:29.053 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Creator
+21:15:48.442 [JavaFX Application Thread] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='a069ecd0-655f-4a81-aad7-0cec1e238309', title='admin01 deleted activity', description='dfnjawodawd', dueDate=2025-05-08, completed=false, priority=Low, creatorId='0f989726-ba94-4232-a38f-f3a2b8a6c764', projectId='47f1a927-f665-4185-b4ed-6486c66b0b5c'}
+21:15:48.453 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing Activity Creator
+21:15:59.388 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Deleted activity: admin01 deleted activity
+21:16:28.091 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user admin01 with password admin
+21:16:28.091 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: admin01
+21:16:31.481 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: technician01, admin01, employee02
+21:16:36.165 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Previous Activity: Activity{id='204dc32c-419e-4ac5-9575-438acad29ad2', title='admin01 activity', description='1dfwdawdaw', dueDate=2025-05-08, completed=false, priority=Low, creatorId='0f989726-ba94-4232-a38f-f3a2b8a6c764', projectId='47f1a927-f665-4185-b4ed-6486c66b0b5c'}
+21:16:36.165 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Changed values: Title: admin01 activity, Description: 1dfwdawdaw, Due Date: 2025-05-08, Completed: true, Priority: Low
+21:16:36.178 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Activity updated: Activity{id='204dc32c-419e-4ac5-9575-438acad29ad2', title='admin01 activity', description='1dfwdawdaw', dueDate=2025-05-08, completed=true, priority=Low, creatorId='0f989726-ba94-4232-a38f-f3a2b8a6c764', projectId='47f1a927-f665-4185-b4ed-6486c66b0b5c'}
+21:16:36.178 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Closing Activity Editor
+21:16:39.672 [JavaFX Application Thread] ERROR c.l.a.a.ui.ActivityEditorController - No activity selected for editing.
+21:16:39.672 [JavaFX Application Thread] INFO  c.l.a.a.ui.ActivityEditorController - Closing Activity Editor
+21:16:53.574 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Attempting to login user technician01 with password admin
+21:16:53.574 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Login successful for user: technician01
+21:16:58.870 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Loading project: technician01, admin01, employee02
+21:17:01.436 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection to prevent memory leaks
+21:17:01.436 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection pool
+21:17:01.436 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:17:01.644 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:17:01.645 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed

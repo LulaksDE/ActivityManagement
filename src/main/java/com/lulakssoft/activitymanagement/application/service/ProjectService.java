@@ -12,8 +12,8 @@ public class ProjectService {
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
-    public Project saveProject(Project project) {
-        return projectRepository.save(project);
+    public void saveProject(Project project) {
+        projectRepository.save(project);
     }
     public void deleteProject(String projectId) {
         projectRepository.delete(projectId);

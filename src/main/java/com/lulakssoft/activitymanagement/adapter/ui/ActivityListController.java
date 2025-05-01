@@ -143,7 +143,7 @@ public class ActivityListController {
 
             confirmation.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    activityService.deleteActivity(selectedActivity.getId());
+                    activityService.deleteActivity(selectedActivity);
                     logger.logInfo("Deleted activity: " + selectedActivity.getTitle());
                     HistoryManager.getInstance().addLogEntry("Deleted Activity: " + selectedActivity.getTitle());
                     refreshActivityList();

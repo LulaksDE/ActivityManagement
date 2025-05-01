@@ -22,11 +22,11 @@ public class JdbcProjectRepository implements ProjectRepository {
     }
 
     @Override
-    public Project save(Project project) {
+    public void save(Project project) {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try {
-                return insertProject(conn, project);
+                insertProject(conn, project);
             } catch (SQLException e) {
                 conn.rollback();
                 logger.error("Error saving project", e);
@@ -40,7 +40,7 @@ public class JdbcProjectRepository implements ProjectRepository {
         }
     }
 
-    private Project insertProject(Connection conn, Project project) throws SQLException {
+    private void insertProject(Connection conn, Project project) throws SQLException {
         String sql = "INSERT INTO projects (id, name, creator_id) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -54,7 +54,6 @@ public class JdbcProjectRepository implements ProjectRepository {
         insertProjectMembers(conn, project.getId(), project.getMemberIds());
 
         conn.commit();
-        return new Project(project.getId(), project.getName(), project.getCreatorId(), project.getMemberIds());
     }
 
     private void insertProjectMembers(Connection conn, String projectId, Set<String> memberIds) throws SQLException {
@@ -62,6 +61,7 @@ public class JdbcProjectRepository implements ProjectRepository {
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             for (String memberId : memberIds) {
+                logger.info("Inserting member to project_members table {}", memberId);
                 stmt.setString(1, projectId);
                 stmt.setString(2, memberId);
                 stmt.addBatch();
