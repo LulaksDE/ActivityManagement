@@ -3,7 +3,6 @@ package com.lulakssoft.activitymanagement.adapter.ui;
 import com.lulakssoft.activitymanagement.application.service.ActivityService;
 import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.HistoryManager;
-import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
@@ -14,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ActivityEditorController implements UINotifier {
 
@@ -39,9 +40,9 @@ public class ActivityEditorController implements UINotifier {
     private CheckBox completedCheckBox;
 
     @FXML
-    private ChoiceBox<String> priorityChoiceBox;
+    private ChoiceBox<Priority> priorityChoiceBox;
 
-    private final LoggerNotifier logger = LoggerFactory.getLogger();
+    private final Logger logger = LoggerFactory.getLogger(ActivityEditorController.class);
     private ActivityService activityService;
 
     @FXML
@@ -60,13 +61,13 @@ public class ActivityEditorController implements UINotifier {
 
             completedCheckBox.setSelected(editingActivity.isCompleted());
 
-            priorityChoiceBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
-            priorityChoiceBox.setValue(editingActivity.getPriority().toString());
+            priorityChoiceBox.setItems(FXCollections.observableArrayList(Priority.values()));
+            priorityChoiceBox.setValue(editingActivity.getPriority());
 
             updateButton.setText("Update");
         } else {
             showAlert("No activity selected for editing.");
-            logger.logWarning("No activity selected for editing.");
+            logger.error("No activity selected for editing.");
             closeWindow();
         }
 
@@ -81,19 +82,23 @@ public class ActivityEditorController implements UINotifier {
         }
 
         Activity editingActivity = activityService.getCurrentEditingActivity();
+        logger.info("Previous Activity: {}", editingActivity);
+        logger.info("Changed values: Title: {}, Description: {}, Due Date: {}, Completed: {}, Priority: {}",
+                titleField.getText(), descriptionArea.getText(), dueDatePicker.getValue(),
+                completedCheckBox.isSelected(), priorityChoiceBox.getValue());
         if (editingActivity != null) {
             editingActivity.setTitle(titleField.getText());
             editingActivity.setDescription(descriptionArea.getText());
             editingActivity.setDueDate(dueDatePicker.getValue());
             editingActivity.setCompleted(completedCheckBox.isSelected());
-            editingActivity.setPriority(Priority.valueOf(priorityChoiceBox.getValue()));
+            editingActivity.setPriority(priorityChoiceBox.getValue());
 
-            activityService.saveActivity(editingActivity);
+            activityService.updateActivity(editingActivity);
             activityService.clearCurrentEditingActivity();
 
             showBannerNotification("Activity updated: " + editingActivity.getTitle());
             HistoryManager.getInstance().addLogEntry("Updated Activity: " + editingActivity.getTitle());
-            logger.logInfo("Activity updated: " + editingActivity.getTitle());
+            logger.info("Activity updated: {}", editingActivity);
 
             closeWindow();
         }
@@ -104,7 +109,7 @@ public class ActivityEditorController implements UINotifier {
     }
 
     private void closeWindow() {
-        logger.logInfo("Closing Activity Editor");
+        logger.info("Closing Activity Editor");
         Stage stage = (Stage) updateButton.getScene().getWindow();
         stage.close();
     }

@@ -91,9 +91,14 @@ public class UserManagementController {
     private void createUser() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        if (roleComboBox.getValue() == null) {
+            showAlert("Error", "Please select a role.");
+            return;
+        }
+
         Role selectedRole = RoleFactory.createFromString(roleComboBox.getValue().toString());
 
-        if (username.isEmpty() || password.isEmpty() || selectedRole == null) {
+        if (username.isEmpty() || password.isEmpty()) {
             showAlert("Error", "Please enter all credentials.");
             return;
         }
@@ -104,7 +109,7 @@ public class UserManagementController {
         }
 
         User newUser = new User(username, password, selectedRole);
-        logger.info("Creating new user: " + newUser);
+        logger.info("Creating new user: {}", newUser);
         userService.saveUser(newUser);
 
         usernameField.clear();

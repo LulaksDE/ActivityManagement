@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public interface ActivityRepository {
     Activity save(Activity activity);
+    void update(Activity activity);
     void delete(String activityId);
     Optional<Activity> findById(String id);
     List<Activity> findByProjectId(String projectId);

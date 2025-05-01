@@ -37,6 +37,15 @@ public class ActivityService {
         }
     }
 
+    public void updateActivity(Activity activity) {
+        try {
+            activityRepository.update(activity);
+        } catch (Exception e) {
+            logger.error("Error updating activity: ", e);
+            throw e;
+        }
+    }
+
     public void deleteActivity(String activityId) {
         activityRepository.delete(activityId);
     }

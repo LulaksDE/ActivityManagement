@@ -25,13 +25,8 @@ public class JdbcActivityRepository implements ActivityRepository {
 
     @Override
     public Activity save(Activity activity) {
-        if (activity.getId() == null) {
             logger.info("Saving activity: {}", activity);
             return insertActivity(activity);
-        } else {
-            logger.info("Updating activity: {}", activity);
-            return updateActivity(activity);
-        }
     }
 
     private Activity insertActivity(Activity activity) {
@@ -68,25 +63,21 @@ public class JdbcActivityRepository implements ActivityRepository {
         }
     }
 
-    private Activity updateActivity(Activity activity) {
-        String sql = "UPDATE activities SET project_id=?, creator_id=?, title=?, description=?, " +
-                "priority=?, due_date=?, completed=? WHERE id=?";
+    @Override
+    public void update(Activity activity) {
+        String sql = "UPDATE activities SET title=?, description=?, priority=?, due_date=?, completed=? WHERE id=? AND project_id=?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, activity.getProjectId());
-            stmt.setString(2, activity.getCreatorId());
-            stmt.setString(3, activity.getTitle());
-            stmt.setString(4, activity.getDescription());
-            stmt.setString(5, activity.getPriority().name());
-            stmt.setDate(6, activity.getDueDate() != null ? Date.valueOf(activity.getDueDate()) : null);
-            stmt.setBoolean(7, activity.isCompleted());
-            stmt.setString(8, activity.getId());
-
+            stmt.setString(1, activity.getTitle());
+            stmt.setString(2, activity.getDescription());
+            stmt.setString(3, activity.getPriority().name());
+            stmt.setDate(4, activity.getDueDate() != null ? Date.valueOf(activity.getDueDate()) : null);
+            stmt.setBoolean(5, activity.isCompleted());
+            stmt.setString(6, activity.getId());
+            stmt.setString(7, activity.getProjectId());
             stmt.executeUpdate();
 
-            return activity;
         } catch (SQLException e) {
             logger.error("Error updating activity", e);
             throw new RuntimeException("Database error", e);

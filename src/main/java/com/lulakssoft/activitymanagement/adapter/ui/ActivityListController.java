@@ -97,20 +97,24 @@ public class ActivityListController {
     }
 
     private void handleEditActivity() {
-        Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
-        if (selectedActivity == null) {
+        activityService.setCurrentEditingActivity(activityListView.getSelectionModel().getSelectedItem());
+        if (activityService.getCurrentEditingActivity() == null) {
             logger.logWarning("No activity selected for editing.");
-            return;
-        }
-        /*
-        if (selectedActivity != null) {
-            ActivityOperation editOperation = ActivityOperationFactory.createEditOperation(
-                    selectedActivity, activityListView.getScene().getWindow());
-            editOperation.execute();
-            refreshActivityList();
-        }
+        } else {
+            try {
+                SceneManager sceneManager = SceneManager.getInstance();
+                ActivityEditorController controller = sceneManager.openModalWindow(
+                        activityListView.getScene().getWindow(),
+                        SceneManager.ACTIVITY_EDITOR,
+                        "Edit Activity");
+                controller.initialize();
 
-         */
+                refreshActivityList();
+
+            } catch (Exception e) {
+                logger.logError("Failed to edit activity: " + e.getMessage(), e);
+            }
+        }
     }
 
     private void handleAddActivity() {
@@ -121,6 +125,8 @@ public class ActivityListController {
                     SceneManager.ACTIVITY_CREATOR,
                     "Create Activity");
             controller.initialize();
+
+            refreshActivityList();
 
         } catch (Exception e) {
             logger.logError("Failed to create activity: " + e.getMessage(), e);

@@ -96,16 +96,6 @@ public class DatabaseConnection {
                                 "FOREIGN KEY (creator_id) REFERENCES users(id)" +
                                 ")"
                 );
-
-                stmt.execute(
-                        "CREATE TABLE IF NOT EXISTS activity_members (" +
-                                "activity_id VARCHAR(36) NOT NULL, " +
-                                "user_id VARCHAR(36) NOT NULL, " +
-                                "PRIMARY KEY (activity_id, user_id), " +
-                                "FOREIGN KEY (activity_id) REFERENCES activities(id) ON DELETE CASCADE, " +
-                                "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
-                                ")"
-                );
             } catch (SQLException e) {
                 logger.logError("Error creating tables: " + e.getMessage(), e);
             }
