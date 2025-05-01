@@ -1,13 +1,14 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
-import com.lulakssoft.activitymanagement.domain.entities.activity.ActivityManager;
+import com.lulakssoft.activitymanagement.application.service.ActivityService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.HistoryManager;
-import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
-import com.lulakssoft.activitymanagement.operation.ActivityRepositoryException;
+import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
+import com.lulakssoft.activitymanagement.domain.model.activity.Priority;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,11 +42,13 @@ public class ActivityEditorController implements UINotifier {
     private ChoiceBox<String> priorityChoiceBox;
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
+    private ActivityService activityService;
 
     @FXML
     public void initialize() {
-        ActivityManager activityManager = ActivityManager.INSTANCE;
-        Activity editingActivity = activityManager.getCurrentEditingActivity();
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.activityService = context.getActivityService();
+        Activity editingActivity = activityService.getCurrentEditingActivity();
         if (editingActivity != null) {
             titleField.setText(editingActivity.getTitle());
             descriptionArea.setText(editingActivity.getDescription());
@@ -58,7 +61,7 @@ public class ActivityEditorController implements UINotifier {
             completedCheckBox.setSelected(editingActivity.isCompleted());
 
             priorityChoiceBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
-            priorityChoiceBox.setValue(editingActivity.getPriority());
+            priorityChoiceBox.setValue(editingActivity.getPriority().toString());
 
             updateButton.setText("Update");
         } else {
@@ -72,22 +75,21 @@ public class ActivityEditorController implements UINotifier {
     }
 
     private void handleUpdate() {
-        ActivityManager activityManager = ActivityManager.INSTANCE;
         if (titleField.getText().trim().isEmpty()) {
             showAlert("Please enter a title.");
             return;
         }
 
-        Activity editingActivity = activityManager.getCurrentEditingActivity();
+        Activity editingActivity = activityService.getCurrentEditingActivity();
         if (editingActivity != null) {
             editingActivity.setTitle(titleField.getText());
             editingActivity.setDescription(descriptionArea.getText());
             editingActivity.setDueDate(dueDatePicker.getValue());
             editingActivity.setCompleted(completedCheckBox.isSelected());
-            editingActivity.setPriority(priorityChoiceBox.getValue());
+            editingActivity.setPriority(Priority.valueOf(priorityChoiceBox.getValue()));
 
-            activityManager.saveActivity(editingActivity);
-            activityManager.clearCurrentEditingActivity();
+            activityService.saveActivity(editingActivity);
+            activityService.clearCurrentEditingActivity();
 
             showBannerNotification("Activity updated: " + editingActivity.getTitle());
             HistoryManager.getInstance().addLogEntry("Updated Activity: " + editingActivity.getTitle());
@@ -98,7 +100,6 @@ public class ActivityEditorController implements UINotifier {
     }
 
     private void handleCancel() {
-        ActivityManager.INSTANCE.clearCurrentEditingActivity();
         closeWindow();
     }
 

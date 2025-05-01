@@ -3,8 +3,9 @@ package com.lulakssoft.activitymanagement.adapter.ui;
 import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
-import com.lulakssoft.activitymanagement.domain.entities.user.User;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
+import com.lulakssoft.activitymanagement.application.service.UserService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
+import com.lulakssoft.activitymanagement.domain.model.user.User;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,29 +34,29 @@ public class LoginViewController {
     private Button loginButton;
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
+    private UserService userService;
 
 
     @FXML
     public void initialize() {
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.userService = context.getUserService();
         loginButton.setOnAction(event -> handleLoginButton());
     }
 
     private void handleLoginButton() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        UserManager userManager = UserManager.INSTANCE;
-        LoggerNotifier logger = LoggerFactory.getLogger();
 
         logger.logInfo("Attempting to login user " + username + " with password " + password);
 
-        Optional<User> userOptional = userManager.findUserByUsername(username);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
+        User user = userService.findUserByUsername(username);
+        if (user != null) {
 
             // Password is plain text for simplicity, in real applications use hashed passwords
-            if (password.equals(user.getPassword())) {
+            if (password.equals(user.getPasswordHash())) {
                 logger.logInfo("Login successful for user: " + username);
-                userManager.setCurrentUser(user);
+                userService.setCurrentUser(user);
                 createProjectView();
                 return;
             } else {

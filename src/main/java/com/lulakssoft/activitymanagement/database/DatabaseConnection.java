@@ -115,6 +115,10 @@ public class DatabaseConnection {
         }
     }
 
+    public static HikariDataSource getDataSource() {
+        return dataSource;
+    }
+
     public static void closeDataSource() {
         if (dataSource != null && !dataSource.isClosed()) {
             logger.logInfo("Closing database connection pool");

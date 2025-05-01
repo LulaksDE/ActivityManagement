@@ -1,14 +1,14 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
-import com.lulakssoft.activitymanagement.domain.entities.proejct.Project;
-import com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager;
+import com.lulakssoft.activitymanagement.application.service.ProjectService;
+import com.lulakssoft.activitymanagement.application.service.UserService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
-import com.lulakssoft.activitymanagement.domain.entities.user.User;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserRole;
-import com.lulakssoft.activitymanagement.domain.entities.user.role.PermissionChecker;
+import com.lulakssoft.activitymanagement.domain.model.project.Project;
+import com.lulakssoft.activitymanagement.domain.model.user.Role;
+import com.lulakssoft.activitymanagement.domain.model.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -51,8 +51,8 @@ public class ProjectViewController {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    private ProjectManager projectManager;
-
+    private ProjectService projectService;
+    private UserService userService;
 
     @FXML
     public void initialize() {
@@ -72,20 +72,18 @@ public class ProjectViewController {
         logoutButton.setOnAction(e -> handleLogout());
 
         manageUsersButton.setOnAction(e -> handleManageUsers());
-
-        PermissionChecker.configureUIComponent(manageUsersButton, loggedInUser,
-                UserRole::canManageUsers);
     }
 
     private void setupManagers() {
-        this.projectManager = ProjectManager.INSTANCE;
-        UserManager userManager = UserManager.INSTANCE;
-        this.loggedInUser = userManager.getCurrentUser();
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.projectService = context.getProjectService();
+        this.userService = context.getUserService();
+        this.loggedInUser = userService.getCurrentUser();
         loggedIn = true;
     }
 
     private void setupProjectList() {
-        projectList = projectManager.getProjectsForUser(loggedInUser);
+        projectList = projectService.findProjectsByMember(loggedInUser.getId());
         observableList = FXCollections.observableArrayList(projectList);
     }
 
@@ -144,7 +142,7 @@ public class ProjectViewController {
             return;
         } else {
             logger.logInfo("Deleting project: " + selectedProject.getName());
-            projectManager.removeProject(selectedProject);
+            projectService.deleteProject(selectedProject.getId());
         }
         projectList.remove(selectedProject);
         observableList.remove(selectedProject);
@@ -156,7 +154,7 @@ public class ProjectViewController {
         if (selectedProject == null) {
             return;
         } else {
-            projectManager.setCurrentProject(selectedProject);
+            projectService.setCurrentProject(selectedProject);
             logger.logInfo("Loading project: " + selectedProject.getName());
         }
 

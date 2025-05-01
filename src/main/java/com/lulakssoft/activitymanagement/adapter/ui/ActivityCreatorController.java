@@ -1,15 +1,16 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
-import com.lulakssoft.activitymanagement.domain.entities.activity.ActivityManager;
+import com.lulakssoft.activitymanagement.application.service.ActivityService;
+import com.lulakssoft.activitymanagement.application.service.ProjectService;
+import com.lulakssoft.activitymanagement.application.service.UserService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.HistoryManager;
-import com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager;
-import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
-import com.lulakssoft.activitymanagement.operation.ActivityRepositoryException;
+import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
+import com.lulakssoft.activitymanagement.domain.model.activity.Priority;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -46,11 +47,16 @@ public class ActivityCreatorController implements UINotifier {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    private ProjectManager projectManager;
+    private ProjectService projectService;
+    private ActivityService activityService;
+    private UserService userService;
 
     @FXML
     public void initialize() {
-        this.projectManager = ProjectManager.INSTANCE;
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.projectService = context.getProjectService();
+        this.activityService = context.getActivityService();
+        this.userService = context.getUserService();
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
         completedCheckBox.setSelected(false);
 
@@ -83,19 +89,18 @@ public class ActivityCreatorController implements UINotifier {
 
     private Activity createActivityFromInputs() {
         return new Activity(
-                UserManager.INSTANCE.getCurrentUser().getId(),
+                projectService.getCurrentProject().getId(),
+                userService.getCurrentUser().getId(),
                 titleField.getText(),
                 descriptionArea.getText(),
-                priorityChoiceBox.getValue(),
-                dueDatePicker.getValue(),
-                completedCheckBox.isSelected()
+                Priority.fromString(priorityChoiceBox.getValue()),
+                dueDatePicker.getValue()
         );
     }
 
     private void saveActivityToProject(Activity activity) {
 
-        ActivityManager.INSTANCE.saveActivity(activity);
-        projectManager.getCurrentProject().addActivity(activity);
+        activityService.saveActivity(activity);
 
         showBannerNotification("Activity created: " + activity.getTitle());
         HistoryManager.getInstance().addLogEntry("Aktivität created: " + activity.getTitle());

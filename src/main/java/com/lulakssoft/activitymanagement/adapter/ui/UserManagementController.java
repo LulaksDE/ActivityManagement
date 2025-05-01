@@ -1,15 +1,19 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
-import com.lulakssoft.activitymanagement.domain.entities.user.Privileges;
-import com.lulakssoft.activitymanagement.domain.entities.user.User;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
-import com.lulakssoft.activitymanagement.domain.entities.user.role.RoleFactory;
+import com.lulakssoft.activitymanagement.application.service.UserService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
+import com.lulakssoft.activitymanagement.domain.model.user.Role;
+import com.lulakssoft.activitymanagement.domain.model.user.RoleFactory;
+import com.lulakssoft.activitymanagement.domain.model.user.RoleType;
+import com.lulakssoft.activitymanagement.domain.model.user.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserManagementController {
 
@@ -32,7 +36,7 @@ public class UserManagementController {
     private PasswordField passwordField;
 
     @FXML
-    private ComboBox<Privileges> roleComboBox;
+    private ComboBox<RoleType> roleComboBox;
 
     @FXML
     private Button createUserButton;
@@ -40,15 +44,18 @@ public class UserManagementController {
     @FXML
     private Button closeButton;
 
-    private UserManager userManager;
+    private final Logger logger = LoggerFactory.getLogger(UserManagementController.class);
+
+    private UserService userService;
 
     @FXML
     public void initialize() {
-        userManager = UserManager.INSTANCE;
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.userService = context.getUserService();
 
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         roleColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getRole().getRoleName()));
+                new SimpleStringProperty(cellData.getValue().getRole().getName()));
 
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button deleteButton = new Button("Delete"); {
@@ -69,7 +76,7 @@ public class UserManagementController {
             }
         });
 
-        roleComboBox.setItems(FXCollections.observableArrayList(Privileges.values()));
+        roleComboBox.setItems(FXCollections.observableArrayList(RoleFactory.getAllRoleTypes()));
 
         loadUsers();
 
@@ -78,26 +85,27 @@ public class UserManagementController {
     }
 
     private void loadUsers() {
-        userTable.setItems(FXCollections.observableArrayList(userManager.getAllUsers()));
+        userTable.setItems(FXCollections.observableArrayList(userService.findAllUsers()));
     }
 
     private void createUser() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        Privileges selectedRole = roleComboBox.getValue();
+        Role selectedRole = RoleFactory.createFromString(roleComboBox.getValue().toString());
 
         if (username.isEmpty() || password.isEmpty() || selectedRole == null) {
             showAlert("Error", "Please enter all credentials.");
             return;
         }
 
-        if (userManager.findUserByUsername(username).isPresent()) {
+        if (userService.findUserByUsername(username) != null) {
             showAlert("Error", "User already exists.");
             return;
         }
 
-        User newUser = new User(username, password, RoleFactory.getRole(selectedRole));
-        userManager.addUser(newUser);
+        User newUser = new User(username, password, selectedRole);
+        logger.info("Creating new user: " + newUser);
+        userService.saveUser(newUser);
 
         usernameField.clear();
         passwordField.clear();
@@ -107,12 +115,12 @@ public class UserManagementController {
     }
 
     private void deleteUser(User user) {
-        if (user.equals(userManager.getCurrentUser())) {
+        if (user.equals(userService.findUserByUsername(user.getUsername()))) {
             showAlert("Error", "You can't delete your own user.");
             return;
         }
 
-        userManager.removeUser(user);
+        userService.deleteUser(user.getId());
         loadUsers();
     }
 

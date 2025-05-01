@@ -1,16 +1,14 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
 import com.lulakssoft.activitymanagement.HistoryManager;
-import com.lulakssoft.activitymanagement.domain.entities.proejct.Project;
-import com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager;
+import com.lulakssoft.activitymanagement.application.service.ActivityService;
+import com.lulakssoft.activitymanagement.application.service.ProjectService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
+import com.lulakssoft.activitymanagement.domain.model.project.Project;
 import com.lulakssoft.activitymanagement.SceneManager;
-import com.lulakssoft.activitymanagement.domain.entities.activity.Activity;
+import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
-import com.lulakssoft.activitymanagement.domain.repositories.ActivityRepository;
-import com.lulakssoft.activitymanagement.domain.repositories.IActivityRepository;
-import com.lulakssoft.activitymanagement.operation.ActivityOperation;
-import com.lulakssoft.activitymanagement.operation.ActivityOperationFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -43,18 +41,21 @@ public class ActivityListController {
     private ObservableList<Activity> observableActivityList;
     private FilteredList<Activity> filteredActivityList;
     private final LoggerNotifier logger = LoggerFactory.getLogger();
-    private ProjectManager projectManager;
-    private IActivityRepository activityRepository;
+    private ActivityService activityService;
+    private ProjectService projectService;
 
     @FXML
     public void initialize() {
-        this.projectManager = ProjectManager.INSTANCE;
-        this.activityRepository = new ActivityRepository();
-        Project currentProject = projectManager.getCurrentProject();
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.activityService = context.getActivityService();
+        this.projectService = context.getProjectService();
+
+        Project currentProject = projectService.getCurrentProject();
+
 
         if (currentProject != null) {
             titleLabel.setText("Activities: " + currentProject.getName());
-            List<Activity> activities = currentProject.getActivityList();
+            List<Activity> activities = activityService.findActivitiesByProject(currentProject.getId());
             observableActivityList = FXCollections.observableArrayList(activities);
 
             filteredActivityList = new FilteredList<>(observableActivityList, p -> true);
@@ -97,25 +98,33 @@ public class ActivityListController {
 
     private void handleEditActivity() {
         Activity selectedActivity = activityListView.getSelectionModel().getSelectedItem();
+        if (selectedActivity == null) {
+            logger.logWarning("No activity selected for editing.");
+            return;
+        }
+        /*
         if (selectedActivity != null) {
             ActivityOperation editOperation = ActivityOperationFactory.createEditOperation(
                     selectedActivity, activityListView.getScene().getWindow());
             editOperation.execute();
             refreshActivityList();
         }
+
+         */
     }
 
     private void handleAddActivity() {
-        ActivityOperation createOperation = ActivityOperationFactory.createNewOperation(
-                addButton.getScene().getWindow());
-        createOperation.execute();
-        if (createOperation.wasSuccessful()) {
-            logger.logInfo("Activity created successfully.");
-            HistoryManager.getInstance().addLogEntry("Created Activity");
-        } else {
-            logger.logWarning("Failed to create activity.");
+        try {
+            SceneManager sceneManager = SceneManager.getInstance();
+            ActivityCreatorController controller = sceneManager.openModalWindow(
+                    addButton.getScene().getWindow(),
+                    SceneManager.ACTIVITY_CREATOR,
+                    "Create Activity");
+            controller.initialize();
+
+        } catch (Exception e) {
+            logger.logError("Failed to create activity: " + e.getMessage(), e);
         }
-        refreshActivityList();
     }
 
     private void handleDeleteActivity() {
@@ -128,7 +137,7 @@ public class ActivityListController {
 
             confirmation.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    projectManager.getCurrentProject().removeActivity(selectedActivity);
+                    activityService.deleteActivity(selectedActivity.getId());
                     logger.logInfo("Deleted activity: " + selectedActivity.getTitle());
                     HistoryManager.getInstance().addLogEntry("Deleted Activity: " + selectedActivity.getTitle());
                     refreshActivityList();
@@ -150,10 +159,9 @@ public class ActivityListController {
     }
 
     private void refreshActivityList() {
-        Project currentProject = projectManager.getCurrentProject();
+        Project currentProject = projectService.getCurrentProject();
         if (currentProject != null) {
-            currentProject.refreshActivities();
-            observableActivityList.setAll(currentProject.getActivityList());
+            observableActivityList.setAll(activityService.findActivitiesByProject(currentProject.getId()));
         }
     }
 }

@@ -13,10 +13,10 @@ module com.lulakssoft.activitymanagement {
     exports com.lulakssoft.activitymanagement;
     exports com.lulakssoft.activitymanagement.adapter.ui;
     opens com.lulakssoft.activitymanagement.adapter.ui to javafx.fxml;
-    exports com.lulakssoft.activitymanagement.domain.entities.activity;
-    opens com.lulakssoft.activitymanagement.domain.entities.activity to javafx.fxml;
-    exports com.lulakssoft.activitymanagement.domain.entities.proejct;
-    opens com.lulakssoft.activitymanagement.domain.entities.proejct to javafx.fxml;
-    exports com.lulakssoft.activitymanagement.domain.entities.user;
-    opens com.lulakssoft.activitymanagement.domain.entities.user to javafx.fxml;
+    exports com.lulakssoft.activitymanagement.domain.model.activity;
+    opens com.lulakssoft.activitymanagement.domain.model.activity to javafx.fxml;
+    exports com.lulakssoft.activitymanagement.domain.model.project;
+    opens com.lulakssoft.activitymanagement.domain.model.project to javafx.fxml;
+    exports com.lulakssoft.activitymanagement.domain.model.user;
+    opens com.lulakssoft.activitymanagement.domain.model.user to javafx.fxml;
 }

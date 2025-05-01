@@ -1,12 +1,12 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
-import com.lulakssoft.activitymanagement.domain.entities.proejct.Project;
-import com.lulakssoft.activitymanagement.domain.entities.proejct.ProjectManager;
-import com.lulakssoft.activitymanagement.ServiceLocator;
+import com.lulakssoft.activitymanagement.application.service.ProjectService;
+import com.lulakssoft.activitymanagement.application.service.UserService;
+import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
-import com.lulakssoft.activitymanagement.domain.entities.user.User;
-import com.lulakssoft.activitymanagement.domain.entities.user.UserManager;
+import com.lulakssoft.activitymanagement.domain.model.project.Project;
+import com.lulakssoft.activitymanagement.domain.model.user.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +17,8 @@ import javafx.stage.Window;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProjectCreationController implements UINotifier {
 
@@ -54,14 +56,16 @@ public class ProjectCreationController implements UINotifier {
 
     private User creator;
 
-    private ProjectManager projectManager;
+    private ProjectService projectService;
+    private UserService userService;
 
-
+    @FXML
     public void initialize() {
-        this.projectManager = ProjectManager.INSTANCE;
-        UserManager userManager = UserManager.INSTANCE;
-        List<User> userList = userManager.getAllUsers();
-        creator = userManager.getCurrentUser();
+        ApplicationContext context = ApplicationContext.getInstance();
+        this.projectService = context.getProjectService();
+        this.userService = context.getUserService();
+        List<User> userList = userService.findAllUsers();
+        creator = userService.getCurrentUser();
 
         ObservableList<User> availableUsers = FXCollections.observableArrayList(userList);
         ObservableList<User> projectUsers = FXCollections.observableArrayList();
@@ -81,7 +85,7 @@ public class ProjectCreationController implements UINotifier {
         });
 
         colPersonName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
-        colPersonPerms.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrivilage().toString()));
+        colPersonPerms.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRole().getName()));
         // Actions column
         colPersonAdded.setCellFactory(param -> new TableCell<>() {
             private final Button addButton = new Button("Add");
@@ -124,11 +128,13 @@ public class ProjectCreationController implements UINotifier {
             showBannerNotification("Please add at least one member to the project");
             return;
         }
-        List<String> projectMembers = projectMemberListView.getItems().stream()
-                .map(User::getId)
-                .toList();
-        createdProject = ServiceLocator.createProject(title, creator.getId(), projectMembers);
-        projectManager.addProject(createdProject);
+        Set<String> members = projectMemberListView.getSelectionModel().getSelectedItems().stream().map(User::getId).collect(Collectors.toSet());
+        createdProject = new Project(
+                title,
+                creator.getId(),
+                members
+        );
+        projectService.saveProject(createdProject);
 
         closeWindow();
     }
