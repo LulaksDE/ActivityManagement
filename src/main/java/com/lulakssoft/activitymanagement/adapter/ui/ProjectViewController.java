@@ -44,9 +44,6 @@ public class ProjectViewController {
 
     private ObservableList<Project> observableList;
 
-
-    private User loggedInUser;
-
     public boolean loggedIn = false;
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
@@ -78,12 +75,11 @@ public class ProjectViewController {
         ApplicationContext context = ApplicationContext.getInstance();
         this.projectService = context.getProjectService();
         this.userService = context.getUserService();
-        this.loggedInUser = userService.getCurrentUser();
         loggedIn = true;
     }
 
     private void setupProjectList() {
-        projectList = projectService.findProjectsByMember(loggedInUser.getId());
+        projectList = projectService.findProjectsByMember(userService.getCurrentUser().getId());
         observableList = FXCollections.observableArrayList(projectList);
     }
 
