@@ -7649,3 +7649,377 @@ Caused by: java.lang.NullPointerException: Cannot invoke "javafx.scene.control.L
 21:17:01.436 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 21:17:01.644 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 21:17:01.645 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed
+21:39:13.673 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 5 started executing tests.
+21:39:13.946 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 5 finished executing tests.
+21:39:29.076 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 6 started executing tests.
+21:39:30.413 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:39:30.600 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:39:30.601 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:39:30.606 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:39:30.611 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:39:30.649 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 6 finished executing tests.
+21:40:01.187 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 7 started executing tests.
+21:40:02.425 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:40:02.607 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:40:02.608 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:40:02.613 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:40:02.619 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:40:02.657 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 7 finished executing tests.
+21:40:10.542 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 8 started executing tests.
+21:40:11.805 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:40:12.001 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:40:12.003 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:40:12.008 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:40:12.015 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:40:12.053 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 8 finished executing tests.
+21:46:41.856 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 9 started executing tests.
+21:46:43.132 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:46:44.234 [Test worker] ERROR c.l.a.domain.services.LoggingService - Error when initializing database
+com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Datenbank wird wahrscheinlich bereits benutzt: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Mögliche Lösungen: alle Verbindungen schliessen; Server Modus verwenden
+Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:584)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:571)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.database.DatabaseConnection.initializeDataSource(DatabaseConnection.java:40)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.database.DatabaseConnection.<clinit>(DatabaseConnection.java:22)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.infrastructure.persistence.JdbcActivityRepository.<init>(JdbcActivityRepository.java:23)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.JdbcActivityRepositoryTest.setUp(JdbcActivityRepositoryTest.java:36)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons@1.10.2/org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:128)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.extension.TimeoutExtension.interceptBeforeEachMethod(TimeoutExtension.java:78)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:521)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeBeforeEachMethodAdapter$23(ClassBasedTestDescriptor.java:506)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeEachMethods$3(TestMethodTestDescriptor.java:175)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeMethodsOrCallbacksUntilExceptionOccurs$6(TestMethodTestDescriptor.java:203)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeMethodsOrCallbacksUntilExceptionOccurs(TestMethodTestDescriptor.java:203)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeEachMethods(TestMethodTestDescriptor.java:172)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:119)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:89)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy3/jdk.proxy3.$Proxy4.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:119)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:66)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Datenbank wird wahrscheinlich bereits benutzt: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Mögliche Lösungen: alle Verbindungen schliessen; Server Modus verwenden
+Database may be already in use: "C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:212)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at com.h2database@2.2.224/org.h2.engine.Database.<init>(Database.java:326)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:92)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:222)
+	at com.h2database@2.2.224/org.h2.engine.Engine.createSession(Engine.java:201)
+	at com.h2database@2.2.224/org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at com.h2database@2.2.224/org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at com.h2database@2.2.224/org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	... 90 common frames omitted
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Lukas/IdeaProjects/ActivityManagement/activitymanagement.mv.db [2.2.224/7]
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 102 common frames omitted
+21:46:44.267 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 9 finished executing tests.
+21:46:53.284 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 10 started executing tests.
+21:46:54.560 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:46:54.751 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:46:54.753 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:46:54.758 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:46:54.766 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:46:54.805 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 10 finished executing tests.
+21:52:15.510 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 11 started executing tests.
+21:52:16.743 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:52:16.930 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:52:16.932 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:52:16.936 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:52:16.943 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:52:17.015 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 11 finished executing tests.
+21:52:42.544 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 12 started executing tests.
+21:52:43.772 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:52:43.954 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:52:43.955 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:52:43.960 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:52:43.966 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:52:44.017 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 12 finished executing tests.
+21:56:24.180 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 13 started executing tests.
+21:56:25.421 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:56:25.606 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:56:25.607 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:56:25.611 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:56:25.618 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:56:25.669 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 13 finished executing tests.
+21:57:06.345 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 14 started executing tests.
+21:57:07.658 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:57:07.840 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:57:07.841 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:57:07.846 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:57:07.852 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:57:07.857 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='5ef71110-77c6-4d76-8726-420a130eb510', title='Test Activity', description='Description', dueDate=2025-05-01, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+21:57:07.871 [Test worker] ERROR c.l.a.i.p.JdbcActivityRepository - Error inserting activity
+org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Referentielle Integrität verletzt: "CONSTRAINT_97: PUBLIC.ACTIVITIES FOREIGN KEY(PROJECT_ID) REFERENCES PUBLIC.PROJECTS(ID) ('project123')"
+Referential integrity constraint violation: "CONSTRAINT_97: PUBLIC.ACTIVITIES FOREIGN KEY(PROJECT_ID) REFERENCES PUBLIC.PROJECTS(ID) ('project123')"; SQL statement:
+INSERT INTO activities (id, project_id, creator_id, title, description, priority, due_date, completed) VALUES (?, ?, ?, ?, ?, ?, ?, ?) [23506-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:520)
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.2.224/org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:311)
+	at com.h2database@2.2.224/org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:252)
+	at com.h2database@2.2.224/org.h2.table.Table.fireConstraints(Table.java:1200)
+	at com.h2database@2.2.224/org.h2.table.Table.fireAfterRow(Table.java:1218)
+	at com.h2database@2.2.224/org.h2.command.dml.Insert.insertRows(Insert.java:188)
+	at com.h2database@2.2.224/org.h2.command.dml.Insert.update(Insert.java:135)
+	at com.h2database@2.2.224/org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at com.h2database@2.2.224/org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at com.h2database@2.2.224/org.h2.command.Command.executeUpdate(Command.java:256)
+	at com.h2database@2.2.224/org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
+	at com.h2database@2.2.224/org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari@5.1.0/com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.infrastructure.persistence.JdbcActivityRepository.insertActivity(JdbcActivityRepository.java:48)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.infrastructure.persistence.JdbcActivityRepository.save(JdbcActivityRepository.java:29)
+	at com.lulakssoft.activitymanagement@1.0-SNAPSHOT/com.lulakssoft.activitymanagement.JdbcActivityRepositoryTest.testSaveActivity(JdbcActivityRepositoryTest.java:66)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons@1.10.2/org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine@5.10.2/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine@1.10.2/org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:119)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:89)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy3/jdk.proxy3.$Proxy4.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:119)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:66)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+21:57:07.898 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 14 finished executing tests.
+21:59:13.120 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 15 started executing tests.
+21:59:14.525 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:59:14.735 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+21:59:14.737 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:59:14.742 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+21:59:14.749 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+21:59:14.750 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:59:14.977 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:59:14.994 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 15 finished executing tests.
+22:00:30.225 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 16 started executing tests.
+22:00:31.592 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:00:31.779 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:00:31.780 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:00:31.784 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:00:31.790 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:00:31.835 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='51c348b9-5179-4a97-9eef-6c9365435718', title='Test Activity', description='Description', dueDate=2025-05-01, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+22:00:31.868 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 16 finished executing tests.
+22:01:08.143 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 17 started executing tests.
+22:01:09.482 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:01:09.668 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:01:09.669 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:01:09.674 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:01:09.680 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:01:09.747 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='1d359ec4-ee54-495b-a5cc-4e90a4ffd322', title='Test Activity', description='Description', dueDate=2025-05-01, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+22:01:09.787 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 17 finished executing tests.
+22:01:22.578 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 18 started executing tests.
+22:01:23.896 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:01:24.073 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:01:24.075 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:01:24.080 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:01:24.086 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:01:24.153 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='54718a0b-8050-40f0-9681-6bebe9997a27', title='Test Activity', description='Description', dueDate=2025-05-01, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+22:01:24.195 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 18 finished executing tests.
+22:01:47.760 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 19 started executing tests.
+22:01:49.103 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:01:49.291 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:01:49.293 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:01:49.297 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:01:49.304 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:01:49.350 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='2c6294a9-ec2f-4268-99ec-1dc2cb0499e2', title='Test Activity', description='Description', dueDate=2025-05-01, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+22:01:49.381 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 19 finished executing tests.
+22:01:54.296 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 20 started executing tests.
+22:01:55.650 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:01:55.834 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:01:55.835 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:01:55.840 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:01:55.846 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:01:55.915 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='18fb1597-3a93-4e84-bca0-b04d8b7a0fa0', title='Test Activity', description='Description', dueDate=2025-05-01, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+22:01:55.955 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 20 finished executing tests.
+22:02:12.821 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 21 started executing tests.
+22:02:14.124 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:02:14.303 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:02:14.305 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:02:14.309 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:02:14.315 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:02:14.378 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 21 finished executing tests.
+22:02:32.210 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 22 started executing tests.
+22:02:33.576 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:02:33.762 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:02:33.763 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:02:33.768 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:02:33.774 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:02:33.844 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 22 finished executing tests.
+22:02:44.360 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 23 started executing tests.
+22:02:45.742 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:02:45.922 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:02:45.923 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:02:45.927 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:02:45.934 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:02:46.000 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 23 finished executing tests.
+22:02:51.573 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 24 started executing tests.
+22:02:52.872 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:02:53.050 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:02:53.051 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:02:53.056 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:02:53.062 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:02:53.119 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 24 finished executing tests.
+22:03:37.119 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 25 started executing tests.
+22:03:38.557 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:03:38.754 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+22:03:38.756 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:03:38.760 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+22:03:38.769 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+22:03:38.848 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 25 finished executing tests.
