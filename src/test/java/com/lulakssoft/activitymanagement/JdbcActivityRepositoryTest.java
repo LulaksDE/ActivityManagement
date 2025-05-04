@@ -169,6 +169,35 @@ class JdbcActivityRepositoryTest {
     }
 
     @Test
+    void testFindByCreatorId() throws SQLException {
+        // Given
+        String creatorId = "creator123";
+
+        when(resultSet.next()).thenReturn(true, true, false);
+        when(resultSet.getString("id")).thenReturn("activity1", "activity2");
+        when(resultSet.getString("project_id")).thenReturn("project123", "project456");
+        when(resultSet.getString("creator_id")).thenReturn(creatorId, creatorId);
+        when(resultSet.getString("title")).thenReturn("Activity 1", "Activity 2");
+        when(resultSet.getString("description")).thenReturn("Description 1", "Description 2");
+        when(resultSet.getString("priority")).thenReturn("HIGH", "MEDIUM");
+        when(resultSet.getDate("due_date")).thenReturn(
+                Date.valueOf(LocalDate.now()),
+                Date.valueOf(LocalDate.now().plusDays(1))
+        );
+        when(resultSet.getBoolean("completed")).thenReturn(false, true);
+
+        // When
+        List<Activity> activities = repository.findByCreator(creatorId);
+
+        // Then
+        verify(preparedStatement).setString(1, creatorId);
+
+        assertEquals(2, activities.size());
+        assertEquals("Activity 1", activities.get(0).getTitle());
+        assertEquals("Activity 2", activities.get(1).getTitle());
+    }
+
+    @Test
     void testDeleteActivity() throws SQLException {
         // Given
         String activityId = "activity123";

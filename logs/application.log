@@ -8023,3 +8023,28 @@ INSERT INTO activities (id, project_id, creator_id, title, description, priority
 22:03:38.760 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
 22:03:38.769 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
 22:03:38.848 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 25 finished executing tests.
+11:32:41.315 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 1 started executing tests.
+11:32:43.771 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:32:44.277 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+11:32:44.280 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:32:44.294 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+11:32:44.302 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+11:32:44.428 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='9f46c1d5-b61d-4bad-b4f2-f7b781f4c327', title='Test Activity', description='Description', dueDate=2025-05-04, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+11:32:44.501 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 1 finished executing tests.
+11:36:38.611 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 2 started executing tests.
+11:36:40.621 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:36:41.109 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+11:36:41.112 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:36:41.124 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+11:36:41.130 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+11:36:41.231 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 2 finished executing tests.
+11:43:10.453 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 3 started executing tests.
+11:43:10.922 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 3 finished executing tests.
+11:43:26.373 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 4 started executing tests.
+11:43:28.457 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:43:28.941 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+11:43:28.943 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:43:28.956 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+11:43:28.962 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+11:43:29.061 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='a04d1878-b4bc-488f-9015-88cdafece262', title='Test Activity', description='Description', dueDate=2025-05-04, completed=false, priority=High, creatorId='creator123', projectId='project123'}
+11:43:29.136 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 4 finished executing tests.
