@@ -22,4 +22,18 @@ class UserTest {
         // Then
         assertEquals(username, user.getUsername());
     }
+
+    @Test
+    void testGetPassword() {
+        // Given
+        String username = "testUser";
+        String password = "testPassword";
+        Role role = RoleFactory.createFromString("Worker");
+
+        // When
+        User user = new User(username, password, role);
+
+        // Then
+        assertEquals(password, user.getPasswordHash());
+    }
 }
