@@ -1,4 +1,4 @@
-package com.lulakssoft.activitymanagement.domain.services;
+package com.lulakssoft.activitymanagement.application.service;
 
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import org.slf4j.Logger;

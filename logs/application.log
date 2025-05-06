@@ -10368,3 +10368,31 @@ INSERT INTO projects (id, name, creator_id) VALUES (?, ?, ?) [23506-224]
 13:07:59.307 [Test worker] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
 13:07:59.395 [Test worker] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='c1dce83d-b87f-419b-971e-e56e8b04ce44', title='Test Activity', description='Description', dueDate=2025-05-06, completed=false, priority=High, creatorId='creator123', projectId='project123'}
 13:07:59.456 [Test worker] INFO  o.g.a.i.t.testing.worker.TestWorker - Gradle Test Executor 2 finished executing tests.
+13:21:05.021 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Starting application
+13:21:05.279 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+13:21:05.573 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+13:21:05.574 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+13:21:05.581 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database initialized successfully
+13:21:05.587 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool initialized
+13:21:07.767 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Application is closing
+13:21:07.767 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection pool
+13:21:07.767 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:21:07.984 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+13:21:07.984 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Database connection pool closed
+13:21:08.000 [JavaFX Application Thread] INFO  c.l.a.domain.services.LoggingService - Closing database connection to prevent memory leaks
+13:24:53.734 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Starting application
+13:24:53.925 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+13:24:54.183 [JavaFX Application Thread] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:./activitymanagement user=SA
+13:24:54.184 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+13:24:54.190 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Database initialized successfully
+13:24:54.195 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Database connection pool initialized
+13:24:59.520 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Attempting to login user admin01 with password admin
+13:24:59.549 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Login successful for user: admin01
+13:25:02.511 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Loading project: technician01, admin01, employee02
+13:25:13.975 [JavaFX Application Thread] INFO  c.l.a.i.p.JdbcActivityRepository - Saving activity: Activity{id='7483462b-bee5-4267-a541-15c6bf2456e7', title='Hello', description='Something', dueDate=2025-05-13, completed=false, priority=High, creatorId='0f989726-ba94-4232-a38f-f3a2b8a6c764', projectId='47f1a927-f665-4185-b4ed-6486c66b0b5c'}
+13:25:13.999 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Closing Activity Creator
+13:25:20.016 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Closing database connection to prevent memory leaks
+13:25:20.017 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Closing database connection pool
+13:25:20.017 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:25:20.225 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+13:25:20.226 [JavaFX Application Thread] INFO  c.l.a.a.service.LoggingService - Database connection pool closed

@@ -1,6 +1,6 @@
 package com.lulakssoft.activitymanagement.adapter.notification;
 
-import com.lulakssoft.activitymanagement.domain.services.LoggingService;
+import com.lulakssoft.activitymanagement.application.service.LoggingService;
 
 public class LoggerFactory {
 

@@ -6,7 +6,7 @@ import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
 import com.lulakssoft.activitymanagement.domain.model.user.User;
 import com.lulakssoft.activitymanagement.domain.observer.ActivityObserver;
-import com.lulakssoft.activitymanagement.domain.services.EmailNotificationService;
+import com.lulakssoft.activitymanagement.application.service.EmailNotificationService;
 
 public class EmailActivityObserver implements ActivityObserver {
 
