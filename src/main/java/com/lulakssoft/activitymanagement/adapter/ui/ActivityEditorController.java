@@ -1,7 +1,6 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
 import com.lulakssoft.activitymanagement.application.service.ActivityService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.HistoryManager;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
@@ -43,12 +42,14 @@ public class ActivityEditorController implements UINotifier {
     private ChoiceBox<Priority> priorityChoiceBox;
 
     private final Logger logger = LoggerFactory.getLogger(ActivityEditorController.class);
-    private ActivityService activityService;
+    private final ActivityService activityService;
+
+    public ActivityEditorController(ActivityService activityService) {
+        this.activityService = activityService;
+    }
 
     @FXML
     public void initialize() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.activityService = context.getActivityService();
         Activity editingActivity = activityService.getCurrentEditingActivity();
         if (editingActivity != null) {
             titleField.setText(editingActivity.getTitle());

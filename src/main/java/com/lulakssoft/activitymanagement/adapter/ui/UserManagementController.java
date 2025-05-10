@@ -1,7 +1,6 @@
 package com.lulakssoft.activitymanagement.adapter.ui;
 
 import com.lulakssoft.activitymanagement.application.service.UserService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.domain.model.user.Role;
 import com.lulakssoft.activitymanagement.domain.model.user.RoleFactory;
 import com.lulakssoft.activitymanagement.domain.model.user.RoleType;
@@ -46,13 +45,14 @@ public class UserManagementController {
 
     private final Logger logger = LoggerFactory.getLogger(UserManagementController.class);
 
-    private UserService userService;
+    private final UserService userService;
+
+    public UserManagementController(UserService userService) {
+        this.userService = userService;
+    }
 
     @FXML
     public void initialize() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.userService = context.getUserService();
-
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         roleColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getRole().getName()));

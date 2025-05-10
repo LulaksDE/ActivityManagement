@@ -3,7 +3,6 @@ package com.lulakssoft.activitymanagement.adapter.ui;
 import com.lulakssoft.activitymanagement.application.service.ActivityService;
 import com.lulakssoft.activitymanagement.application.service.ProjectService;
 import com.lulakssoft.activitymanagement.application.service.UserService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.HistoryManager;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
@@ -47,16 +46,18 @@ public class ActivityCreatorController implements UINotifier {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    private ProjectService projectService;
-    private ActivityService activityService;
-    private UserService userService;
+    private final ProjectService projectService;
+    private final ActivityService activityService;
+    private final UserService userService;
+
+    public ActivityCreatorController(ProjectService projectService, ActivityService activityService, UserService userService) {
+    this.projectService = projectService;
+        this.activityService = activityService;
+        this.userService = userService;
+    }
 
     @FXML
     public void initialize() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.projectService = context.getProjectService();
-        this.activityService = context.getActivityService();
-        this.userService = context.getUserService();
         dueDatePicker.setValue(LocalDate.now().plusDays(7));
         completedCheckBox.setSelected(false);
 

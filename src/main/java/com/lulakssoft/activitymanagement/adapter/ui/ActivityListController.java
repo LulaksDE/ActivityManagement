@@ -3,7 +3,6 @@ package com.lulakssoft.activitymanagement.adapter.ui;
 import com.lulakssoft.activitymanagement.HistoryManager;
 import com.lulakssoft.activitymanagement.application.service.ActivityService;
 import com.lulakssoft.activitymanagement.application.service.ProjectService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.domain.model.project.Project;
 import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
@@ -41,15 +40,15 @@ public class ActivityListController {
     private ObservableList<Activity> observableActivityList;
     private FilteredList<Activity> filteredActivityList;
     private final LoggerNotifier logger = LoggerFactory.getLogger();
-    private ActivityService activityService;
-    private ProjectService projectService;
+    private final ActivityService activityService;
+    private final ProjectService projectService;
 
+    public ActivityListController(ActivityService activityService, ProjectService projectService) {
+        this.activityService = activityService;
+        this.projectService = projectService;
+    }
     @FXML
     public void initialize() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.activityService = context.getActivityService();
-        this.projectService = context.getProjectService();
-
         Project currentProject = projectService.getCurrentProject();
 
 

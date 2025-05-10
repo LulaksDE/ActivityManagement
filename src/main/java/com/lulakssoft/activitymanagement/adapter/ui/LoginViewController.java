@@ -4,7 +4,6 @@ import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
 import com.lulakssoft.activitymanagement.application.service.UserService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.domain.model.user.User;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -34,13 +33,14 @@ public class LoginViewController {
     private Button loginButton;
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
-    private UserService userService;
+    private final UserService userService;
 
+    public LoginViewController(UserService userService) {
+        this.userService = userService;
+    }
 
     @FXML
     public void initialize() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.userService = context.getUserService();
         loginButton.setOnAction(event -> handleLoginButton());
     }
 

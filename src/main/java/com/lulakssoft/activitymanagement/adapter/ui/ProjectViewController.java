@@ -2,7 +2,6 @@ package com.lulakssoft.activitymanagement.adapter.ui;
 
 import com.lulakssoft.activitymanagement.application.service.ProjectService;
 import com.lulakssoft.activitymanagement.application.service.UserService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.SceneManager;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
@@ -48,8 +47,13 @@ public class ProjectViewController {
 
     private final LoggerNotifier logger = LoggerFactory.getLogger();
 
-    private ProjectService projectService;
-    private UserService userService;
+    private final ProjectService projectService;
+    private final UserService userService;
+
+    public ProjectViewController(ProjectService projectService, UserService userService) {
+        this.projectService = projectService;
+        this.userService = userService;
+    }
 
     @FXML
     public void initialize() {
@@ -72,9 +76,6 @@ public class ProjectViewController {
     }
 
     private void setupManagers() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.projectService = context.getProjectService();
-        this.userService = context.getUserService();
         loggedIn = true;
     }
 

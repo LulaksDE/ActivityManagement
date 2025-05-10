@@ -19,4 +19,6 @@ module com.lulakssoft.activitymanagement {
     opens com.lulakssoft.activitymanagement.domain.model.project to javafx.fxml;
     exports com.lulakssoft.activitymanagement.domain.model.user;
     opens com.lulakssoft.activitymanagement.domain.model.user to javafx.fxml;
+    exports com.lulakssoft.activitymanagement.application.service;
+    opens com.lulakssoft.activitymanagement.application.service to javafx.fxml;
 }

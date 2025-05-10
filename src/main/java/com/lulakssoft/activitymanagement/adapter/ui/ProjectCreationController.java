@@ -2,7 +2,6 @@ package com.lulakssoft.activitymanagement.adapter.ui;
 
 import com.lulakssoft.activitymanagement.application.service.ProjectService;
 import com.lulakssoft.activitymanagement.application.service.UserService;
-import com.lulakssoft.activitymanagement.config.ApplicationContext;
 import com.lulakssoft.activitymanagement.adapter.notification.Toast;
 import com.lulakssoft.activitymanagement.adapter.notification.UINotifier;
 import com.lulakssoft.activitymanagement.domain.model.project.Project;
@@ -18,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -60,14 +58,16 @@ public class ProjectCreationController implements UINotifier {
     private User creator;
     private final Logger logger = LoggerFactory.getLogger(ProjectCreationController.class);
 
-    private ProjectService projectService;
-    private UserService userService;
+    private final ProjectService projectService;
+    private final UserService userService;
+
+    public ProjectCreationController(ProjectService projectService, UserService userService) {
+        this.projectService = projectService;
+        this.userService = userService;
+    }
 
     @FXML
     public void initialize() {
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.projectService = context.getProjectService();
-        this.userService = context.getUserService();
         List<User> userList = userService.findAllUsers();
         creator = userService.getCurrentUser();
 
@@ -76,7 +76,7 @@ public class ProjectCreationController implements UINotifier {
 
         projectMemberListView.setItems(projectUsers);
 
-        projectMemberListView.setCellFactory(listView -> new ListCell<User>() {
+        projectMemberListView.setCellFactory(listView -> new ListCell<>() {
             @Override
             protected void updateItem(User nutzer, boolean empty) {
                 super.updateItem(nutzer, empty);
