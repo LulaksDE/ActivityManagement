@@ -2,9 +2,8 @@ package com.lulakssoft.activitymanagement.domain.repository;
 
 import com.lulakssoft.activitymanagement.domain.model.project.Project;
 import java.util.List;
-import java.util.Optional;
 
-public interface ProjectRepository {
+public interface IProjectRepository {
     void save(Project project);
     void delete(String projectId);
     Project findById(String id);

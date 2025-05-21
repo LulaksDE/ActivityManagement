@@ -3,7 +3,7 @@ package com.lulakssoft.activitymanagement.infrastructure.persistence;
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
 import com.lulakssoft.activitymanagement.domain.model.activity.Priority;
-import com.lulakssoft.activitymanagement.domain.repository.ActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IActivityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,9 +13,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-public class JdbcActivityRepository implements ActivityRepository {
+public class JdbcActivityRepository implements IActivityRepository {
     private final DataSource dataSource;
     private static final Logger logger = LoggerFactory.getLogger(JdbcActivityRepository.class);
 
