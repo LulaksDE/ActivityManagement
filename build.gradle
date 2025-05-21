@@ -4,6 +4,7 @@ plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
+    id 'jacoco'
 }
 
 group 'com.LulaksSoft'
@@ -26,7 +27,7 @@ tasks.withType(JavaCompile).configureEach {
 
 application {
     mainModule = 'com.lulakssoft.activitymanagement'
-    mainClass = 'com.lulakssoft.activitymanagement.HelloApplication'
+    mainClass = 'com.lulakssoft.activitymanagement.MainView'
 }
 
 javafx {
@@ -48,13 +49,21 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:2.0.16'
     implementation 'ch.qos.logback:logback-classic:1.5.18'
 
+    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
+    implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("org.mockito:mockito-core:5.4.0")
 }
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport{
+    dependsOn test // tests are required to run before generating the report
 }
 
 jlink {

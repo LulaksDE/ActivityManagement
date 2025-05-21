@@ -5,7 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.HistoryViewController">
+<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lulakssoft.activitymanagement.adapter.ui.HistoryViewController">
    <children>
       <VBox spacing="10" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" AnchorPane.bottomAnchor="15.0">
          <Label fx:id="historyLabel" text="History" textAlignment="CENTER">
