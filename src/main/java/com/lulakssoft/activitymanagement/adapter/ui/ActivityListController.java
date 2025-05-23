@@ -78,7 +78,8 @@ public class ActivityListController {
                     if (empty || activity == null) {
                         setText(null);
                     } else {
-                        setText(activity.getTitle() + (activity.isCompleted() ? " (✓)" : ""));
+                        String completionStatus = activity.isCompleted() ? " (✓)" : "";
+                        setText(activity.getTitle() + completionStatus);
                     }
                 }
             });
