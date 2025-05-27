@@ -2,7 +2,7 @@ package com.lulakssoft.activitymanagement.infrastructure.persistence;
 
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.domain.model.project.Project;
-import com.lulakssoft.activitymanagement.domain.repository.ProjectRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IProjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class JdbcProjectRepository implements ProjectRepository {
+public class JdbcProjectRepository implements IProjectRepository {
     private final DataSource dataSource;
     private static final Logger logger = LoggerFactory.getLogger(JdbcProjectRepository.class);
 

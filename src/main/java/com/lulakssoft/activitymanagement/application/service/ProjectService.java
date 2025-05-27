@@ -1,15 +1,15 @@
 package com.lulakssoft.activitymanagement.application.service;
 
 import com.lulakssoft.activitymanagement.domain.model.project.Project;
-import com.lulakssoft.activitymanagement.domain.repository.ProjectRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IProjectRepository;
 
 import java.util.List;
 
 public class ProjectService {
-    private final ProjectRepository projectRepository;
+    private final IProjectRepository projectRepository;
     private Project currentProject;
 
-    public ProjectService(ProjectRepository projectRepository) {
+    public ProjectService(IProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
     public void saveProject(Project project) {

@@ -1,14 +1,13 @@
 package com.lulakssoft.activitymanagement;
 
-import com.lulakssoft.activitymanagement.adapter.ui.LoginViewController;
 import com.lulakssoft.activitymanagement.application.observer.ActivityObserverManager;
 import com.lulakssoft.activitymanagement.application.service.*;
 import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerFactory;
 import com.lulakssoft.activitymanagement.adapter.notification.LoggerNotifier;
-import com.lulakssoft.activitymanagement.domain.repository.ActivityRepository;
-import com.lulakssoft.activitymanagement.domain.repository.ProjectRepository;
-import com.lulakssoft.activitymanagement.domain.repository.UserRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IProjectRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IUserRepository;
 import com.lulakssoft.activitymanagement.infrastructure.di.DependencyInjector;
 import com.lulakssoft.activitymanagement.infrastructure.observer.EmailActivityObserver;
 import com.lulakssoft.activitymanagement.infrastructure.persistence.JdbcActivityRepository;
@@ -45,13 +44,13 @@ public class MainView extends Application {
     private void initializeDependencies() {
         DependencyInjector injector = DependencyInjector.getInstance();
 
-        UserRepository userRepository = new JdbcUserRepository();
-        ProjectRepository projectRepository = new JdbcProjectRepository();
-        ActivityRepository activityRepository = new JdbcActivityRepository();
+        IUserRepository userRepository = new JdbcUserRepository();
+        IProjectRepository projectRepository = new JdbcProjectRepository();
+        IActivityRepository activityRepository = new JdbcActivityRepository();
 
-        injector.register(UserRepository.class, userRepository);
-        injector.register(ProjectRepository.class, projectRepository);
-        injector.register(ActivityRepository.class, activityRepository);
+        injector.register(IUserRepository.class, userRepository);
+        injector.register(IProjectRepository.class, projectRepository);
+        injector.register(IActivityRepository.class, activityRepository);
 
         UserService userService = new UserService(userRepository);
         ProjectService projectService = new ProjectService(projectRepository);

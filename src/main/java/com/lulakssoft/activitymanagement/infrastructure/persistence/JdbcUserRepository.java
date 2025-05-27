@@ -4,7 +4,7 @@ import com.lulakssoft.activitymanagement.database.DatabaseConnection;
 import com.lulakssoft.activitymanagement.domain.model.user.Role;
 import com.lulakssoft.activitymanagement.domain.model.user.RoleFactory;
 import com.lulakssoft.activitymanagement.domain.model.user.User;
-import com.lulakssoft.activitymanagement.domain.repository.UserRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class JdbcUserRepository implements UserRepository {
+public class JdbcUserRepository implements IUserRepository {
     private final DataSource dataSource;
     private static final Logger logger = LoggerFactory.getLogger(JdbcUserRepository.class);
 

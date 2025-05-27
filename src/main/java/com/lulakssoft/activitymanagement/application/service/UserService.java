@@ -1,15 +1,15 @@
 package com.lulakssoft.activitymanagement.application.service;
 
 import com.lulakssoft.activitymanagement.domain.model.user.User;
-import com.lulakssoft.activitymanagement.domain.repository.UserRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IUserRepository;
 
 import java.util.List;
 
 public class UserService {
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
     private User currentUser;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
     public void deleteUser(String userId) {

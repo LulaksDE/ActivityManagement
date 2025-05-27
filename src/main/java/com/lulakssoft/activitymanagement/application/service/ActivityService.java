@@ -3,19 +3,19 @@ package com.lulakssoft.activitymanagement.application.service;
 import com.lulakssoft.activitymanagement.application.observer.ActivityObserverManager;
 import com.lulakssoft.activitymanagement.domain.model.activity.Activity;
 import com.lulakssoft.activitymanagement.domain.observer.ActivityEvent;
-import com.lulakssoft.activitymanagement.domain.repository.ActivityRepository;
+import com.lulakssoft.activitymanagement.domain.repository.IActivityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class ActivityService {
-    private final ActivityRepository activityRepository;
+    private final IActivityRepository activityRepository;
     private Activity currentEditingActivity;
     private final ActivityObserverManager observerManager;
     private final Logger logger = LoggerFactory.getLogger(ActivityService.class);
 
-    public ActivityService(ActivityRepository activityRepository) {
+    public ActivityService(IActivityRepository activityRepository) {
         this.activityRepository = activityRepository;
         this.observerManager = ActivityObserverManager.INSTANCE;
     }
